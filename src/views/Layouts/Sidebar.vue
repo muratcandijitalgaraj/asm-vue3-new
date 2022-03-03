@@ -5,14 +5,16 @@
         <div class="col-12 d-flex justify-content-center">
           <img
             class="image"
-            src="../../assets/img/sidebar/sidebar.img.svg"
+            src="../../assets/img/sidebar/sidebar-img.svg"
             alt=""
           />
         </div>
-        <div class="col d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center">
           <p class="title">Akgül Yılmaz</p>
         </div>
-        <span>GREY LINE</span>
+        <div class="col-12 d-flex justify-content-center">
+          <span class="greyline"></span>
+        </div>
         <div class="col cols d-flex justify-content-start align-items-center">
           <img src="../../assets/img/sidebar/giris.svg" alt="" class="logo" />
           <div class="text">Giriş</div>
@@ -84,6 +86,8 @@
 .image {
   width: 116px;
   height: 116px;
+  margin-top: 10px;
+  margin-bottom: 2px;
 }
 .logo {
   margin-right: 10px;
@@ -101,6 +105,12 @@
   /* identical to box height */
   text-align: center;
   color: $title;
+}
+.greyline {
+  background: $border;
+  height: 1px;
+  width: 100%;
+  margin-bottom: 22px;
 }
 .text {
   font-family: Nunito Sans;
