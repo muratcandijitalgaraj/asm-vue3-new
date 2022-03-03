@@ -7,7 +7,7 @@
 
     <slot name="header"></slot>
 
-    <div class="container">
+    <div class="container __height">
       <div class="row">
 
         <slot name="sidebar"></slot>
@@ -38,7 +38,7 @@ export default {
 
   .__bg-clouds {
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     left: 0;
     top: 150px;
     width: 100vw;
@@ -50,6 +50,16 @@ export default {
       width: 100%;
       height: 100%;
     }
+  }
+}
+
+.__height {
+  height: calc(100vh - 200px);
+  position: relative;
+  z-index: 1;
+
+  > .row {
+    height: 100%;
   }
 }
 </style>

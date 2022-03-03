@@ -1,8 +1,9 @@
 <template>
-  <div class="dashboard"></div>
+
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style scoped lang="scss">
 

@@ -1,129 +1,78 @@
 <template>
   <nav class="sidebar col-md-12 col-lg-4 col-xl-4 col-xxl-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-          <img
-            class="image"
-            src="../../assets/img/sidebar/sidebar-img.svg"
-            alt=""
-          />
-        </div>
-        <div class="col-12 d-flex justify-content-center">
-          <p class="title">Akgül Yılmaz</p>
-        </div>
-        <div class="col-12 d-flex justify-content-center">
-          <span class="greyline"></span>
-        </div>
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img src="../../assets/img/sidebar/giris.svg" alt="" class="logo" />
-          <div class="text">Giriş</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img
-            src="../../assets/img/sidebar/randevularim.svg"
-            alt=""
-            class="logo"
-          />
-          <div class="text">Randevularım</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img
-            src="../../assets/img/sidebar/kayitlar.svg"
-            alt=""
-            class="logo"
-          />
-          <div class="text">Tıbbi Kayıtlar</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img src="../../assets/img/sidebar/gecmis.svg" alt="" class="logo" />
-          <div class="text">Geçmiş Muayeneler</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img
-            src="../../assets/img/sidebar/receteler.svg"
-            alt=""
-            class="logo"
-          />
-          <div class="text">Reçeteler</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img src="../../assets/img/sidebar/hesap.svg" alt="" class="logo" />
-          <div class="text">Hesap Bilgileriniz</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img src="../../assets/img/sidebar/anket.svg" alt="" class="logo" />
-          <div class="text">Anketimize katılın</div>
-        </div>
-        <!-- col ends -->
-        <div class="col cols d-flex justify-content-start align-items-center">
-          <img src="../../assets/img/sidebar/cikis.svg" alt="" class="logo" />
-          <div class="text">Çıkış Yap</div>
-        </div>
-        <!-- col ends -->
-      </div>
-    </div>
+
+    <ProfilePhoto/>
+
+    <ul class="mb-0">
+
+      <NavItem v-for="(item, key) in links" :title="item.title" :url="item.url" :src="item.src" :key="key"/>
+
+    </ul>
+
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+import ProfilePhoto from "../../components/Sidebar/ProfilePhoto.vue"
+import NavItem from "../../components/Sidebar/NavItem.vue"
+
+import {ref} from "vue";
+const links = ref([
+  {
+    src: "/src/assets/img/sidebar/giris.svg",
+    title: "Giriş",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/randevularim.svg",
+    title: "Randevularım",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/kayitlar.svg",
+    title: "Tıbbi Kayıtlar",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/gecmis.svg",
+    title: "Geçmiş Muayeneler",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/receteler.svg",
+    title: "Reçeteler",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/hesap.svg",
+    title: "Hesap Bilgileriniz",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/anket.svg",
+    title: "Anketimize katılın",
+    url: {}
+  },
+  {
+    src: "/src/assets/img/sidebar/cikis.svg",
+    title: "Çıkış Yap",
+    url: {}
+  },
+])
+</script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/style";
+
 .sidebar {
-  width: 270px;
-  height: 1018px;
+  height: 100%;
   background: $sidebar;
   border-radius: 18px 0px 0px 18px;
-}
+  padding-left: 30px;
+  padding-right: 30px;
 
-.image {
-  width: 116px;
-  height: 116px;
-  margin-top: 10px;
-  margin-bottom: 2px;
-}
-.logo {
-  margin-right: 10px;
-  width: 22px;
-  height: 22px;
-}
-.title {
-  width: 97px;
-  height: 22px;
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 22px;
-  /* identical to box height */
-  text-align: center;
-  color: $title;
-}
-.greyline {
-  background: $border;
-  height: 1px;
-  width: 100%;
-  margin-bottom: 22px;
-}
-.text {
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 22px;
-  /* identical to box height */
-  color: $text;
-  width: auto;
-  height: 22px;
-}
-.cols {
-  margin-bottom: 28px;
+  ul {
+    padding: 0;
+  }
 }
 </style>
