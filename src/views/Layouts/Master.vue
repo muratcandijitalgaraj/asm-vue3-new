@@ -1,32 +1,27 @@
 <template>
-
   <div class="master">
     <div class="__bg-clouds">
-      <img src="../../assets/img/bulutlar.svg" alt="">
+      <img src="../../assets/img/bulutlar.svg" alt="" />
     </div>
 
     <slot name="header"></slot>
 
     <div class="container __height">
       <div class="row">
-
         <slot name="sidebar"></slot>
 
         <slot name="section"></slot>
-
       </div>
     </div>
 
     <slot name="footer"></slot>
-
   </div>
-
 </template>
 
 <script>
 export default {
-  name: "Master"
-}
+  name: "Master",
+};
 </script>
 
 <style scoped lang="scss">
