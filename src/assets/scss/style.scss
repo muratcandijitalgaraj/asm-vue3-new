@@ -1,34 +1,34 @@
-$red: #E94D4D;
-$blue: #32A5DF;
-$orange: #FF7C32;
-$green: #29A87B;
-$main: #F2F8FB;
-$title: #3C4E69;
-$text: #3C4E69;
-$text-grey: #818B9A;
+$red: #e94d4d;
+$blue: #32a5df;
+$orange: #ff7c32;
+$purple: #7367f0;
+$green: #29a87b;
+$main: #f2f8fb;
+$title: #3c4e69;
+$text: #3c4e69;
+$text-grey: #818b9a;
 $white: #fff;
 $black: #000000;
-$sidebar: #F9FDFF;
-$border: #DAE9F1;
-
+$sidebar: #f9fdff;
+$border: #dae9f1;
 
 * {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-weight: 400;
 }
 
-@mixin light{
+@mixin light {
   font-weight: 300;
 }
 
-@mixin regular{
+@mixin regular {
   font-weight: 400;
 }
 
-@mixin semi-bold{
+@mixin semi-bold {
   font-weight: 600;
 }
 
-@mixin bold{
+@mixin bold {
   font-weight: 700;
 }
