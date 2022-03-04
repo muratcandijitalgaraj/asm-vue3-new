@@ -2,7 +2,7 @@
   <div class="main-container col-md-12 col-lg-8 col-xl-8 col-xxl-9">
     <!-- somehow, this is the section slot in master -->
     <div class="row d-flex justify-content-evenly">
-      <MainCard
+      <TopCards
         v-for="(item, key) in cards"
         :title="item.title"
         :url="item.url"
@@ -11,11 +11,12 @@
         :class="item.color"
       />
     </div>
+    <!-- component buraya gelecek -->
   </div>
 </template>
 
 <script setup>
-import MainCard from "../../components/main/MainCard.vue";
+import TopCards from "../../components/main/TopCards.vue";
 import { ref } from "vue";
 const cards = ref([
   {
@@ -53,6 +54,7 @@ const cards = ref([
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
 }
+// her kart bir box
 .box {
   margin-top: 29px;
 }

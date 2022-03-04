@@ -1,11 +1,5 @@
 <template>
-  <!-- <li class="mainCard d-flex">
-    <router-link :to="url" class="card-item d-flex flex-column">
-      <img :src="src" :alt="title" class="logo" />
-      <span class="text">{{ title }}</span>
-    </router-link>
-  </li> -->
-  <div class="mainCard">
+  <div class="topCard">
     <router-link
       :class="color"
       :to="url"
@@ -29,7 +23,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 @import "../../assets/scss/style";
 
-.mainCard {
+.topCard {
   width: 210px;
   height: 110px;
   background: $white;
