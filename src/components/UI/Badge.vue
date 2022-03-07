@@ -10,5 +10,5 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/scss/style";
+  @import "../../assets/scss/style";
 </style>

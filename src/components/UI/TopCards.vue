@@ -24,21 +24,34 @@ const props = defineProps({
 @import "../../assets/scss/style";
 
 .topCard {
-  width: 210px;
-  height: 110px;
   background: $white;
-  /* Boxx Shadow */
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 0px 0px 10px 10px;
+  padding: 16px 22px;
+  min-height: 110px;
 }
+
 .logo {
   margin-bottom: 10px;
-  margin-top: 14px;
 }
+
 .text {
   font-weight: bold;
   font-size: 16px;
   line-height: 22px;
   color: $text;
+}
+
+.blue {
+  border-top: 3px solid $blue;
+}
+.orange {
+  border-top: 3px solid $orange;
+}
+.purple {
+  border-top: 3px solid $purple;
+}
+.green {
+  border-top: 3px solid $green;
 }
 </style>
