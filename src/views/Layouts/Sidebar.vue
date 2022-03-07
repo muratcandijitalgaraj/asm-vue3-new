@@ -82,4 +82,11 @@ const links = ref([
 }
 .navbarItem {
 }
+@media only screen and (max-width: 992px) {
+  .sidebar {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 18px;
+  }
+}
 </style>

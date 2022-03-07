@@ -115,4 +115,10 @@ const appointments = ref([
   border-bottom-right-radius: 18px;
   padding: 30px;
 }
+
+@media only screen and (max-width: 992px) {
+  .main-container {
+    border-top-right-radius: 0px;
+  }
+}
 </style>
