@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <Appointments v-for="(item, key) in appointments" :key="key" :hospital-data="item.hospital" :doctor-data="item.doctor" :date="item.date" :type="item.type"/>
+    <Appointments v-for="(item, key) in appointments" :price="item.price" :key="key" :hospital-data="item.hospital" :doctor-data="item.doctor" :date="item.date" :type="item.type"/>
 
     <!-- component buraya gelecek -->
   </div>
@@ -75,7 +75,8 @@ const appointments = ref([
         img: '/src/assets/demo-data/doctor.png'
       },
       date: "20 Ocak Pazartesi - 12:30",
-      type: 2
+      type: 2,
+      price: 241
     },
     {
       hospital: {

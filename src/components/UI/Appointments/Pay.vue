@@ -1,12 +1,14 @@
 <template>
   <div class="pay">
     <p>Ödemenizi yaptığınızda randevunuz aktif hale gelecektir.</p>
-    <button>241 TL Ödeme Yapın</button>
+    <button>{{ price }} TL Ödeme Yapın</button>
   </div>
 </template>
 
 <script setup>
-
+const props = defineProps({
+  price: {required:false, default:0}
+})
 </script>
 
 <style scoped lang="scss">
