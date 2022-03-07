@@ -36,6 +36,7 @@ import Dashboard from "./views/Dashboard.vue";
 html,
 body {
   height: 100%;
+  background: #3caae2;
 }
 /*
   Typographic tweaks!
