@@ -53,15 +53,42 @@ const cards = ref([
 const appointments = ref([
     {
       hospital: {
-        title: 'Ataşehir Tıp Merkezi'
+        title: 'Ataşehir Tıp Merkezi',
+        subTitle: 'Ataşehir Tıp Merkezi',
       },
       doctor: {
         title: 'Prof. Dr. Mehmet Ali Tahaoğlu',
         branch: 'Gögüs Hastalıkları',
-        img: '../../assets/demo-data/doctor.png'
+        img: '/src/assets/demo-data/doctor.png'
       },
       date: "20 Ocak Pazartesi - 12:30",
       type: 1
+    },
+    {
+      hospital: {
+        title: 'Ataşehir Tıp Merkezi',
+        subTitle: 'Ataşehir Tıp Merkezi',
+      },
+      doctor: {
+        title: 'Prof. Dr. Mehmet Ali Tahaoğlu',
+        branch: 'Gögüs Hastalıkları',
+        img: '/src/assets/demo-data/doctor.png'
+      },
+      date: "20 Ocak Pazartesi - 12:30",
+      type: 2
+    },
+    {
+      hospital: {
+        title: 'Ataşehir Tıp Merkezi',
+        subTitle: 'Ataşehir Tıp Merkezi',
+      },
+      doctor: {
+        title: 'Prof. Dr. Mehmet Ali Tahaoğlu',
+        branch: 'Gögüs Hastalıkları',
+        img: '/src/assets/demo-data/doctor.png'
+      },
+      date: "20 Ocak Pazartesi - 12:30",
+      type: 3
     }
 ])
 </script>

@@ -35,7 +35,6 @@ const getColor = computed( () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 0 7.5px;
 
   h4 {
@@ -45,6 +44,11 @@ const getColor = computed( () => {
 
   .date {
     font-size: 15px;
+  }
+
+  @media (max-width: 1199px) {
+    margin-bottom: 15px;
+    width: 100%;
   }
 
   &.red {

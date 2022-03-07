@@ -41,6 +41,12 @@ const getColor = computed( () => {
   justify-content: center;
   border-radius: 5px;
 
+  @media (max-width: 1199px) {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+  }
+
   &.red {
     background-color: rgba($red, .10);
   }
