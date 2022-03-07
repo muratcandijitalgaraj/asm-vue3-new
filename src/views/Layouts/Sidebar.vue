@@ -3,13 +3,16 @@
     <ProfilePhoto />
 
     <ul class="mb-0">
-      <NavItem
-        v-for="(item, key) in links"
-        :title="item.title"
-        :url="item.url"
-        :src="item.src"
-        :key="key"
-      />
+      <div class="row">
+        <NavItem
+          class="navbarItem col-6 col-lg-12"
+          v-for="(item, key) in links"
+          :title="item.title"
+          :url="item.url"
+          :src="item.src"
+          :key="key"
+        />
+      </div>
     </ul>
   </nav>
 </template>
@@ -76,5 +79,7 @@ const links = ref([
   ul {
     padding: 0;
   }
+}
+.navbarItem {
 }
 </style>
