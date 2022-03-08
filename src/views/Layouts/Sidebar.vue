@@ -23,6 +23,13 @@
 import ProfilePhoto from "../../components/Sidebar/ProfilePhoto.vue";
 import NavItem from "../../components/Sidebar/NavItem.vue";
 import girisLogo from "../../assets/img/sidebar/giris.svg";
+import randevuLogo from "../../assets/img/sidebar/randevularim.svg";
+import kayitlarLogo from "../../assets/img/sidebar/kayitlar.svg";
+import gecmisLogo from "../../assets/img/sidebar/gecmis.svg";
+import receteLogo from "../../assets/img/sidebar/receteler.svg";
+import hesapLogo from "../../assets/img/sidebar/hesap.svg";
+import anketLogo from "../../assets/img/sidebar/anket.svg";
+import cikisLogo from "../../assets/img/sidebar/cikis.svg";
 
 import { ref } from "vue";
 const links = ref([
@@ -32,37 +39,37 @@ const links = ref([
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/randevularim.svg",
+    src: randevuLogo,
     title: "Randevularım",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/kayitlar.svg",
+    src: kayitlarLogo,
     title: "Tıbbi Kayıtlar",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/gecmis.svg",
+    src: gecmisLogo,
     title: "Geçmiş Muayeneler",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/receteler.svg",
+    src: receteLogo,
     title: "Reçeteler",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/hesap.svg",
+    src: hesapLogo,
     title: "Hesap Bilgileriniz",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/anket.svg",
+    src: anketLogo,
     title: "Anketimize katılın",
     url: {},
   },
   {
-    src: "/src/assets/img/sidebar/cikis.svg",
+    src: cikisLogo,
     title: "Çıkış Yap",
     url: {},
   },
