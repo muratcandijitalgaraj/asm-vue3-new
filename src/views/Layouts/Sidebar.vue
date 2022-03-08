@@ -22,11 +22,12 @@
 <script setup>
 import ProfilePhoto from "../../components/Sidebar/ProfilePhoto.vue";
 import NavItem from "../../components/Sidebar/NavItem.vue";
+import girisLogo from "../../assets/img/sidebar/giris.svg";
 
 import { ref } from "vue";
 const links = ref([
   {
-    src: "/src/assets/img/sidebar/giris.svg",
+    src: girisLogo,
     title: "Giriş",
     url: {},
   },
