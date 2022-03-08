@@ -34,29 +34,34 @@
 <script setup>
 import TopCards from "../../components/UI/TopCards.vue";
 import Appointments from "../../components/UI/Appointments/Appointments.vue";
+import blueLogo from "../../assets/img/cards/blue.svg";
+import orangeLogo from "../../assets/img/cards/orange.svg";
+import purpleLogo from "../../assets/img/cards/purple.svg";
+import greenlogo from "../../assets/img/cards/green.svg";
+import doktorImg from "../../assets/demo-data/doctor.png";
 
 import { ref } from "vue";
 const cards = ref([
   {
-    src: "/src/assets/img/cards/blue.svg",
+    src: blueLogo,
     title: "Hastane Randevusu Alın",
     url: {},
     color: "blue",
   },
   {
-    src: "/src/assets/img/cards/orange.svg",
+    src: orangeLogo,
     title: "Görüntülü Görüşme Randevusu Alın",
     url: {},
     color: "orange",
   },
   {
-    src: "/src/assets/img/cards/purple.svg",
+    src: purpleLogo,
     title: "Check-Up Başvurusu Yapın",
     url: {},
     color: "purple",
   },
   {
-    src: "/src/assets/img/cards/green.svg",
+    src: greenlogo,
     title: "Destek Merkezi",
     url: {},
     color: "green",
