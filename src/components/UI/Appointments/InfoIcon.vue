@@ -1,34 +1,39 @@
 <template>
   <div class="info-icon" :class="getColor">
-    <img :src="getImage" class="img-fluid" alt="">
+    <img :src="getImage" class="img-fluid" alt="" />
   </div>
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed } from "vue";
+import hospitalLogo from "../../../assets/img/appointments/color-hospital.svg";
+import clockLogo from "../../../assets/img/appointments/color-clock.svg";
+import likeLogo from "../../../assets/img/appointments/color-like.svg";
 const props = defineProps({
-  type: {required: true}
-})
+  type: { required: true },
+});
 
-const getImage = computed( () => {
+const getImage = computed(() => {
   switch (props.type) {
     case 1:
-      return "/src/assets/img/appointments/color-hospital.svg";
+      return hospitalLogo;
     case 2:
-      return "/src/assets/img/appointments/color-clock.svg";
+      return clockLogo;
     case 3:
-      return "/src/assets/img/appointments/color-like.svg";
+      return likeLogo;
   }
-})
+});
 
-const getColor = computed( () => {
+const getColor = computed(() => {
   switch (props.type) {
-    case 1: return "red"
-    case 2: return "orange"
-    case 3: return "green"
+    case 1:
+      return "red";
+    case 2:
+      return "orange";
+    case 3:
+      return "green";
   }
-})
-
+});
 </script>
 
 <style scoped lang="scss">
@@ -48,15 +53,15 @@ const getColor = computed( () => {
   }
 
   &.red {
-    background-color: rgba($red, .10);
+    background-color: rgba($red, 0.1);
   }
 
   &.orange {
-    background-color: rgba($orange, .10);
+    background-color: rgba($orange, 0.1);
   }
 
   &.green {
-    background-color: rgba($green, .10);
+    background-color: rgba($green, 0.1);
   }
 }
 </style>

@@ -76,7 +76,7 @@ const appointments = ref([
     doctor: {
       title: "Prof. Dr. Mehmet Ali Tahaoğlu",
       branch: "Gögüs Hastalıkları",
-      img: "/src/assets/demo-data/doctor.png",
+      img: doktorImg,
     },
     date: "20 Ocak Pazartesi - 12:30",
     type: 1,
@@ -89,7 +89,7 @@ const appointments = ref([
     doctor: {
       title: "Prof. Dr. Mehmet Ali Tahaoğlu",
       branch: "Gögüs Hastalıkları",
-      img: "/src/assets/demo-data/doctor.png",
+      img: doktorImg,
     },
     date: "20 Ocak Pazartesi - 12:30",
     type: 2,
@@ -103,7 +103,7 @@ const appointments = ref([
     doctor: {
       title: "Prof. Dr. Mehmet Ali Tahaoğlu",
       branch: "Gögüs Hastalıkları",
-      img: "/src/assets/demo-data/doctor.png",
+      img: doktorImg,
     },
     date: "20 Ocak Pazartesi - 12:30",
     type: 3,
