@@ -1,20 +1,22 @@
 <template>
-  <nav class="sidebar col-md-12 col-lg-4 col-xl-4 col-xxl-3">
-    <ProfilePhoto />
+  <div class="sidebar col-md-12 col-lg-4 col-xl-4 col-xxl-3">
+    <nav>
+      <ProfilePhoto />
 
-    <ul class="mb-0">
-      <div class="row">
-        <NavItem
-          class="navbarItem col-6 col-lg-12"
-          v-for="(item, key) in links"
-          :title="item.title"
-          :url="item.url"
-          :src="item.src"
-          :key="key"
-        />
-      </div>
-    </ul>
-  </nav>
+      <ul class="mb-0">
+        <div class="row">
+          <NavItem
+            class="navbarItem col-6 col-lg-12"
+            v-for="(item, key) in links"
+            :title="item.title"
+            :url="item.url"
+            :src="item.src"
+            :key="key"
+          />
+        </div>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script setup>
