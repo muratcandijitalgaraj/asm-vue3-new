@@ -1,7 +1,7 @@
 <template>
   <div class="hospital-info">
     <div class="icon">
-      <img :src="getImage" class="img-fluid" alt="">
+      <img :src="getImage" class="img-fluid" alt="" />
     </div>
     <div class="text">
       <h4 class="mb-0">{{ data.title }}</h4>
@@ -11,22 +11,24 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed } from "vue";
+import hospitalLogo from "../../../assets/img/appointments/hospital.svg";
+import videoLogo from "../../../assets/img/appointments/video.svg";
 const props = defineProps({
-  type: {required: true},
-  data: {required: true, type: String}
-})
+  type: { required: true },
+  data: { required: true, type: String },
+});
 
-const getImage = computed( () => {
+const getImage = computed(() => {
   switch (props.type) {
     case 1:
-      return "/src/assets/img/appointments/hospital.svg";
+      return hospitalLogo;
     case 2:
-      return "/src/assets/img/appointments/video.svg";
+      return videoLogo;
     case 3:
-      return "/src/assets/img/appointments/video.svg";
+      return videoLogo;
   }
-})
+});
 </script>
 
 <style scoped lang="scss">
