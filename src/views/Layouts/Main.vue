@@ -32,7 +32,7 @@
     <Muayeneler
       v-for="(item, key) in muayeneler"
       :firstboxData="item.firstBox"
-      :getDate="item.getDate"
+      :doctor-data="item.doctor"
       :key="key"
     />
   </div>
@@ -80,6 +80,11 @@ const muayeneler = ref([
     firstBox: {
       getDate: "20 OCAK 2021 - 12:30",
       getLocation: "Ataşehir Tıp Merkezi",
+    },
+    doctor: {
+      title: "Prof. Dr. Mehmet Ali Tahaoğlu",
+      branch: "Gögüs Hastalıkları",
+      img: doktorImg,
     },
   },
 ]);

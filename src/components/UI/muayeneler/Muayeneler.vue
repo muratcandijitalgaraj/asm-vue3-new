@@ -3,6 +3,7 @@
     <div class="item-box">
       <div class="item-info-list">
         <FirstBox :data="firstboxData" />
+        <Doctor :data="doctorData" />
       </div>
     </div>
   </div>
@@ -10,10 +11,12 @@
 
 <script setup>
 import FirstBox from "./FirstBox.vue";
+import Doctor from "../Appointments/Doctor.vue";
 
 const props = defineProps({
   data: { required: true, type: Object },
   firstboxData: { required: true, type: Object },
+  doctorData: { required: true, type: Object },
 });
 </script>
 
