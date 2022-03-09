@@ -28,6 +28,13 @@
     />
 
     <!-- component buraya gelecek -->
+
+    <Muayeneler
+      v-for="(item, key) in muayeneler"
+      :firstboxData="item.firstBox"
+      :getDate="item.getDate"
+      :key="key"
+    />
   </div>
 </template>
 
@@ -39,6 +46,7 @@ import orangeLogo from "../../assets/img/cards/orange.svg";
 import purpleLogo from "../../assets/img/cards/purple.svg";
 import greenlogo from "../../assets/img/cards/green.svg";
 import doktorImg from "../../assets/demo-data/doctor.png";
+import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
 
 import { ref } from "vue";
 const cards = ref([
@@ -65,6 +73,14 @@ const cards = ref([
     title: "Destek Merkezi",
     url: {},
     color: "green",
+  },
+]);
+const muayeneler = ref([
+  {
+    firstBox: {
+      getDate: "20 OCAK 2021 - 12:30",
+      getLocation: "Ataşehir Tıp Merkezi",
+    },
   },
 ]);
 const appointments = ref([

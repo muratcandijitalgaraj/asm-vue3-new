@@ -6,27 +6,33 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed } from "vue";
 const props = defineProps({
-  type: {required: true},
-  date: {required: true, type: String}
-})
+  type: { required: true },
+  date: { required: true, type: String },
+});
 
-const getText = computed( () => {
+const getText = computed(() => {
   switch (props.type) {
-    case 1: return "Görüşme Bekleniyor"
-    case 2: return "Ödeme Bekleniyor"
-    case 3: return "Görüşme Tamamlandı"
+    case 1:
+      return "Görüşme Bekleniyor";
+    case 2:
+      return "Ödeme Bekleniyor";
+    case 3:
+      return "Görüşme Tamamlandı";
   }
-})
+});
 
-const getColor = computed( () => {
+const getColor = computed(() => {
   switch (props.type) {
-    case 1: return "red"
-    case 2: return "orange"
-    case 3: return "green"
+    case 1:
+      return "red";
+    case 2:
+      return "orange";
+    case 3:
+      return "green";
   }
-})
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,37 +1,26 @@
 <template>
-  <div class="d-flex appointments-list-item">
-    <InfoIcon :type="type" />
+  <div class="d-flex muayeneItem">
     <div class="item-box">
       <div class="item-info-list">
-        <Info :type="type" :date="date" />
-        <Doctor :data="doctorData" />
-        <Hospital :type="type" :data="hospitalData" />
+        <FirstBox :data="firstboxData" />
       </div>
-      <Pay v-if="type === 2" :price="price" />
     </div>
   </div>
 </template>
 
 <script setup>
-import InfoIcon from "./InfoIcon.vue";
-import Info from "./Info.vue";
-import Doctor from "./Doctor.vue";
-import Hospital from "./Hospital.vue";
-import Pay from "./Pay.vue";
+import FirstBox from "./FirstBox.vue";
 
 const props = defineProps({
-  type: { required: true, type: Number },
-  date: { required: true, type: String },
-  doctorData: { required: true, type: Object },
-  hospitalData: { required: true, type: Object },
-  price: { required: false, default: 0 },
+  data: { required: true, type: Object },
+  firstboxData: { required: true, type: Object },
 });
 </script>
 
 <style scoped lang="scss">
 @import "../../../assets/scss/style";
 
-.appointments-list-item {
+.muayeneItem {
   align-items: center;
   justify-content: space-between;
   background-color: $white;
