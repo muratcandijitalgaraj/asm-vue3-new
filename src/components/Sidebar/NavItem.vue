@@ -8,11 +8,11 @@
 </template>
 
 <script setup>
-const props = defineProps( {
-  src: {required: true, type: String},
-  title: {required: true, type: String},
-  url: {required: true, type: Object}
-})
+const props = defineProps({
+  src: { required: true, type: String },
+  title: { required: true, type: String },
+  url: { required: true, type: Object },
+});
 </script>
 
 <style scoped lang="scss">

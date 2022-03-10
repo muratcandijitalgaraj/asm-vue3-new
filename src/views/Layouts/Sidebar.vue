@@ -12,6 +12,7 @@
             :url="item.url"
             :src="item.src"
             :key="key"
+            :number="item.number"
           />
         </div>
       </ul>
@@ -30,6 +31,7 @@ import receteLogo from "../../assets/img/sidebar/receteler.svg";
 import hesapLogo from "../../assets/img/sidebar/hesap.svg";
 import anketLogo from "../../assets/img/sidebar/anket.svg";
 import cikisLogo from "../../assets/img/sidebar/cikis.svg";
+// import Badge from "../../components/UI/Badge.vue";
 
 import { ref } from "vue";
 const links = ref([
@@ -47,6 +49,7 @@ const links = ref([
     src: kayitlarLogo,
     title: "Tıbbi Kayıtlar",
     url: {},
+    number: 1,
   },
   {
     src: gecmisLogo,

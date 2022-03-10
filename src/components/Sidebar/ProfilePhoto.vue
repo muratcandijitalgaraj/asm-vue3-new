@@ -1,15 +1,31 @@
 <template>
   <div class="profile-photo">
     <img
-        class="img-fluid mb-2"
-        src="../../assets/img/sidebar/sidebar-img.svg"
-        alt="Akgül Yılmaz"
+      class="img-fluid mb-2"
+      src="../../assets/img/sidebar/sidebar-img.svg"
+      alt="Akgül Yılmaz"
     />
     <span class="title">Akgül Yılmaz</span>
+    <input
+      type="file"
+      ref="fileUpload"
+      name="file"
+      v-on:change="handleFileUpload"
+      class="hideMe"
+    />
+    <button class="uploadBtn" @click="handleButtonClick">
+      <img :src="uploadImg" alt="" class="uploadImg" />
+    </button>
   </div>
 </template>
 
 <script setup>
+import uploadImg from "../../assets/img/sidebar/upload.svg";
+import { ref } from "vue";
+const fileUpload = ref(null);
+const handleButtonClick = (e) => {
+  fileUpload.value.click();
+};
 </script>
 
 <style scoped lang="scss">
@@ -32,6 +48,16 @@
     text-align: center;
     color: $title;
     @include bold;
+  }
+  .hideMe {
+    display: none;
+  }
+  .uploadBtn {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 5rem;
+    left: 12rem;
   }
 }
 </style>
