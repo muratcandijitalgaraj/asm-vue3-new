@@ -55,9 +55,6 @@ const handleButtonClick = (e) => {
   .uploadBtn {
     background: none;
     border: none;
-    position: absolute;
-    top: 5rem;
-    left: 12rem;
   }
 }
 </style>
