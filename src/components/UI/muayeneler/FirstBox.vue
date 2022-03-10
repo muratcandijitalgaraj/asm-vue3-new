@@ -9,8 +9,6 @@
 const props = defineProps({
   data: { required: true, type: Object },
 });
-// let getDate = "20 OCAK 2021 - 12:30";
-// let getLocation = "Ataşehir Tıp Merkezi";
 </script>
 
 <style scoped lang="scss">

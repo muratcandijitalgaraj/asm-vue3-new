@@ -4,20 +4,61 @@
       <div class="item-info-list">
         <FirstBox :data="firstboxData" />
         <Doctor :data="doctorData" />
+        <ThirdBox
+          v-for="(item, key) in items"
+          :text="item.text"
+          :url="item.url"
+          :src="item.src"
+          :key="key"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+//components
 import FirstBox from "./FirstBox.vue";
 import Doctor from "../Appointments/Doctor.vue";
+import ThirdBox from "./ThirdBox.vue";
+//images
+import recete from "../../../assets/img/muayeneler/recete.svg";
+import lab from "../../../assets/img/muayeneler/lab.svg";
+import radyoloji from "../../../assets/img/muayeneler/radyoloji.svg";
+import patoloji from "../../../assets/img/muayeneler/patoloji.svg";
 
 const props = defineProps({
   data: { required: true, type: Object },
   firstboxData: { required: true, type: Object },
   doctorData: { required: true, type: Object },
+  src: { required: true, type: String },
+  text: { required: true, type: String },
+  url: { required: true, type: Object },
 });
+
+const items = ref([
+  {
+    src: recete,
+    text: "Reçete",
+    url: {},
+  },
+  {
+    src: lab,
+    text: "Lab",
+    url: {},
+  },
+  {
+    src: radyoloji,
+    text: "Radyoloji",
+    url: {},
+  },
+  {
+    src: patoloji,
+    text: "Patoloji",
+    url: {},
+  },
+]);
 </script>
 
 <style scoped lang="scss">
