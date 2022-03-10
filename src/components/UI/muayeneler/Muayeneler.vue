@@ -180,13 +180,25 @@ const items = ref([
 
     .firstBox {
       padding-left: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .doktorBox {
+      margin-bottom: 0.5rem;
     }
     .thirdBox {
       padding-left: 5px;
+      margin-bottom: 0.5rem;
     }
+  }
+  @media (max-width: 767px) {
     .bottomPart {
       display: flex;
       flex-direction: column;
+      align-items: center;
+    }
+    .bottomButton {
+      min-width: 250px;
+      margin-top: 1rem;
     }
   }
 }
