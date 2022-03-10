@@ -22,7 +22,24 @@
     <!-- grey line -->
     <div class="greyLine"></div>
     <!-- bottom part -->
-    <div class="bottomPart">lol</div>
+    <div class="bottomPart d-flex justify-content-between">
+      <div class="bottomLeft d-flex">
+        <div class="logoContainer d-flex">
+          <img class="bottomLogo" :src="puan" alt="" />
+          <span class="bottomText"> Puan Ver </span>
+        </div>
+        <div class="logoContainer d-flex">
+          <img class="bottomLogo" :src="anket" alt="" />
+          <span class="bottomText"> Ankete Katıl </span>
+        </div>
+      </div>
+      <!-- bottom right -->
+      <button
+        class="bottomButton d-flex justify-content-center align-items-center"
+      >
+        <span class="buttonPara">Randevu Alın</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -75,7 +92,9 @@ const items = ref([
 
 <style scoped lang="scss">
 @import "../../../assets/scss/style";
-
+.bottomLeft {
+  margin-left: 20px;
+}
 .muayeneItem {
   align-items: center;
   justify-content: space-between;
@@ -104,6 +123,49 @@ const items = ref([
     background: #f3f3f3;
   }
 
+  .bottomPart {
+    width: 100%;
+    margin: 1.2rem 0;
+  }
+  .logoContainer {
+    margin-right: 40px;
+  }
+  .bottomLogo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bottomButton {
+    background-color: $orange;
+    box-shadow: none;
+    outline: none;
+    font-size: 15px;
+    @include bold;
+    color: $white;
+    padding: 7px 15px;
+    border-radius: 6px;
+    border: none;
+    min-width: 250px;
+    margin-right: 1.6rem;
+    height: 40px;
+  }
+  .buttonPara {
+    /* buton-text-kucuk */
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 110%;
+    /* identical to box height, or 17px */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Beyaz */
+    color: #ffffff;
+    /* Inside auto layout */
+
+    margin: 0px 10px;
+  }
   @media (max-width: 1199px) {
     flex-direction: column;
     .doktorBox {
@@ -121,6 +183,10 @@ const items = ref([
     }
     .thirdBox {
       padding-left: 5px;
+    }
+    .bottomPart {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
