@@ -21,7 +21,7 @@ const props = defineProps({
 <style scoped lang="scss">
 @import "../../../assets/scss/style";
 .thirdboxItem {
-  border: solid;
+  margin-right: 20px;
 }
 .text {
   /* text4 */

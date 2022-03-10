@@ -2,15 +2,21 @@
   <div class="d-flex muayeneItem">
     <div class="item-box">
       <div class="item-info-list">
-        <FirstBox :data="firstboxData" />
-        <Doctor :data="doctorData" />
-        <ThirdBox
-          v-for="(item, key) in items"
-          :text="item.text"
-          :url="item.url"
-          :src="item.src"
-          :key="key"
-        />
+        <div class="firstBox">
+          <FirstBox :data="firstboxData" />
+        </div>
+        <div class="doktorBox">
+          <Doctor :data="doctorData" />
+        </div>
+        <div class="thirdBox d-flex">
+          <ThirdBox
+            v-for="(item, key) in items"
+            :text="item.text"
+            :url="item.url"
+            :src="item.src"
+            :key="key"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -72,11 +78,13 @@ const items = ref([
   border-radius: 10px;
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   margin-bottom: 20px;
-
+  .doktorBox {
+    padding-left: 60px;
+  }
   .item-box {
     width: 100%;
+    // padding-left: 57px;
     padding: 0 20px;
-
     .item-info-list {
       display: flex;
       align-items: center;
@@ -87,11 +95,21 @@ const items = ref([
 
   @media (max-width: 1199px) {
     flex-direction: column;
-
+    .doktorBox {
+      padding-left: 0;
+    }
     .item-box {
       .item-info-list {
         flex-direction: column;
+        align-items: flex-start;
       }
+    }
+
+    .firstBox {
+      padding-left: 4px;
+    }
+    .thirdBox {
+      padding-left: 5px;
     }
   }
 }
