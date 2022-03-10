@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex muayeneItem">
+  <div class="d-flex muayeneItem flex-column">
     <div class="item-box">
       <div class="item-info-list">
         <div class="firstBox">
@@ -19,6 +19,10 @@
         </div>
       </div>
     </div>
+    <!-- grey line -->
+    <div class="greyLine"></div>
+    <!-- bottom part -->
+    <div class="bottomPart">lol</div>
   </div>
 </template>
 
@@ -33,6 +37,8 @@ import recete from "../../../assets/img/muayeneler/recete.svg";
 import lab from "../../../assets/img/muayeneler/lab.svg";
 import radyoloji from "../../../assets/img/muayeneler/radyoloji.svg";
 import patoloji from "../../../assets/img/muayeneler/patoloji.svg";
+import anket from "../../../assets/img/muayeneler/anket.svg";
+import puan from "../../../assets/img/muayeneler/puan.svg";
 
 const props = defineProps({
   data: { required: true, type: Object },
@@ -91,6 +97,11 @@ const items = ref([
       justify-content: space-between;
       min-height: 100px;
     }
+  }
+  .greyLine {
+    height: 1px;
+    width: 95%;
+    background: #f3f3f3;
   }
 
   @media (max-width: 1199px) {
