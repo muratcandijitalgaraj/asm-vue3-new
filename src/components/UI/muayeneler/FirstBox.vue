@@ -17,5 +17,10 @@ const props = defineProps({
 @import "../../../assets/scss/style";
 .muayeneDate {
   color: $orange;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
 }
 </style>
