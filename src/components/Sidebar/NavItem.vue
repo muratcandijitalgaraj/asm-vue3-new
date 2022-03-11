@@ -3,15 +3,19 @@
     <router-link :to="url" class="sidebar-nav-item">
       <img :src="src" :alt="title" class="logo" />
       <span class="text">{{ title }}</span>
+      <Badge :number="number" :type="type" />
     </router-link>
   </li>
 </template>
 
 <script setup>
+import Badge from "../UI/Badge.vue";
 const props = defineProps({
   src: { required: true, type: String },
   title: { required: true, type: String },
   url: { required: true, type: Object },
+  number: { required: true, type: Number },
+  type: { required: false, type: String, default: "danger" },
 });
 </script>
 

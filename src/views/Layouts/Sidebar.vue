@@ -31,7 +31,7 @@ import receteLogo from "../../assets/img/sidebar/receteler.svg";
 import hesapLogo from "../../assets/img/sidebar/hesap.svg";
 import anketLogo from "../../assets/img/sidebar/anket.svg";
 import cikisLogo from "../../assets/img/sidebar/cikis.svg";
-// import Badge from "../../components/UI/Badge.vue";
+import Badge from "../../components/UI/Badge.vue";
 
 import { ref } from "vue";
 const links = ref([
@@ -95,6 +95,7 @@ const links = ref([
 }
 .navbarItem {
 }
+
 @media only screen and (max-width: 992px) {
   .sidebar {
     border-bottom-left-radius: 0;
