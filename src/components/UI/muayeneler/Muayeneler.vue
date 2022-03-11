@@ -24,11 +24,11 @@
     <!-- bottom part -->
     <div class="bottomPart d-flex justify-content-between">
       <div class="bottomLeft d-flex">
-        <div class="logoContainer d-flex">
+        <div class="logoContainer d-flex align-items-center">
           <img class="bottomLogo" :src="puan" alt="" />
           <span class="bottomText"> Puan Ver </span>
         </div>
-        <div class="logoContainer d-flex">
+        <div class="logoContainer d-flex align-items-center">
           <img class="bottomLogo" :src="anket" alt="" />
           <span class="bottomText"> Ankete Katıl </span>
         </div>
@@ -129,10 +129,12 @@ const items = ref([
   }
   .logoContainer {
     margin-right: 40px;
+    height: 40px;
   }
   .bottomLogo {
     width: 22px;
     height: 22px;
+    margin-right: 8px;
   }
 
   .bottomButton {
