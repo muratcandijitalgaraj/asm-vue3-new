@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
 const app = createApp(App);
-//app.use(router)
+app.use(router);
 
 // Component Imports
 import Header from "./views/Layouts/Header.vue";

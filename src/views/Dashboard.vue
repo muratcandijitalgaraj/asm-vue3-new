@@ -1,7 +1,16 @@
 <template>
-  <div class="dashboard"></div>
+  <Master>
+    <template v-slot:header><Header /></template>
+    <template v-slot:sidebar><Sidebar /></template>
+    <template v-slot:section>
+      <Main>
+        <!-- <Dashboard /> -->
+      </Main>
+    </template>
+    <template v-slot:footer><Footer /></template>
+  </Master>
 </template>
 
 <script setup></script>
 
-<style scoped lang="scss"></style>
+<style lang="scss"></style>

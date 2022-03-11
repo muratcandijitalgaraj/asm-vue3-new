@@ -1,10 +1,29 @@
-import {createRouter, createWebHashHistory} from "vue-router";
-import routes from "./routes"
+import { createRouter, createWebHistory } from "vue-router";
+
+const routes = [
+  {
+    path: "/",
+    name: "Dashboard",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Dashboard.vue"),
+  },
+  {
+    path: "/randevularim",
+    name: "Randevularim",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Randevularim.vue"),
+  },
+];
 
 const router = createRouter({
-    history: createWebHashHistory,
-    routes,
-    fallback: false
-})
+  history: createWebHistory(),
+  routes,
+});
 
-export default router
+export default router;
