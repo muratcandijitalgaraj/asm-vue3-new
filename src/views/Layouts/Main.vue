@@ -1,4 +1,5 @@
 <template>
+  <!-- redo this component and use slots instead -->
   <div class="main-container col-md-12 col-lg-8 col-xl-8 col-xxl-9">
     <!-- somehow, this is the section slot in master -->
     <div class="row d-flex justify-content-evenly">
