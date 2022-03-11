@@ -16,7 +16,14 @@
         />
       </div>
     </div>
+    <div class="greyLine"></div>
 
+    <!-- titles here -->
+    <div class="titles d-flex justify-content-between align-items-center">
+      <span class="bigTitle">Randevularınız</span>
+      <span class="smallTitle">Hepsini Göster</span>
+    </div>
+    <!-- titles ends -->
     <Appointments
       v-for="(item, key) in appointments"
       :price="item.price"
@@ -27,8 +34,14 @@
       :type="item.type"
     />
 
-    <!-- component buraya gelecek -->
+    <!-- titles here -->
+    <div class="titles d-flex justify-content-between align-items-center">
+      <span class="bigTitle">Son Muayeneler</span>
+      <span class="smallTitle">Hepsini Göster</span>
+    </div>
+    <!-- titles ends -->
 
+    <!-- component buraya gelecek -->
     <Muayeneler
       v-for="(item, key) in muayeneler"
       :firstboxData="item.firstBox"
@@ -140,6 +153,38 @@ const appointments = ref([
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
   padding: 30px;
+
+  .greyLine {
+    height: 1px;
+    background: $border;
+  }
+  .titles {
+    margin-top: 22px;
+    margin-bottom: 20px;
+  }
+  .bigTitle {
+    /* baslik3 */
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 130%;
+    /* identical to box height, or 29px */
+    /* Secondary */
+    color: $blue;
+  }
+  .smallTitle {
+    /* text4-bold */
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 130%;
+    /* identical to box height, or 17px */
+    letter-spacing: -0.01em;
+    /* Gri */
+    color: $text-grey;
+  }
 }
 
 @media only screen and (max-width: 992px) {

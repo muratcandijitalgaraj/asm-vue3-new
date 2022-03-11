@@ -6,6 +6,7 @@
       alt="Akgül Yılmaz"
     />
     <span class="title">Akgül Yılmaz</span>
+    <!-- hidden file uploader here -->
     <input
       type="file"
       ref="fileUpload"
@@ -22,6 +23,7 @@
 <script setup>
 import uploadImg from "../../assets/img/sidebar/upload.svg";
 import { ref } from "vue";
+//use ref to click to the file uploader that has been hidden
 const fileUpload = ref(null);
 const handleButtonClick = (e) => {
   fileUpload.value.click();
@@ -35,9 +37,9 @@ const handleButtonClick = (e) => {
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
-  padding-bottom: 18px;
   border-bottom: 1px solid $border;
   margin-bottom: 18px;
+  height: 170px !important;
 
   img {
     max-width: 116px;
