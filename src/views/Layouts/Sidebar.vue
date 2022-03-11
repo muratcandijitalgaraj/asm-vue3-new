@@ -95,7 +95,9 @@ const links = ref([
 }
 .navbarItem {
 }
-
+// .badge {
+//   border: 5px solid red;
+// }
 @media only screen and (max-width: 992px) {
   .sidebar {
     border-bottom-left-radius: 0;

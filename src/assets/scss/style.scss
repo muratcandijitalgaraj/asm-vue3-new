@@ -12,8 +12,7 @@ $black: #000000;
 $sidebar: #f9fdff;
 $border: #dae9f1;
 $border2: #f3f3f3;
-$bg-gray: #F2F8FB;
-
+$bg-gray: #f2f8fb;
 
 * {
   font-family: "Nunito Sans", sans-serif;
@@ -37,6 +36,12 @@ $bg-gray: #F2F8FB;
   font-weight: 700;
 }
 
-h1,h2,h3,h4,h5,h6,strong {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
   @include bold;
 }

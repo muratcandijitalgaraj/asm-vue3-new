@@ -3,7 +3,7 @@
     <router-link :to="url" class="sidebar-nav-item">
       <img :src="src" :alt="title" class="logo" />
       <span class="text">{{ title }}</span>
-      <Badge :number="number" :type="type" />
+      <Badge v-if="hasNotification" :number="number" :class="color" />
     </router-link>
   </li>
 </template>
@@ -15,8 +15,17 @@ const props = defineProps({
   title: { required: true, type: String },
   url: { required: true, type: Object },
   number: { required: true, type: Number },
-  type: { required: false, type: String, default: "danger" },
+  color: { required: false, type: String, default: "danger" },
 });
+
+const hasNotification = () => {
+  if (props.number > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+// alert(props.number);
 </script>
 
 <style scoped lang="scss">
@@ -42,5 +51,19 @@ li {
     color: $text;
     margin-left: 10px;
   }
+}
+.badge {
+  border-radius: 50%;
+  background-color: $red;
+  color: white;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 16px;
+  width: 23px;
+  height: 23px;
+  text-align: center;
+  margin-left: 6px;
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <span class="badge" :class="type"> {{ number }}</span>
+  <span class="badge" :class="color"> {{ number }}</span>
 </template>
 
 <script setup>
 const props = defineProps({
   number: { required: true, type: Number },
-  type: { required: false, type: String, default: "danger" },
+  color: { required: false, type: String, default: "danger" },
 });
 </script>
 
