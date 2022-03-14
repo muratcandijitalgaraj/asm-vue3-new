@@ -9,6 +9,7 @@
         :key="key"
       >
         <TopCards
+          v-if="checkingCards"
           :title="item.title"
           :url="item.url"
           :src="item.src"
@@ -67,10 +68,11 @@ import { useRoute } from "vue-router";
 const name = "MyCoolComponent";
 
 const route = useRoute();
+let checkingCards = false;
 
 alert(`current route name on component setup init: ${route.name}`);
 if (route.name == "Dashboard") {
-  alert("trueey");
+  checkingCards = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
