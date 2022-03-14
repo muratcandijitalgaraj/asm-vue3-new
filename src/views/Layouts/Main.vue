@@ -62,7 +62,31 @@ import greenlogo from "../../assets/img/cards/green.svg";
 import doktorImg from "../../assets/demo-data/doctor.png";
 import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
 
-import { ref } from "vue";
+import { ref, computed, watch } from "vue";
+import { useRoute } from "vue-router";
+const name = "MyCoolComponent";
+
+const route = useRoute();
+
+alert(`current route name on component setup init: ${route.name}`);
+if (route.name == "Dashboard") {
+  alert("trueey");
+}
+
+// You could use computed property which re-evaluates on route name updates
+//export const routeName = computed(() => route.name);
+
+// You can watch the property for triggering some other action on change
+watch(
+  () => route.name,
+  () => {
+    alert(`MyCoolComponent - watch route.name changed to ${route.name}`);
+    // Do something here...
+
+    // Optionally you can set immediate: true config for the watcher to run on init
+    //}, { immediate: true });
+  }
+);
 const cards = ref([
   {
     src: blueLogo,
