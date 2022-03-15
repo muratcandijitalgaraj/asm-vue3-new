@@ -7,7 +7,10 @@
     <div
       class="item clickContainer d-flex flex-column align-items-center align-items-xl-end"
     >
-      <span class="title">Yerinde Randevular</span>
+      <span class="title blueTitle">Yerinde Randevular</span>
+      <div class="lineContainer d-flex justify-content-center">
+        <div class="blueLine"></div>
+      </div>
     </div>
     <div
       class="item clickContainer d-flex flex-column align-items-center align-items-xl-start"
@@ -49,6 +52,9 @@
   color: $title;
   //   margin-bottom: 20px;
 }
+.blueTitle {
+  color: $blue;
+}
 .btn {
   width: 167px;
   height: 40px;
@@ -67,13 +73,14 @@
 
   color: $white;
 }
+
 .lineContainer {
   width: 100%;
-  border: 1px solid;
+  height: 100%;
 }
 .blueLine {
   position: relative;
-  top: 25px;
+  top: 30px;
   width: 25px;
   height: 5px;
   background: $blue;
@@ -85,6 +92,9 @@
   }
   .item {
     margin-bottom: 5px;
+  }
+  .blueLine {
+    display: none;
   }
 }
 </style>
