@@ -19,7 +19,11 @@
       </div>
     </div>
 
-    <div class="greyLine"></div>
+    <div v-if="dashboardGreyline" class="greyLine"></div>
+    <div>
+      <TopPart />
+    </div>
+    <div v-if="randevularGreyLine" class="greyLine randevularGreyLine"></div>
 
     <!-- titles here -->
     <div
@@ -29,6 +33,7 @@
       <span class="bigTitle">Randevularınız</span>
       <span class="smallTitle">Hepsini Göster</span>
     </div>
+
     <!-- titles ends -->
     <Appointments
       v-for="(item, key) in appointments"
@@ -65,6 +70,7 @@
 
 <script setup>
 import TopCards from "../../components/UI/TopCards.vue";
+import TopPart from "../../components/randvularimPage/TopPart.vue";
 import Appointments from "../../components/UI/Appointments/Appointments.vue";
 import blueLogo from "../../assets/img/cards/blue.svg";
 import orangeLogo from "../../assets/img/cards/orange.svg";
@@ -92,6 +98,20 @@ if (route.name === "Randevularim") {
   showAppointmentstitle = false;
 }
 
+//do these grey lines due to earlier CSS decisions
+
+//show/hide greyline for dashboard
+let dashboardGreyline = true;
+if (route.name === "Randevularim") {
+  dashboardGreyline = false;
+}
+//show/hide greyline for randevular page
+
+let randevularGreyLine = false;
+if (route.name === "Randevularim") {
+  randevularGreyLine = true;
+}
+
 //show/hide muayene title regarding routing
 let showMuayeneTitle = true;
 if (route.name === "Randevularim") {
@@ -107,17 +127,6 @@ if (route.name === "Randevularim") {
 // You could use computed property which re-evaluates on route name updates
 //export const routeName = computed(() => route.name);
 
-// You can watch the property for triggering some other action on change
-watch(
-  () => route.name,
-  () => {
-    alert(`MyCoolComponent - watch route.name changed to ${route.name}`);
-    // Do something here...
-
-    // Optionally you can set immediate: true config for the watcher to run on init
-    //}, { immediate: true });
-  }
-);
 const cards = ref([
   {
     src: blueLogo,
