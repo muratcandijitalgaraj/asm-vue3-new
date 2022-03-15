@@ -1,11 +1,13 @@
 <template>
-  <div class="row topContainer">
-    <div class="col-12 col-md-8 leftPart d-flex">
-      <span class="col-12 col-md-4 bigTitle">Randevularım</span>
-      <span class="col-12 col-md-4 title">Yerinde Randevular</span>
-      <span class="col-12 col-md-4 title">Görüntülü Görüşme</span>
+  <div class="row topContainer d-flex align-items-center">
+    <div class="leftPart col-12 col-md-7 d-flex justify-content-between">
+      <span class="leftItem bigTitle">Randevularım</span>
+      <span class="title leftItem">Yerinde Randevular</span>
+      <span class="title leftItem">Görüntülü Görüşme</span>
     </div>
-    <button class="btn col-12 col-md-4 d-flex justify-content-end">
+    <button
+      class="btn col-12 col-md-5 d-flex justify-content-center justify-content-md-end"
+    >
       <span class="btnPara">Yeni Randevu Alın</span>
     </button>
   </div>
