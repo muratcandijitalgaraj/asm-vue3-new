@@ -223,6 +223,10 @@ const appointments = ref([
     height: 1px;
     background: $border;
   }
+  .randevularGreyLine {
+    margin-bottom: 25px;
+    margin-top: 20px;
+  }
   .titles {
     margin-top: 22px;
     margin-bottom: 20px;
