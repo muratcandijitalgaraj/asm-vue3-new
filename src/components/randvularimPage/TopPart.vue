@@ -1,21 +1,21 @@
 <template>
-  <div class="row topContainer d-flex align-items-center">
-    <!-- left -->
-    <div
-      class="leftPart col-12 col-xxl-7 d-flex justify-content-between align-items-center"
+  <div class="topContainer d-flex justify-content-between">
+    <span
+      class="item bigTitle d-flex justify-content-center justify-content-xl-start"
+      >Randevularım</span
     >
-      <span class="leftItem bigTitle">Randevularım</span>
-      <div
-        class="clickedContainer d-flex flex-column align-items-center justify-content-between"
-      >
-        <span class="title leftItem">Yerinde Randevular</span>
-        <span class="blueLine"></span>
-      </div>
-      <span class="title leftItem">Görüntülü Görüşme</span>
-    </div>
-    <!-- right -->
     <div
-      class="btnContainer col-12 col-xl-12 col-xxl-5 d-flex justify-content-center justify-content-md-end"
+      class="item clickContainer d-flex flex-column align-items-center align-items-xl-end"
+    >
+      <span class="title">Yerinde Randevular</span>
+    </div>
+    <div
+      class="item clickContainer d-flex flex-column align-items-center align-items-xl-start"
+    >
+      <span class="title">Görüntülü Görüşme</span>
+    </div>
+    <div
+      class="btnContainer d-flex justify-content-center justify-content-xl-end"
     >
       <button class="btn">
         <span class="btnPara">Yeni Randevu Alın</span>
@@ -79,6 +79,12 @@
   background: $blue;
   border-radius: 4px 4px 0px 0px;
 }
-@media only screen and (max-width: 1399px) {
+@media only screen and (max-width: 1199px) {
+  .topContainer {
+    flex-direction: column;
+  }
+  .item {
+    margin-bottom: 5px;
+  }
 }
 </style>
