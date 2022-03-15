@@ -9,7 +9,7 @@
         :key="key"
       >
         <TopCards
-          v-if="checkingCards"
+          v-if="showCards"
           :title="item.title"
           :url="item.url"
           :src="item.src"
@@ -18,10 +18,14 @@
         />
       </div>
     </div>
+
     <div class="greyLine"></div>
 
     <!-- titles here -->
-    <div class="titles d-flex justify-content-between align-items-center">
+    <div
+      v-if="showAppointmentstitle"
+      class="titles d-flex justify-content-between align-items-center"
+    >
       <span class="bigTitle">Randevularınız</span>
       <span class="smallTitle">Hepsini Göster</span>
     </div>
@@ -37,19 +41,25 @@
     />
 
     <!-- titles here -->
-    <div class="titles d-flex justify-content-between align-items-center">
+    <div
+      v-if="showMuayeneTitle"
+      class="titles d-flex justify-content-between align-items-center"
+    >
       <span class="bigTitle">Son Muayeneler</span>
       <span class="smallTitle">Hepsini Göster</span>
     </div>
     <!-- titles ends -->
 
     <!-- component buraya gelecek -->
-    <Muayeneler
-      v-for="(item, key) in muayeneler"
-      :firstboxData="item.firstBox"
-      :doctor-data="item.doctor"
-      :key="key"
-    />
+    <!-- adding a wrapper div as v-if and v-for shouldn't be used together -->
+    <div v-if="showMuayeneler">
+      <Muayeneler
+        v-for="(item, key) in muayeneler"
+        :firstboxData="item.firstBox"
+        :doctor-data="item.doctor"
+        :key="key"
+      />
+    </div>
   </div>
 </template>
 
@@ -65,14 +75,33 @@ import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
 
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
-const name = "MyCoolComponent";
 
+//in this part, we show/hide elements regarding routing
 const route = useRoute();
-let checkingCards = false;
 
-alert(`current route name on component setup init: ${route.name}`);
-if (route.name == "Dashboard") {
-  checkingCards = true;
+//show/hide Cards according to routing
+let showCards = true;
+
+// alert(`current route name on component setup init: ${route.name}`);
+if (route.name === "Randevularim") {
+  showCards = false;
+}
+//show/hide randevular title regarding routing
+let showAppointmentstitle = true;
+if (route.name === "Randevularim") {
+  showAppointmentstitle = false;
+}
+
+//show/hide muayene title regarding routing
+let showMuayeneTitle = true;
+if (route.name === "Randevularim") {
+  showMuayeneTitle = false;
+}
+
+//show/hide muayeneler regarding routing
+let showMuayeneler = true;
+if (route.name === "Randevularim") {
+  showMuayeneler = false;
 }
 
 // You could use computed property which re-evaluates on route name updates
