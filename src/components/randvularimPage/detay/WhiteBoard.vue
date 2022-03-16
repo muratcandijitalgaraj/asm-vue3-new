@@ -21,6 +21,7 @@
             :doktorPara="doktorDetails.doktorPara"
           />
         </div>
+        <div class="greyLine"></div>
       </div>
     </div>
   </div>
@@ -83,5 +84,9 @@ const doktorDetails = {
 }
 .doktorCard {
   margin-left: 15px;
+}
+.greyLine {
+  border: 1px solid #f3f3f3;
+  margin: 15px 0;
 }
 </style>
