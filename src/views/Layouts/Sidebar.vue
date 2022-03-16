@@ -43,7 +43,7 @@ const links = ref([
   {
     src: randevuLogo,
     title: "Randevularım",
-    url: { name: "Randevularim"},
+    url: { name: "Randevularim" },
   },
   {
     src: kayitlarLogo,

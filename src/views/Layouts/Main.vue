@@ -20,7 +20,7 @@
     </div>
 
     <div v-if="dashboardGreyline" class="greyLine"></div>
-    <div>
+    <div v-if="randevularimTopPart">
       <TopPart />
     </div>
     <div v-if="randevularGreyLine" class="greyLine randevularGreyLine"></div>
@@ -105,6 +105,13 @@ let dashboardGreyline = true;
 if (route.name === "Randevularim") {
   dashboardGreyline = false;
 }
+
+//show/hide randevularim top part
+let randevularimTopPart = false;
+if (route.name === "Randevularim") {
+  randevularimTopPart = true;
+}
+
 //show/hide greyline for randevular page
 
 let randevularGreyLine = false;
