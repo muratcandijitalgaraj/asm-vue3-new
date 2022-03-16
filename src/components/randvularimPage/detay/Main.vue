@@ -9,10 +9,13 @@
     </div>
     <!-- titles ends -->
     <div class="greyLine"></div>
+    <WhiteBoard />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import WhiteBoard from "./WhiteBoard.vue";
+</script>
 
 <style scoped lang="scss">
 @import "../../../assets/scss/style";
