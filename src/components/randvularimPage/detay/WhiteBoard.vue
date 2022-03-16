@@ -16,6 +16,9 @@
             :src="doktorDetails.src"
             :title="doktorDetails.title"
             :para="doktorDetails.para"
+            :logoSrc="doktorDetails.logoSrc"
+            :redPara="doktorDetails.redPara"
+            :doktorPara="doktorDetails.doktorPara"
           />
         </div>
       </div>
@@ -26,6 +29,7 @@
 <script setup>
 import logo from "../../../assets/img/appointments/detay/calendar-1.svg";
 import doktorImg from "../../../assets/img/appointments/detay/foto.svg";
+import noteImg from "../../../assets/img/appointments/detay/message.svg";
 import InfoVue from "../../UI/RandevuDetay/Info.vue";
 import DoktorVue from "../../UI/RandevuDetay/Doktor.vue";
 
@@ -35,6 +39,9 @@ const props = defineProps({
   color: { required: true, type: String },
   paraColor: { required: true, type: String },
   title: { required: true, type: String },
+  logoSrc: { required: true, type: String },
+  redPara: { required: true, type: String },
+  doktorPara: { required: true, type: String },
 });
 
 const infoDetails = {
@@ -48,6 +55,9 @@ const doktorDetails = {
   src: doktorImg,
   title: "Prof. Dr. Mehmet Ali Tahaoğlu",
   para: "Göğüs Hastalıkları",
+  logoSrc: noteImg,
+  redPara: "Doktorun Notu",
+  doktorPara: "Lütfen muayeneye aç karnına gelin.",
 };
 </script>
 
