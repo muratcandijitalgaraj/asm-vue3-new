@@ -35,15 +35,17 @@
     </div>
 
     <!-- titles ends -->
-    <Appointments
-      v-for="(item, key) in appointments"
-      :price="item.price"
-      :key="key"
-      :hospital-data="item.hospital"
-      :doctor-data="item.doctor"
-      :date="item.date"
-      :type="item.type"
-    />
+    <div v-if="showAppointments">
+      <Appointments
+        v-for="(item, key) in appointments"
+        :price="item.price"
+        :key="key"
+        :hospital-data="item.hospital"
+        :doctor-data="item.doctor"
+        :date="item.date"
+        :type="item.type"
+      />
+    </div>
 
     <!-- titles here -->
     <div
@@ -96,6 +98,12 @@ if (route.name === "Randevularim") {
 let showAppointmentstitle = true;
 if (route.name === "Randevularim") {
   showAppointmentstitle = false;
+}
+
+//show hide appointments only in anasayfa and randevular routes
+let showAppointments = false;
+if (route.name === "Randevularim" || route.name === "Dashboard") {
+  showAppointments = true;
 }
 
 //do these grey lines due to earlier CSS decisions
