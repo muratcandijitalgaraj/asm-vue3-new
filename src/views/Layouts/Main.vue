@@ -88,16 +88,16 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 //show/hide Cards according to routing
-let showCards = true;
+let showCards = false;
 
 // alert(`current route name on component setup init: ${route.name}`);
-if (route.name === "Randevularim") {
-  showCards = false;
+if (route.name === "Dashboard") {
+  showCards = true;
 }
 //show/hide randevular title regarding routing
-let showAppointmentstitle = true;
-if (route.name === "Randevularim") {
-  showAppointmentstitle = false;
+let showAppointmentstitle = false;
+if (route.name === "Dashboard") {
+  showAppointmentstitle = true;
 }
 
 //show hide appointments only in anasayfa and randevular routes
@@ -128,15 +128,15 @@ if (route.name === "Randevularim") {
 }
 
 //show/hide muayene title regarding routing
-let showMuayeneTitle = true;
-if (route.name === "Randevularim") {
-  showMuayeneTitle = false;
+let showMuayeneTitle = false;
+if (route.name === "Dashboard") {
+  showMuayeneTitle = true;
 }
 
 //show/hide muayeneler regarding routing
-let showMuayeneler = true;
-if (route.name === "Randevularim") {
-  showMuayeneler = false;
+let showMuayeneler = false;
+if (route.name === "Dashboard") {
+  showMuayeneler = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
