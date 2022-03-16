@@ -2,8 +2,8 @@
   <div class="topContainer d-flex justify-content-between">
     <span
       class="item bigTitle d-flex justify-content-center justify-content-xl-start"
-      >Randevularım</span
-    >
+      >Randevularım
+    </span>
     <div
       class="item clickContainer d-flex flex-column align-items-center align-items-xl-end"
     >

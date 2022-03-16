@@ -109,9 +109,9 @@ if (route.name === "Randevularim" || route.name === "Dashboard") {
 //do these grey lines due to earlier CSS decisions
 
 //show/hide greyline for dashboard
-let dashboardGreyline = true;
-if (route.name === "Randevularim") {
-  dashboardGreyline = false;
+let dashboardGreyline = false;
+if (route.name === "Dashboard") {
+  dashboardGreyline = true;
 }
 
 //show/hide randevularim top part
