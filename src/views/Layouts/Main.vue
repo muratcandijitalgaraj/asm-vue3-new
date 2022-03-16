@@ -57,7 +57,6 @@
     </div>
     <!-- titles ends -->
 
-    <!-- component buraya gelecek -->
     <!-- adding a wrapper div as v-if and v-for shouldn't be used together -->
     <div v-if="showMuayeneler">
       <Muayeneler
@@ -66,6 +65,10 @@
         :doctor-data="item.doctor"
         :key="key"
       />
+    </div>
+    <!-- randevu detay component -->
+    <div v-if="showRandevudetay">
+      <RandevuDetay />
     </div>
   </div>
 </template>
@@ -80,6 +83,7 @@ import purpleLogo from "../../assets/img/cards/purple.svg";
 import greenlogo from "../../assets/img/cards/green.svg";
 import doktorImg from "../../assets/demo-data/doctor.png";
 import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
+import RandevuDetay from "../../components/randvularimPage/detay/Main.vue";
 
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -137,6 +141,12 @@ if (route.name === "Dashboard") {
 let showMuayeneler = false;
 if (route.name === "Dashboard") {
   showMuayeneler = true;
+}
+
+//show/hide randevu detay regarding routing
+let showRandevudetay = false;
+if (route.name === "RandevuDetay") {
+  showRandevudetay = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
