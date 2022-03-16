@@ -2,13 +2,20 @@
   <div class="whiteBoard">
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-12 infoCard">
           <!-- paracolor is not dynamic right now -->
           <InfoVue
             :src="infoDetails.src"
             :para="infoDetails.para"
             :color="infoDetails.color"
             :paraColor="infoDetails.paraColor"
+          />
+        </div>
+        <div class="col-12 doktorCard">
+          <DoktorVue
+            :src="doktorDetails.src"
+            :title="doktorDetails.title"
+            :para="doktorDetails.para"
           />
         </div>
       </div>
@@ -18,13 +25,16 @@
 
 <script setup>
 import logo from "../../../assets/img/appointments/detay/calendar-1.svg";
+import doktorImg from "../../../assets/img/appointments/detay/foto.svg";
 import InfoVue from "../../UI/RandevuDetay/Info.vue";
+import DoktorVue from "../../UI/RandevuDetay/Doktor.vue";
 
 const props = defineProps({
   src: { required: true, type: String },
   para: { required: true, type: String },
   color: { required: true, type: String },
   paraColor: { required: true, type: String },
+  title: { required: true, type: String },
 });
 
 const infoDetails = {
@@ -32,6 +42,12 @@ const infoDetails = {
   para: "Görüşme Bekleniyor...",
   color: "redBackground",
   paraColor: "paraColor",
+};
+
+const doktorDetails = {
+  src: doktorImg,
+  title: "Prof. Dr. Mehmet Ali Tahaoğlu",
+  para: "Göğüs Hastalıkları",
 };
 </script>
 
@@ -52,4 +68,10 @@ const infoDetails = {
 // .paraColor {
 //   color: red;
 // }
+.infoCard {
+  margin-bottom: 22px;
+}
+.doktorCard {
+  margin-left: 15px;
+}
 </style>
