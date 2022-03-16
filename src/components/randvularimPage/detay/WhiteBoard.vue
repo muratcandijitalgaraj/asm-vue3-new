@@ -1,8 +1,16 @@
 <template>
   <div class="whiteBoard">
-    <div class="row">
-      <div class="col">
-        <InfoVue :src="infoDetails.src" />
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- paracolor is not dynamic right now -->
+          <InfoVue
+            :src="infoDetails.src"
+            :para="infoDetails.para"
+            :color="infoDetails.color"
+            :paraColor="infoDetails.paraColor"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -22,8 +30,8 @@ const props = defineProps({
 const infoDetails = {
   src: logo,
   para: "Görüşme Bekleniyor...",
-  color: "#FFEEEE",
-  paraColor: "#EA5455",
+  color: "redBackground",
+  paraColor: "paraColor",
 };
 </script>
 
@@ -33,5 +41,15 @@ const infoDetails = {
   width: 915px;
   height: 665px;
   background: $white;
+  box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
+  border-radius: 10px;
+  padding-top: 15px;
 }
+.redBackground {
+  background-color: #ffeeee;
+  height: 50px;
+}
+// .paraColor {
+//   color: red;
+// }
 </style>
