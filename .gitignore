@@ -241,3 +241,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+# Local Netlify folder
+.netlify
