@@ -20,14 +20,28 @@
     <div
       class="btnContainer d-flex justify-content-center justify-content-xl-end"
     >
-      <button class="btn">
-        <span class="btnPara">Yeni Randevu Alın</span>
-      </button>
+      <div v-if="showButton">
+        <button class="btn">
+          <span class="btnPara">Yeni Randevu Alın</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+
+//in this part, we show/hide elements regarding routing
+const route = useRoute();
+
+let showButton = true;
+
+// alert(`current route name on component setup init: ${route.name}`);
+if (route.name === "RandevularEmpty") {
+  showButton = false;
+}
+</script>
 
 <style scoped lang="scss">
 @import "../../assets/scss/style";

@@ -70,6 +70,9 @@
     <div v-if="showRandevudetay">
       <RandevuDetay />
     </div>
+    <div v-if="showRandevularBos">
+      <randevularBos />
+    </div>
   </div>
 </template>
 
@@ -84,6 +87,7 @@ import greenlogo from "../../assets/img/cards/green.svg";
 import doktorImg from "../../assets/demo-data/doctor.png";
 import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
 import RandevuDetay from "../../components/randvularimPage/detay/Main.vue";
+import randevularBos from "../../components/randvularimPage/RandevuEmpty/Randevularim-bos.vue";
 
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -151,6 +155,12 @@ if (route.name === "Dashboard") {
 let showRandevudetay = false;
 if (route.name === "RandevuDetay") {
   showRandevudetay = true;
+}
+
+//show/hide randevular bos
+let showRandevularBos = false;
+if (route.name === "RandevularEmpty") {
+  showRandevularBos = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
