@@ -32,6 +32,7 @@ const props = defineProps({
   line-height: 140%;
   letter-spacing: -0.01em;
   color: #818b9a;
+  margin-bottom: 5px;
 }
 .title {
   font-family: "Nunito Sans";
@@ -43,5 +44,11 @@ const props = defineProps({
 }
 .greyLine {
   border: 1px solid #f3f3f3;
+}
+img {
+  margin-right: 15px;
+}
+.texts {
+  margin: 20px 0;
 }
 </style>
