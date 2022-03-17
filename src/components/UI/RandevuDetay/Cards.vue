@@ -25,9 +25,23 @@ const props = defineProps({
 .logo {
 }
 .para {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  letter-spacing: -0.01em;
+  color: #818b9a;
 }
 .title {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  color: #3c4e69;
 }
 .greyLine {
+  border: 1px solid #f3f3f3;
 }
 </style>
