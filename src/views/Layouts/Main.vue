@@ -73,6 +73,8 @@
     <div v-if="showRandevularBos">
       <randevularBos />
     </div>
+    <!-- Tıbbi Kayıt ve Sonuçlar section -->
+    <!-- Radyoloji -->
   </div>
 </template>
 
