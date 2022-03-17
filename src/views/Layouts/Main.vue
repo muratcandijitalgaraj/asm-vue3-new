@@ -122,12 +122,16 @@ if (route.name === "Dashboard") {
 let randevularimTopPart = false;
 if (route.name === "Randevularim") {
   randevularimTopPart = true;
+} else if (route.name === "RandevularEmpty") {
+  randevularimTopPart = true;
 }
 
 //show/hide greyline for randevular page
 
 let randevularGreyLine = false;
 if (route.name === "Randevularim") {
+  randevularGreyLine = true;
+} else if (route.name === "RandevularEmpty") {
   randevularGreyLine = true;
 }
 
