@@ -75,6 +75,9 @@
     </div>
     <!-- Tıbbi Kayıt ve Sonuçlar section -->
     <!-- Radyoloji -->
+    <div>
+      <RadyolojiVue />
+    </div>
   </div>
 </template>
 
@@ -90,7 +93,8 @@ import doktorImg from "../../assets/demo-data/doctor.png";
 import Muayeneler from "../../components/UI/muayeneler/Muayeneler.vue";
 import RandevuDetay from "../../components/randvularimPage/detay/Main.vue";
 import randevularBos from "../../components/randvularimPage/RandevuEmpty/Randevularim-bos.vue";
-
+//tıbbi kayıtlar ve sonuçlar
+import RadyolojiVue from "../../components/tıbbi-kayıtlar/radyoloji/Radyoloji.vue";
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
