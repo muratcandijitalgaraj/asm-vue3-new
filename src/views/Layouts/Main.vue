@@ -78,6 +78,10 @@
     <div v-if="showRadyoloji">
       <RadyolojiVue />
     </div>
+    <!-- diğer  -->
+    <div v-if="showDiger">
+      <Diger />
+    </div>
   </div>
 </template>
 
@@ -95,6 +99,7 @@ import RandevuDetay from "../../components/randvularimPage/detay/Main.vue";
 import randevularBos from "../../components/randvularimPage/RandevuEmpty/Randevularim-bos.vue";
 //tıbbi kayıtlar ve sonuçlar
 import RadyolojiVue from "../../components/tıbbi-kayıtlar/radyoloji/Radyoloji.vue";
+import Diger from "../../components/tıbbi-kayıtlar/radyoloji/Radyoloji.vue";
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
@@ -174,6 +179,11 @@ if (route.name === "RandevularEmpty") {
 let showRadyoloji = false;
 if (route.name === "Radyoloji") {
   showRadyoloji = true;
+}
+//diger section
+let showDiger = false;
+if (route.name === "Diger") {
+  showDiger = true;
 }
 
 // You could use computed property which re-evaluates on route name updates

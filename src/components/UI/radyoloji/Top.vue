@@ -3,15 +3,34 @@
     <span class="bigTitle">Tıbbi Kayıt ve Sonuçlar</span>
     <span class="title">Laboratuvar</span>
     <div class="clicked d-flex flex-column">
-      <span class="title blueTitle">Radyoloji</span>
-      <div class="blueLine"></div>
+      <span v-if="showRadyoloji" class="title blueTitle">Radyoloji</span>
+      <span v-if="showDiger" class="title">Radyoloji</span>
+      <div v-if="showRadyoloji" class="blueLine"></div>
     </div>
-    <span class="title">Diğer</span>
+    <span v-if="showRadyoloji" class="title">Diğer</span>
+    <div v-if="showDiger" class="clicked d-flex flex-column">
+      <span class="title blueTitle">Diğer</span>
+      <div class="blueLine digerLine"></div>
+    </div>
   </div>
   <div class="greyLine"></div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+
+//in this part, we show/hide elements regarding routing
+const route = useRoute();
+let showDiger = false;
+if (route.name === "Diger") {
+  showDiger = true;
+}
+
+let showRadyoloji = false;
+if (route.name === "Radyoloji") {
+  showRadyoloji = true;
+}
+</script>
 
 <style scoped lang="scss">
 // @import "../../assets/scss/style";
@@ -26,7 +45,6 @@
   /* identical to box height, or 29px */
 
   /* Primary */
-
   color: #3c4e69;
 }
 .title {
@@ -58,6 +76,9 @@
 
   background: #32a5df;
   border-radius: 4px 4px 0px 0px;
+}
+.digerLine {
+  left: 0.5rem;
 }
 .greyLine {
   border: 1px solid #dae9f1;
