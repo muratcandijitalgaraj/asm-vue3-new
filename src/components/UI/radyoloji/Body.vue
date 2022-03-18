@@ -1,14 +1,23 @@
 <template>
-  <div class="radyolojiBody">
-    <span class="bigTitle"></span>
+  <div class="row radyolojiBody">
+    <span class="col-12 bigTitle"> {{ bigTitle }} </span>
+    <CardVue
+      :type="type"
+      :logo="logo"
+      :status="status"
+      :title="title"
+      :para="para"
+    />
   </div>
 </template>
 
 <script setup>
+import CardVue from "./Card.vue";
 const props = defineProps({
-  type: { required: true },
   bigTitle: { required: true, type: String },
+  type: { required: true },
   logo: { required: true, type: String },
+  status: { required: true, type: String },
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
@@ -29,5 +38,6 @@ const props = defineProps({
   /* Secondary */
 
   color: #32a5df;
+  margin-bottom: 20px;
 }
 </style>

@@ -1,11 +1,21 @@
 <template>
-  <div class="card"></div>
+  <div class="card">
+    <div class="col-12 col-lg-9 d-flex flex-column">
+      <span class="title"> {{ title }} </span>
+      <span class="para"></span>
+    </div>
+    <div class="status col-12 col-lg-3 d-flex">
+      <span class="bluePara para">{{ status }} </span>
+      <img :src="logo" alt="" />
+    </div>
+  </div>
 </template>
 
 <script setup>
 const props = defineProps({
   type: { required: true },
   logo: { required: true, type: String },
+  status: { required: true, type: String },
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
@@ -13,6 +23,15 @@ const props = defineProps({
 
 <style scoped lang="scss">
 // @import "../../assets/scss/style";
+.card {
+  min-height: 90px;
+
+  background: #ffffff;
+  /* Boxx Shadow */
+
+  box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
+  border-radius: 10px;
+}
 .title {
   font-family: "Nunito Sans";
   font-style: normal;
