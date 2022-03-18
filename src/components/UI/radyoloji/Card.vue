@@ -1,12 +1,12 @@
 <template>
-  <div class="card">
+  <div class="card d-flex flex-row justify-content-between align-items-center">
     <div class="col-12 col-lg-9 d-flex flex-column">
       <span class="title"> {{ title }} </span>
-      <span class="para"></span>
+      <span class="para"> {{ para }} </span>
     </div>
-    <div class="status col-12 col-lg-3 d-flex">
+    <div class="status col-12 col-lg-3 d-flex justify-content-end">
       <span class="bluePara para">{{ status }} </span>
-      <img :src="logo" alt="" />
+      <img class="logo" :src="logo" alt="" />
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@ const props = defineProps({
 
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 .title {
   font-family: "Nunito Sans";
@@ -59,6 +60,10 @@ const props = defineProps({
   color: #818b9a;
 }
 .bluePara {
-  color: #32a5df;
+  color: hsl(200, 73%, 54%);
+}
+.logo {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>

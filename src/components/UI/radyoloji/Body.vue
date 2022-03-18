@@ -15,6 +15,8 @@
 
 <script setup>
 import CardVue from "./Card.vue";
+import results from "../../../assets/img/medical-records/results.svg";
+import waiting from "../../../assets/img/medical-records/waiting.svg";
 import { ref } from "vue";
 const props = defineProps({
   bigTitle: { required: true, type: String },
@@ -29,10 +31,14 @@ const cards = ref([
   {
     title: "Akciğer Grafisi (tek yön) (büyük)",
     para: "4 Sonuç daha var",
+    status: "Sonuçlar",
+    logo: results,
   },
   {
     title: "Toraks BT (Kontrastlı)",
     para: "Tomografi",
+    status: "Sonuç Bekleniyor",
+    logo: waiting,
   },
 ]);
 </script>
