@@ -1,5 +1,5 @@
 <template>
-  <div class="card d-flex flex-row justify-content-between align-items-center">
+  <div class="card d-flex flex-lg-row align-items-center">
     <div class="col-12 col-lg-9 d-flex flex-column">
       <span class="title"> {{ title }} </span>
       <span class="para"> {{ para }} </span>
