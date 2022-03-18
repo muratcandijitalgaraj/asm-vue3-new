@@ -63,4 +63,13 @@
   border: 1px solid #dae9f1;
   margin-top: 1rem;
 }
+@media only screen and (max-width: 768px) {
+  .titles {
+    display: flex;
+    flex-direction: column;
+  }
+  .blueLine {
+    display: none;
+  }
+}
 </style>
