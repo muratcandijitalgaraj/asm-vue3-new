@@ -109,8 +109,8 @@ const cards = ref([
 <style scoped lang="scss">
 @import "../../../assets/scss/style";
 .whiteBoard {
-  width: 915px;
-  height: 665px;
+  width: auto;
+  height: auto;
   background: $white;
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 10px;

@@ -75,7 +75,7 @@
     </div>
     <!-- Tıbbi Kayıt ve Sonuçlar section -->
     <!-- Radyoloji -->
-    <div>
+    <div v-if="showRadyoloji">
       <RadyolojiVue />
     </div>
   </div>
@@ -167,6 +167,13 @@ if (route.name === "RandevuDetay") {
 let showRandevularBos = false;
 if (route.name === "RandevularEmpty") {
   showRandevularBos = true;
+}
+
+//TIBBİ KAYIT VE SONUÇLAR SECTION
+//radyoloji section
+let showRadyoloji = false;
+if (route.name === "Radyoloji") {
+  showRadyoloji = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
