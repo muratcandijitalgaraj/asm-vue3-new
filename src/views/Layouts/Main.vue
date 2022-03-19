@@ -82,6 +82,10 @@
     <div v-if="showDiger">
       <Diger />
     </div>
+    <!-- reçeteler -->
+    <div>
+      <RecetelerVue />
+    </div>
   </div>
 </template>
 
@@ -102,6 +106,8 @@ import RadyolojiVue from "../../components/tıbbi-kayıtlar/radyoloji/Radyoloji.
 import Diger from "../../components/tıbbi-kayıtlar/radyoloji/Radyoloji.vue";
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
+//reçeteler
+import RecetelerVue from "../../components/receteler/Receteler.vue";
 
 //in this part, we show/hide elements regarding routing
 const route = useRoute();
