@@ -1,6 +1,5 @@
 <template>
   <div class="cards row">
-    <span class="bigTitle"> {{ bigTitle }} </span>
     <div class="card col-12">
       <div
         class="top d-flex flex-column flex-lg-row justify-content-between align-items-center"
@@ -33,7 +32,6 @@
 
 <script setup>
 const props = defineProps({
-  bigTitle: { required: true, type: String },
   background: { required: true, type: String },
   logo: { required: true, type: String },
   receteType: { required: true, type: String },
