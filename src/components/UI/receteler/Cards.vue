@@ -16,7 +16,9 @@
       <div
         class="bottom d-flex flex-column flex-lg-row justify-content-between align-items-center"
       >
-        <div class="bottomLeft d-flex flex-column justify-content-center">
+        <div
+          class="bottomLeft d-flex flex-column justify-content-center align-items-center align-items-lg-start"
+        >
           <span :class="titleStyle"> {{ title }} </span>
           <span> {{ department }} </span>
         </div>
@@ -51,9 +53,10 @@ const props = defineProps({
   background: #ffffff;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 10px;
+  margin-bottom: 1.5rem;
 }
 .top {
-  height: 40px;
+  height: 60px;
 }
 .topRight {
   margin-right: 10px;
@@ -117,5 +120,29 @@ const props = defineProps({
 }
 .grey {
   color: #3c4e69;
+}
+.red {
+  color: #ea5455;
+}
+.orange {
+  color: #ff8038;
+}
+.purple {
+  color: #7367f0;
+}
+.green {
+  color: #29a87b;
+}
+
+@media only screen and (max-width: 992px) {
+  .topLeft {
+    margin-bottom: 5px;
+  }
+  .top {
+    margin-bottom: 7px;
+  }
+  .bottomRight {
+    margin-bottom: 10px;
+  }
 }
 </style>
