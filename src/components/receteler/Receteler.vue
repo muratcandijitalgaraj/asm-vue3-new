@@ -13,7 +13,7 @@
       :receteType="item.receteType"
       :color="item.color"
       :titleStyle="item.titleStyle"
-      :date="item.date"
+      :receteNo="item.receteNo"
       :department="item.department"
       :title="item.title"
       :locationStyle="item.locationStyle"
@@ -39,7 +39,7 @@ const props = defineProps({
   receteType: { required: true, type: String },
   color: { required: true, type: String },
   titleStyle: { required: true, type: String },
-  no: { required: true, type: String },
+  receteNo: { required: true, type: String },
   department: { required: true, type: String },
   title: { required: true, type: String },
   locationStyle: { required: true, type: String },
@@ -49,14 +49,14 @@ const props = defineProps({
 const cards = ref([
   {
     background: "greybg",
-    // logo: normal,
+    logo: normal,
     receteType: "NORMAL REÇETE",
-    // color: grey,
-    // titleStyle: title,
-    no: "No: 90 04A 078",
+    color: "grey",
+    titleStyle: "title",
+    receteNo: "No: 90 04A 078",
     department: "Kardiyoloji",
     title: "Dr. Emre Sürmeli",
-    // locationStyle: locationStyle,
+    locationStyle: "locationStyle",
     location: "Anadolu Sağlık Merkezi - Gebze",
   },
 ]);
@@ -73,61 +73,14 @@ const cards = ref([
   color: #3c4e69;
   margin-bottom: 25px;
 }
-.title {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
-  /* identical to box height, or 24px */
 
-  /* Primary */
-
-  color: #3c4e69;
-}
 .blueTitle {
   color: #32a5df;
   margin-top: 40px;
   margin-bottom: 20px;
 }
-.locationStyle {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 140%;
-  /* identical to box height, or 21px */
 
-  letter-spacing: -0.01em;
-
-  /* Gri */
-
-  color: #818b9a;
-}
 .greyLine {
   border: 1px solid #dae9f1;
-}
-.greybg {
-  background: #f7f7f7;
-  border-radius: 5px;
-}
-.redbg {
-  background: #ffeeee;
-  border-radius: 5px;
-}
-.orangebg {
-  background: #fff9f0;
-  border-radius: 5px;
-}
-.purplebg {
-  background: #f7f6ff;
-  border-radius: 5px;
-}
-.greenbg {
-  background: #e0fff0;
-  border-radius: 5px;
-}
-.grey {
-  color: #3c4e69;
 }
 </style>

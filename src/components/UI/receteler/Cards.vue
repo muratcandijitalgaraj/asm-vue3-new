@@ -6,19 +6,17 @@
         :class="background"
       >
         <div class="topLeft d-flex align-items-center">
-          <img :src="logo" alt="" />
+          <img class="logo" :src="logo" alt="" />
           <span :class="color"> {{ receteType }} </span>
         </div>
         <div class="topRight">
-          <span :class="color"> {{ no }} </span>
+          <span :class="color"> {{ receteNo }} </span>
         </div>
       </div>
       <div
         class="bottom d-flex flex-column flex-lg-row justify-content-between align-items-center"
       >
-        <div
-          class="bottomLeft d-flex flex-column justify-content-center align-items-center"
-        >
+        <div class="bottomLeft d-flex flex-column justify-content-center">
           <span :class="titleStyle"> {{ title }} </span>
           <span> {{ department }} </span>
         </div>
@@ -37,7 +35,7 @@ const props = defineProps({
   receteType: { required: true, type: String },
   color: { required: true, type: String },
   titleStyle: { required: true, type: String },
-  no: { required: true, type: String },
+  receteNo: { required: true, type: String },
   department: { required: true, type: String },
   title: { required: true, type: String },
   locationStyle: { required: true, type: String },
@@ -53,5 +51,71 @@ const props = defineProps({
   background: #ffffff;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 10px;
+}
+.top {
+  height: 40px;
+}
+.topRight {
+  margin-right: 10px;
+}
+.bottom {
+  height: 100%;
+}
+
+.bottomLeft {
+  margin-left: 1rem;
+}
+.title {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  /* Primary */
+
+  color: #3c4e69;
+}
+.logo {
+  margin-left: 12px;
+  margin-right: 8px;
+}
+.locationStyle {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  /* identical to box height, or 21px */
+
+  letter-spacing: -0.01em;
+
+  /* Gri */
+
+  color: #818b9a;
+}
+.greybg {
+  background: #f7f7f7;
+  border-radius: 5px;
+}
+.redbg {
+  background: #ffeeee;
+  border-radius: 5px;
+}
+.orangebg {
+  background: #fff9f0;
+  border-radius: 5px;
+}
+.purplebg {
+  background: #f7f6ff;
+  border-radius: 5px;
+}
+.greenbg {
+  background: #e0fff0;
+  border-radius: 5px;
+}
+.grey {
+  color: #3c4e69;
 }
 </style>
