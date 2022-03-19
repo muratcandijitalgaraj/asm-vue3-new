@@ -39,14 +39,27 @@ const props = defineProps({
   receteType: { required: true, type: String },
   color: { required: true, type: String },
   titleStyle: { required: true, type: String },
-  date: { required: true, type: String },
+  no: { required: true, type: String },
   department: { required: true, type: String },
   title: { required: true, type: String },
   locationStyle: { required: true, type: String },
   location: { required: true, type: String },
 });
 
-const cards = ref([{}]);
+const cards = ref([
+  {
+    background: "greybg",
+    // logo: normal,
+    receteType: "NORMAL REÇETE",
+    // color: grey,
+    // titleStyle: title,
+    no: "No: 90 04A 078",
+    department: "Kardiyoloji",
+    title: "Dr. Emre Sürmeli",
+    // locationStyle: locationStyle,
+    location: "Anadolu Sağlık Merkezi - Gebze",
+  },
+]);
 </script>
 
 <style scoped lang="scss">
@@ -60,10 +73,36 @@ const cards = ref([{}]);
   color: #3c4e69;
   margin-bottom: 25px;
 }
+.title {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  /* Primary */
+
+  color: #3c4e69;
+}
 .blueTitle {
   color: #32a5df;
   margin-top: 40px;
   margin-bottom: 20px;
+}
+.locationStyle {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  /* identical to box height, or 21px */
+
+  letter-spacing: -0.01em;
+
+  /* Gri */
+
+  color: #818b9a;
 }
 .greyLine {
   border: 1px solid #dae9f1;
@@ -87,5 +126,8 @@ const cards = ref([{}]);
 .greenbg {
   background: #e0fff0;
   border-radius: 5px;
+}
+.grey {
+  color: #3c4e69;
 }
 </style>

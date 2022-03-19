@@ -10,21 +10,21 @@
           <span :class="color"> {{ receteType }} </span>
         </div>
         <div class="topRight">
-          <span :class="color"> {{ date }} </span>
+          <span :class="color"> {{ no }} </span>
         </div>
       </div>
-    </div>
-    <div
-      class="bottom d-flex flex-column flex-lg-row justify-content-between align-items-center"
-    >
       <div
-        class="bottomLeft d-flex flex-column justify-content-center align-items-center"
+        class="bottom d-flex flex-column flex-lg-row justify-content-between align-items-center"
       >
-        <span :class="titleStyle"> {{ title }} </span>
-        <span> {{ department }} </span>
-      </div>
-      <div class="bottomRight">
-        <span :class="locationStyle"> {{ location }} </span>
+        <div
+          class="bottomLeft d-flex flex-column justify-content-center align-items-center"
+        >
+          <span :class="titleStyle"> {{ title }} </span>
+          <span> {{ department }} </span>
+        </div>
+        <div class="bottomRight">
+          <span :class="locationStyle"> {{ location }} </span>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@ const props = defineProps({
   receteType: { required: true, type: String },
   color: { required: true, type: String },
   titleStyle: { required: true, type: String },
-  date: { required: true, type: String },
+  no: { required: true, type: String },
   department: { required: true, type: String },
   title: { required: true, type: String },
   locationStyle: { required: true, type: String },
