@@ -83,7 +83,7 @@
       <Diger />
     </div>
     <!-- reçeteler -->
-    <div>
+    <div v-if="showReceteler">
       <RecetelerVue />
     </div>
   </div>
@@ -190,6 +190,11 @@ if (route.name === "Radyoloji") {
 let showDiger = false;
 if (route.name === "Diger") {
   showDiger = true;
+}
+//receteler section
+let showReceteler = false;
+if (route.name === "Receteler") {
+  showReceteler = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
