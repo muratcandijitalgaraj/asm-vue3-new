@@ -2,9 +2,9 @@
   <div class="main">
     <TopVue />
 
-    <!-- <div>lolz</div>
+    <div v-if="lolz">lolz</div>
 
-    <OneVue /> -->
+    <OneVue @someEvent="someEvent" />
   </div>
 </template>
 
@@ -13,9 +13,9 @@ import TopVue from "../UI/RandevuAkis/Top.vue";
 import OneVue from "./One.vue";
 import { ref } from "vue";
 
-// function someEvent(name) {
-//   alert("call" + name);
-// }
+function someEvent(name) {
+  alert("call" + name);
+}
 </script>
 
 <style scoped lang="scss">
