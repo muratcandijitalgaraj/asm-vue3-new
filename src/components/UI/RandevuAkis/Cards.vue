@@ -1,32 +1,27 @@
 <template>
   <div class="cards">
     <div class="title">{{ title }}</div>
-    <Card
-      v-for="(item, key) in card"
-      :key="key"
-      :para="item.para"
-      :isActive="item.isActive"
-      :standard="item.standard"
-      :ekle="item.ekle"
-    />
+    <Card :key="key" :data="cardData" />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import Card from "./Card.vue";
 const props = defineProps({
+  cardData: { required: true, type: Object },
+
   title: { required: true, type: String },
-  para: { required: true, type: String },
-  isActive: { required: true, type: String },
-  standard: { required: true, type: Boolean },
-  ekle: { required: true, type: Boolean },
+  //   para: { required: true, type: String },
+  //   isActive: { required: true, type: String },
+  //   standard: { required: true, type: Boolean },
+  //   ekle: { required: true, type: Boolean },
 });
 
-const card = ref([
-  { para: "Mehmet Yılmaz", standard: true },
-  { para: "Yeni Kişi Ekle", standard: false, ekle: true },
-]);
+// const card = ref([
+//   { para: "Mehmet Yılmaz", standard: true },
+//   { para: "Yeni Kişi Ekle", standard: false, ekle: true },
+// ]);
 </script>
 
 <style scoped lang="scss">
