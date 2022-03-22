@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="d-flex flex-column justify-content-center align-items-center">
     <CardsVue />
   </div>
 
