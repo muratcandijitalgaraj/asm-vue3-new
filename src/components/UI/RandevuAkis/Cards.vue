@@ -1,12 +1,13 @@
 <template>
   <div class="cards">
-    <span class="title">{{ title }} </span>
+    <div class="title">{{ title }}</div>
     <Card
       v-for="(item, key) in card"
       :key="key"
       :para="item.para"
       :isActive="item.isActive"
       :standard="item.standard"
+      :ekle="item.ekle"
     />
   </div>
 </template>
@@ -19,10 +20,13 @@ const props = defineProps({
   para: { required: true, type: String },
   isActive: { required: true, type: String },
   standard: { required: true, type: Boolean },
-  ekle: { required: true, type: String },
+  ekle: { required: true, type: Boolean },
 });
 
-const card = ref([{ para: "Mehmet Yılmaz", standard: true }]);
+const card = ref([
+  { para: "Mehmet Yılmaz", standard: true },
+  { para: "Yeni Kişi Ekle", standard: false, ekle: true },
+]);
 </script>
 
 <style scoped lang="scss">
@@ -36,6 +40,7 @@ const card = ref([{ para: "Mehmet Yılmaz", standard: true }]);
   /* identical to box height, or 22px */
 
   letter-spacing: -0.01em;
+  margin-bottom: 18px;
 
   /* Primary */
 

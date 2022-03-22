@@ -3,9 +3,17 @@
     class="card d-flex flex-row justify-content-start align-items-center"
     v-bind:class="{ active: isActive }"
   >
-    <span class="checkBox"></span>
+    <span v-if="props.standard" class="checkBox"></span>
     <span v-if="props.standard" class="para"> {{ para }} </span>
-    <span v-if="ekle" class="para bluePara"> {{ para }} </span>
+    <!-- show only if it's "yeni kişi ekle" -->
+
+    <img
+      class="logo"
+      v-if="props.ekle"
+      src="../../../assets/img/randevuAkis/addUser.svg"
+      alt=""
+    />
+    <span v-if="props.ekle" class="para bluePara"> {{ para }} </span>
   </div>
 </template>
 
@@ -14,10 +22,8 @@ const props = defineProps({
   para: { required: true, type: String },
   isActive: { required: true, type: String },
   standard: { required: true, type: Boolean },
-  ekle: { required: true, type: String },
+  ekle: { required: true, type: Boolean },
 });
-//show/hide logic with props
-let ekle = false;
 
 console.log(props.standard);
 //change this to true with props
@@ -35,12 +41,17 @@ let isActive = false;
 
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 6px;
+  margin-bottom: 12px;
 }
 .checkBox {
   width: 20px;
   height: 20px;
   border: 2px solid #e1e1e1;
   border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 11px;
+}
+.logo {
   margin-left: 15px;
   margin-right: 11px;
 }
