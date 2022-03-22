@@ -23,6 +23,31 @@
         <span class="dot"></span>
       </div>
       <!-- 2 ends -->
+      <!-- 3 starts -->
+      <div class="emptyCircle numberThree">
+        <span class="emptyNumber">3</span>
+      </div>
+      <div class="dots d-flex align-items-center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <!-- 3 ends -->
+      <!-- 4 starts -->
+      <div class="emptyCircle numberFour">
+        <span class="emptyNumber">4</span>
+      </div>
+      <div class="dots d-flex align-items-center">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <!-- 4 ends -->
+      <!-- 5 starts -->
+      <div class="emptyCircle numberFive">
+        <span class="emptyNumber">5</span>
+      </div>
+      <!-- 5 ends -->
     </div>
   </div>
 </template>
@@ -65,15 +90,14 @@
   font-size: 13px;
   line-height: 130%;
   /* or 17px */
-
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.01em;
-
   /* Primary */
-
   color: #3c4e69;
+  position: relative;
+  top: 1px;
 }
 .fullCircle {
   width: 23px;
@@ -86,13 +110,11 @@
   justify-content: center;
   align-items: center;
   margin-right: 8px;
-  padding: 12px;
 }
 .emptyCircle {
   width: 23px;
   height: 23px;
-  padding: 10px;
-  border: 2px solid #3c4e69;
+  border: 1.5px solid #3c4e69;
   box-sizing: border-box;
   /* Form Shadow */
   border-radius: 50%;
