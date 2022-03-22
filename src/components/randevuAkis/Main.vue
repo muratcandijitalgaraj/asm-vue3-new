@@ -5,9 +5,7 @@
     </div>
     <div class="greyLine"></div>
 
-    <!-- <div>lolz</div>
-
-    <OneVue /> -->
+    <OneVue />
   </div>
 </template>
 

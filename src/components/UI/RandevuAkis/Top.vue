@@ -130,4 +130,10 @@
   background: #7a8596;
   margin-right: 6px;
 }
+
+@media only screen and (max-width: 992px) {
+  .title {
+    margin-bottom: 10px;
+  }
+}
 </style>

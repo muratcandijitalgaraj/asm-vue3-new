@@ -1,10 +1,13 @@
 <template>
-  one
+  <div class="row">
+    <CardsVue />
+  </div>
 
-  <button @click="sendEvent">click me</button>
+  <!-- <button @click="sendEvent">click me</button> -->
 </template>
 
 <script setup>
+import CardsVue from "../UI/RandevuAkis/Cards.vue";
 // let params = "parametres here";
 // const emit = defineEmits(["someEvent"]);
 // function sendEvent() {
