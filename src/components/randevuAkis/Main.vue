@@ -1,6 +1,9 @@
 <template>
   <div class="main">
-    <TopVue />
+    <div class="topContainer">
+      <TopVue />
+    </div>
+    <div class="greyLine"></div>
 
     <!-- <div>lolz</div>
 
@@ -20,4 +23,9 @@ import { ref } from "vue";
 
 <style scoped lang="scss">
 // @import "../../assets/scss/style";
+.greyLine {
+  margin-top: 25px;
+  margin-bottom: 30px;
+  border: 1px solid #dae9f1;
+}
 </style>
