@@ -4,19 +4,22 @@
     v-bind:class="{ active: isActive }"
   >
     <span class="checkBox"></span>
-    <span class="para"> {{ para }} </span>
-    <!-- <span v-if="ekle" class=" para bluePara"></span> -->
+    <span v-if="props.standard" class="para"> {{ para }} </span>
+    <span v-if="ekle" class="para bluePara"> {{ para }} </span>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  title: { required: true, type: String },
   para: { required: true, type: String },
   isActive: { required: true, type: String },
+  standard: { required: true, type: Boolean },
+  ekle: { required: true, type: String },
 });
-//change this to true with props
+//show/hide logic with props
 let ekle = false;
+
+console.log(props.standard);
 //change this to true with props
 let isActive = false;
 </script>
@@ -40,5 +43,17 @@ let isActive = false;
   border-radius: 50%;
   margin-left: 15px;
   margin-right: 11px;
+}
+.para {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  /* Primary */
+
+  color: #3c4e69;
 }
 </style>
