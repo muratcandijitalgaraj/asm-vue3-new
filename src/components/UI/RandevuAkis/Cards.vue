@@ -5,7 +5,7 @@
       v-for="(item, key) in card"
       :key="key"
       :para="item.para"
-      :is-active="item.isActive"
+      :isActive="item.isActive"
       :standard="item.standard"
       :ekle="item.ekle"
     />
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import Card from "./Card.vue";
 const props = defineProps({
   // cardData: { required: true, type: Object },
@@ -31,30 +31,18 @@ const props = defineProps({
 // ]);
 
 const card = ref([
-  //   { title: "jey", standard: true },
-
   {
     para: "Mehmet Yılmaz",
     //   para: "Yeni Kişi Ekle",
     standard: true,
     ekle: false,
   },
+
   {
-    para: "Mehmesdfsdft Yılmaz",
+    para: "Msdgfsdfgsfdgehmet Yılmaz",
     //   para: "Yeni Kişi Ekle",
-    standard: true,
+    standard: false,
     ekle: false,
-  },
-
-  {
-    title: "Randevu türünü seçin",
-
-    card: {
-      para: "Msdgfsdfgsfdgehmet Yılmaz",
-      //   para: "Yeni Kişi Ekle",
-      standard: true,
-      ekle: false,
-    },
   },
 ]);
 </script>

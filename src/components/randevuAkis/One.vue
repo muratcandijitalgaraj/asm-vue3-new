@@ -23,7 +23,6 @@ const props = defineProps({
   //   ekle: { required: true, type: Boolean },
 });
 const cards = ref([
-  //   { title: "jey", standard: true },
   {
     title: "Randevuyu kim için alıyorsunuz?",
   },
