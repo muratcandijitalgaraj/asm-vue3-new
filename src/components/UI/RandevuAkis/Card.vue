@@ -3,26 +3,27 @@
     class="card d-flex flex-row justify-content-start align-items-center"
     v-bind:class="{ active: isActive }"
   >
-    <span v-if="props.data.standard" class="checkBox"></span>
-    <span v-if="props.data.standard" class="para"> {{ data.para }} </span>
+    <span v-if="props.standard" class="checkBox"></span>
+    <span v-if="props.standard" class="para"> {{ para }} </span>
     <!-- show only if it's "yeni kişi ekle" -->
 
     <img
       class="logo"
-      v-if="props.data.ekle"
+      v-if="props.ekle"
       src="../../../assets/img/randevuAkis/addUser.svg"
       alt=""
     />
-    <span v-if="props.data.ekle" class="para bluePara"> {{ data.para }} </span>
+    <span v-if="props.ekle" class="para bluePara"> {{ para }} </span>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   data: { required: true, type: String },
-  //   isActive: { required: true, type: String },
-  //   standard: { required: true, type: Boolean },
-  //   ekle: { required: true, type: Boolean },
+  para: { required: true, type: String },
+  isActive: { required: true, type: String },
+  standard: { required: true, type: Boolean },
+  ekle: { required: true, type: Boolean },
 });
 
 console.log(props.standard);

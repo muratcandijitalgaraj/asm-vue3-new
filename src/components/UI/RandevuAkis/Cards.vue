@@ -1,7 +1,14 @@
 <template>
   <div class="cards">
     <div class="title">{{ title }}</div>
-    <Card :key="key" :data="cardData" />
+    <Card
+      v-for="(item, key) in card"
+      :key="key"
+      :para="item.para"
+      :is-active="item.isActive"
+      :standard="item.standard"
+      :ekle="item.ekle"
+    />
   </div>
 </template>
 
@@ -9,19 +16,47 @@
 import { ref, computed } from "vue";
 import Card from "./Card.vue";
 const props = defineProps({
-  cardData: { required: true, type: Object },
+  // cardData: { required: true, type: Object },
 
   title: { required: true, type: String },
-  //   para: { required: true, type: String },
-  //   isActive: { required: true, type: String },
-  //   standard: { required: true, type: Boolean },
-  //   ekle: { required: true, type: Boolean },
+  para: { required: true, type: String },
+  isActive: { required: true, type: String },
+  standard: { required: true, type: Boolean },
+  ekle: { required: true, type: Boolean },
 });
 
 // const card = ref([
 //   { para: "Mehmet Yılmaz", standard: true },
 //   { para: "Yeni Kişi Ekle", standard: false, ekle: true },
 // ]);
+
+const card = ref([
+  //   { title: "jey", standard: true },
+
+  {
+    para: "Mehmet Yılmaz",
+    //   para: "Yeni Kişi Ekle",
+    standard: true,
+    ekle: false,
+  },
+  {
+    para: "Mehmesdfsdft Yılmaz",
+    //   para: "Yeni Kişi Ekle",
+    standard: true,
+    ekle: false,
+  },
+
+  {
+    title: "Randevu türünü seçin",
+
+    card: {
+      para: "Msdgfsdfgsfdgehmet Yılmaz",
+      //   para: "Yeni Kişi Ekle",
+      standard: true,
+      ekle: false,
+    },
+  },
+]);
 </script>
 
 <style scoped lang="scss">

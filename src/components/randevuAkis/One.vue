@@ -1,11 +1,6 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <CardsVue
-      v-for="(item, key) in cards"
-      :key="key"
-      :title="item.title"
-      :cardData="item.card"
-    />
+    <CardsVue v-for="(item, key) in cards" :key="key" :title="item.title" />
   </div>
 
   <!-- <button @click="sendEvent">click me</button> -->
@@ -31,28 +26,9 @@ const cards = ref([
   //   { title: "jey", standard: true },
   {
     title: "Randevuyu kim için alıyorsunuz?",
-    card: {
-      para: "Mehmet Yılmaz",
-      //   para: "Yeni Kişi Ekle",
-      standard: true,
-      ekle: false,
-    },
-    card: {
-      para: "Mehmet Yılmaz",
-      //   para: "Yeni Kişi Ekle",
-      standard: true,
-      ekle: false,
-    },
   },
   {
     title: "Randevu türünü seçin",
-
-    card: {
-      para: "Mehmet Yılmaz",
-      //   para: "Yeni Kişi Ekle",
-      standard: true,
-      ekle: false,
-    },
   },
 ]);
 </script>
