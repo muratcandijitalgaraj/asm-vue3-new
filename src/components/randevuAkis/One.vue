@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <CardsVue v-for="(item, key) in cards" :key="key" :title="item.title" />
+    <CardsVue />
   </div>
 
   <!-- <button @click="sendEvent">click me</button> -->
@@ -16,20 +16,8 @@ import CardsVue from "../UI/RandevuAkis/Cards.vue";
 //   emit("someEvent", "sth new");
 // }
 
-const props = defineProps({
-  title: { required: true, type: String },
-  //   isActive: { required: true, type: String },
-  //   standard: { required: true, type: Boolean },
-  //   ekle: { required: true, type: Boolean },
-});
-const cards = ref([
-  {
-    title: "Randevuyu kim için alıyorsunuz?",
-  },
-  {
-    title: "Randevu türünü seçin",
-  },
-]);
+const props = defineProps({});
+const cards = ref([]);
 </script>
 
 <style scoped lang="scss">
