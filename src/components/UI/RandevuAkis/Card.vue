@@ -2,7 +2,10 @@
   <div
     class="card d-flex flex-row justify-content-start align-items-center"
     v-bind:class="{ active: isActive }"
-  ></div>
+  >
+    <span class="checkBox"></span>
+    <span class="para"> </span>
+  </div>
 </template>
 
 <script setup>

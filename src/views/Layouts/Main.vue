@@ -112,7 +112,7 @@ import { useRoute } from "vue-router";
 //reçeteler
 import RecetelerVue from "../../components/receteler/Receteler.vue";
 //randevu akış
-import randevuAkis from "../../components/randevuAkis/MainEx.vue";
+import randevuAkis from "../../components/randevuAkis/Main.vue";
 
 //in this part, we show/hide elements regarding routing
 const route = useRoute();

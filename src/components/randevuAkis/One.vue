@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <CardsVue />
+    <CardsVue v-for="(item, key) in cards" :key="key" :title="item.title" />
   </div>
 
   <!-- <button @click="sendEvent">click me</button> -->
@@ -17,7 +17,7 @@ import CardsVue from "../UI/RandevuAkis/Cards.vue";
 // }
 
 const props = defineProps({});
-const cards = ref([]);
+const cards = ref([{}]);
 </script>
 
 <style scoped lang="scss">

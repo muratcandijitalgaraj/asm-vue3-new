@@ -1,15 +1,14 @@
 <template>
   <div class="cards">
-    <div class="title">{{ title }}</div>
+    <div class="title"></div>
     <Card />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import Card from "./Card.vue";
+// import Card from "./Card.vue";
 const props = defineProps({});
-
 const card = ref([]);
 </script>
 

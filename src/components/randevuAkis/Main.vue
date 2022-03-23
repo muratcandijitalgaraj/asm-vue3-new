@@ -4,14 +4,15 @@
       <TopVue />
     </div>
     <div class="greyLine"></div>
-
-    <OneVue />
+    <BodyVue />
+    <!-- <OneVue /> -->
   </div>
 </template>
 
 <script setup>
 import TopVue from "../UI/RandevuAkis/Top.vue";
-import OneVue from "./One.vue";
+import BodyVue from "./randevu-alin-2/Body.vue";
+// import OneVue from "./One.vue";
 import { ref } from "vue";
 
 // function someEvent(name) {
@@ -21,6 +22,8 @@ import { ref } from "vue";
 
 <style scoped lang="scss">
 // @import "../../assets/scss/style";
+.main {
+}
 .greyLine {
   margin-top: 25px;
   margin-bottom: 30px;
