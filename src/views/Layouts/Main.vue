@@ -86,7 +86,7 @@
     <div v-if="showReceteler">
       <RecetelerVue />
     </div>
-    <div>
+    <div v-if="showAkis">
       <randevuAkis />
     </div>
   </div>
@@ -112,7 +112,7 @@ import { useRoute } from "vue-router";
 //reçeteler
 import RecetelerVue from "../../components/receteler/Receteler.vue";
 //randevu akış
-import randevuAkis from "../../components/randevuAkis/Main.vue";
+import randevuAkis from "../../components/randevuAkis/MainEx.vue";
 
 //in this part, we show/hide elements regarding routing
 const route = useRoute();
@@ -200,6 +200,11 @@ if (route.name === "Diger") {
 let showReceteler = false;
 if (route.name === "Receteler") {
   showReceteler = true;
+}
+//randevu akışı
+let showAkis = false;
+if (route.name === "RandevuAkis") {
+  showAkis = true;
 }
 
 // You could use computed property which re-evaluates on route name updates
