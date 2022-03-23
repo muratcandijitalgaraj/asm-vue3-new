@@ -7,11 +7,25 @@
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
+    <LeftBoxes
+      v-for="(item, key) in box"
+      :key="key"
+      :title="item.title"
+      :para="item.para"
+    />
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import LeftBoxes from "./LeftBoxes.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
+
+const box = ref([
+  {
+    title: "Ağrı Tedavisi (Algoloji)",
+  },
+]);
 </script>
 
 <style scoped lang="scss">
@@ -37,6 +51,7 @@ import logo from "../../../assets/img/medical-records/search.svg";
   height: 48px;
   padding-left: 15px;
   padding-right: 14px;
+  margin-bottom: 35px;
 }
 .searchBox {
   height: 48px !important;
