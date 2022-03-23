@@ -25,6 +25,23 @@ const box = ref([
   {
     title: "Ağrı Tedavisi (Algoloji)",
   },
+  {
+    title: "Endokrinoloji ve Metabolizma Hastalıkları",
+    para: "Sadece Gebze'de bulunuyor",
+  },
+  {
+    title: "Endokrinoloji ve Metabolizma Hastalıkları",
+  },
+  {
+    title: "Beslenme ve Diyet",
+    para: "Sadece Gebze'de bulunuyor",
+  },
+  { title: "Endokrinoloji ve Metabolizma Hastalıkları" },
+  {
+    title: "Endokrinoloji ve Metabolizma Hastalıkları",
+    para: "Sadece GEbze'de bulunuyor",
+  },
+  { title: "Endokrinoloji ve Metabolizma Hastalıkları" },
 ]);
 </script>
 

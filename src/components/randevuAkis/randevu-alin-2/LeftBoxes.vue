@@ -16,7 +16,8 @@ const props = defineProps({
 .box {
   background: #ffffff;
   /* Boxx Shadow */
-  height: 47px;
+  min-height: 47px;
+  height: 65px;
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 6px;
   margin-bottom: 17px;
