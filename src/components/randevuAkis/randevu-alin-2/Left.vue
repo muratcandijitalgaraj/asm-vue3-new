@@ -12,7 +12,7 @@
       :key="key"
       :title="item.title"
       :para="item.para"
-      @getTitle="showAlert"
+      @getTitle="showAlert(item.title)"
     />
   </div>
 </template>
@@ -21,9 +21,13 @@
 import { ref } from "vue";
 import LeftBoxes from "./LeftBoxes.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
+const props = defineProps({
+  title: { required: true, type: String },
+  para: { required: true, type: String },
+});
 
-const showAlert = () => {
-  alert("sth is clicked");
+const showAlert = (value) => {
+  console.log(value);
 };
 
 const box = ref([

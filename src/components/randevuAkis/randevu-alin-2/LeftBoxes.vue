@@ -1,6 +1,6 @@
 <template>
   <div class="box d-flex flex-column justify-content-center">
-    <span @click="$emit('getTitle')" class="title"> {{ title }} </span>
+    <span @click="handleButton" class="title"> {{ title }} </span>
     <span class="para"> {{ para }} </span>
   </div>
 </template>
@@ -11,8 +11,14 @@ const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
-
 const emit = defineEmits(["getTitle"]);
+// const sendData = () => {
+//   console.log(props.title);
+// };
+// let params = "sote";
+const handleButton = (params) => {
+  emit("getTitle", params);
+};
 
 // const getTitle = () => {
 //   console.log(props.title);
