@@ -1,15 +1,30 @@
 <template>
   <div class="box d-flex flex-column justify-content-center">
-    <span class="title"> {{ title }} </span>
+    <span @click="$emit('getTitle')" class="title"> {{ title }} </span>
     <span class="para"> {{ para }} </span>
   </div>
 </template>
 
 <script setup>
+import { defineEmits } from "vue";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
+
+const emit = defineEmits(["getTitle"]);
+
+// const getTitle = () => {
+//   console.log(props.title);
+// };
+// let params = props.title;
+// const emit = defineEmits(["getTitle"]);
+// function btnClick(params) {
+//   // emit('eventA')
+//   emit("getTitle", params);
+// }
+
+// console.log(props.title + props.para);
 </script>
 
 <style scoped lang="scss">
