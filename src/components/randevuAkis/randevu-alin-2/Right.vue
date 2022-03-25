@@ -1,6 +1,6 @@
 <template>
   <div
-    class="right d-flex flex-column align-items-center justify-content-center"
+    class="right col-6 col-lg-8 col-xl-6 align-items-center justify-content-center"
   >
     <div class="boxes d-flex flex-row align-items-center">
       <div
@@ -25,6 +25,9 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+.right {
+  border: solid;
+}
 .bg {
   margin-right: 13px;
   width: 24px;
@@ -59,9 +62,6 @@ const props = defineProps({
 .dots {
   width: 3px;
   height: 3px;
-
-  /* Button Disabled */
-
   background: #d5e2eb;
   margin-top: 8px;
   margin-bottom: 8px;
