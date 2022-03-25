@@ -1,6 +1,6 @@
 <template>
   <div class="row body">
-    <div v-if="showChoices" class="col-12 col-lg-7 left">
+    <div class="col-12 col-lg-7 left">
       <Left @insertProp="writeProp" />
     </div>
 
@@ -26,13 +26,12 @@ import { ref } from "vue";
 import Left from "./Left.vue";
 import Right from "./Right.vue";
 
-//show/hide shoices
-let showChoices = true;
-
 let propToWrite = ref();
+let bgColor = ref();
 const writeProp = (value) => {
   console.log(`new ${value}`);
   propToWrite.value = value;
+  bgColor.value = "purple";
 };
 
 const choices = ref([
@@ -49,7 +48,7 @@ const choices = ref([
   {
     para: propToWrite,
     logo: purpleLogo,
-    color: "purple",
+    color: bgColor,
   },
 ]);
 </script>

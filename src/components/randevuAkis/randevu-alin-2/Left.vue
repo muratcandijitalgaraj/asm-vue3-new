@@ -7,24 +7,35 @@
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
-    <LeftBoxes
-      v-for="(item, key) in box"
-      :key="key"
-      :title="item.title"
-      :para="item.para"
-      @getTitle="showAlert(item.title)"
-    />
+    <div v-if="showChoices">
+      <LeftBoxes
+        v-for="(item, key) in box"
+        :key="key"
+        :title="item.title"
+        :para="item.para"
+        @getTitle="handleChildData(item.title)"
+      />
+    </div>
+    <!-- doktor seçim -->
+    <div v-if="showDoctors">
+      <Doctors />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, defineEmits } from "vue";
 import LeftBoxes from "./LeftBoxes.vue";
+import Doctors from "./Doctors.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
+
+//show/hide shoices
+let showChoices = true;
+let showDoctors = false;
 
 //this is the function in the parent component
 //here we define which function in the parent component we want to emit to
@@ -36,7 +47,7 @@ const handleProps = () => {
 };
 //here I take the value I get from the click event (coming from the child), and write it into chosenItem variable
 let chosenItem = ref("");
-const showAlert = (value) => {
+const handleChildData = (value) => {
   console.log(value);
   chosenItem.value = value;
   console.log(chosenItem.value);
