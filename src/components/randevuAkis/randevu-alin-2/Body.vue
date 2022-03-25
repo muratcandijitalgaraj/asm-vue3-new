@@ -26,8 +26,10 @@ import { ref } from "vue";
 import Left from "./Left.vue";
 import Right from "./Right.vue";
 
+let propToWrite = ref();
 const writeProp = (value) => {
   console.log(`new ${value}`);
+  propToWrite.value = value;
 };
 
 const choices = ref([
@@ -42,7 +44,7 @@ const choices = ref([
     color: "black",
   },
   {
-    para: "sth",
+    para: propToWrite,
     logo: purpleLogo,
     color: "purple",
   },
