@@ -11,26 +11,14 @@ const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
+//this is the function in the parent component
+//here we define which function in the parent component we want to emit to
 const emit = defineEmits(["getTitle"]);
-// const sendData = () => {
-//   console.log(props.title);
-// };
-// let params = "sote";
+//this function emits to the parent component
+//in this particular example, params are not really necessary at all
 const handleButton = (params) => {
   emit("getTitle", params);
 };
-
-// const getTitle = () => {
-//   console.log(props.title);
-// };
-// let params = props.title;
-// const emit = defineEmits(["getTitle"]);
-// function btnClick(params) {
-//   // emit('eventA')
-//   emit("getTitle", params);
-// }
-
-// console.log(props.title + props.para);
 </script>
 
 <style scoped lang="scss">

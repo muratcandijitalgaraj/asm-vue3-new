@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 import LeftBoxes from "./LeftBoxes.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
 const props = defineProps({
@@ -26,10 +26,23 @@ const props = defineProps({
   para: { required: true, type: String },
 });
 
+//this is the function in the parent component
+//here we define which function in the parent component we want to emit to
+const emit = defineEmits(["insertProp"]);
+//this function emits to the parent component
+//this function shall be called in here
+const handleProps = () => {
+  emit("insertProp", chosenItem.value);
+};
+//here I take the value I get from the click event (coming from the child), and write it into chosenItem variable
+let chosenItem = ref("");
 const showAlert = (value) => {
   console.log(value);
+  chosenItem.value = value;
+  console.log(chosenItem.value);
+  //calling the emitting function
+  handleProps();
 };
-
 const box = ref([
   {
     title: "Ağrı Tedavisi (Algoloji)",
