@@ -4,12 +4,12 @@
   >
     <div class="boxes d-flex flex-row align-items-center">
       <div
-        class="bg d-flex justify-content-center align-items-center"
+        class="bg col-3 d-flex justify-content-center align-items-center"
         :class="color"
       >
         <img :src="logo" alt="" />
       </div>
-      <span class="para"> {{ para }} </span>
+      <span class="para col-9"> {{ para }} </span>
     </div>
     <span class="dots align-self-start"></span>
     <span class="dots align-self-start"></span>
@@ -26,7 +26,6 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .right {
-  border: solid;
 }
 .bg {
   margin-right: 13px;

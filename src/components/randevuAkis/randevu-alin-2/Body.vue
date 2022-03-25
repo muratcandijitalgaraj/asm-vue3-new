@@ -1,6 +1,6 @@
 <template>
   <div class="row body">
-    <div class="col-12 col-lg-7 left">
+    <div v-if="showChoices" class="col-12 col-lg-7 left">
       <Left @insertProp="writeProp" />
     </div>
 
@@ -25,6 +25,9 @@ import purpleLogo from "../../../assets/img/randevuAkis/secim.svg";
 import { ref } from "vue";
 import Left from "./Left.vue";
 import Right from "./Right.vue";
+
+//show/hide shoices
+let showChoices = true;
 
 let propToWrite = ref();
 const writeProp = (value) => {
