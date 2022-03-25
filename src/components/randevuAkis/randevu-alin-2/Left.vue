@@ -18,7 +18,12 @@
     </div>
     <!-- doktor seçim -->
     <div v-if="showDoctors">
-      <Doctors />
+      <Doctors
+        v-for="(item, key) in doktorBox"
+        :key="key"
+        :name="item.name"
+        :img="item.img"
+      />
     </div>
   </div>
 </template>
@@ -28,14 +33,17 @@ import { ref, defineEmits } from "vue";
 import LeftBoxes from "./LeftBoxes.vue";
 import Doctors from "./Doctors.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
+import doktorImg from "../../../assets/img/randevuAkis/doktor.svg";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
+  img: { required: true, type: String },
+  name: { required: true, type: String },
 });
 
 //show/hide shoices
-let showChoices = true;
-let showDoctors = false;
+let showChoices = ref(true);
+let showDoctors = ref(false);
 
 //this is the function in the parent component
 //here we define which function in the parent component we want to emit to
@@ -53,6 +61,8 @@ const handleChildData = (value) => {
   console.log(chosenItem.value);
   //calling the emitting function
   handleProps();
+  showChoices.value = false;
+  showDoctors.value = true;
 };
 const box = ref([
   {
@@ -75,6 +85,33 @@ const box = ref([
     para: "Sadece GEbze'de bulunuyor",
   },
   { title: "Endokrinoloji ve Metabolizma Hastalıkları" },
+]);
+
+const doktorBox = ref([
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
+  {
+    img: doktorImg,
+    name: "Prof. Dr. Mehmet Balkan",
+  },
 ]);
 </script>
 
