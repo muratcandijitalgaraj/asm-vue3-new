@@ -11,7 +11,7 @@
     <div v-if="showDropdown">
       <Dropdown :dateData="dateData" />
     </div>
-    <div v-if="showDates">
+    <div v-if="showDates" class="d-flex flex-wrap">
       <Dates v-for="(item, key) in hours" :key="key" :hour="item" />
     </div>
 
@@ -106,8 +106,6 @@ const handleChildData = (value) => {
   console.log(chosenItem.value);
   //calling the emitting function (sending to the parent)
   handleProps();
-  // showChoices.value = false;
-  // showDoctors.value = true;
   //show /hide components
   handleComponents();
   //invoke title handling function
