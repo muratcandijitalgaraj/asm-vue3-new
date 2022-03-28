@@ -1,5 +1,8 @@
 <template>
-  <div class="box d-flex flex-row justify-content-start align-items-center">
+  <div
+    @click="handleButton"
+    class="box d-flex flex-row justify-content-start align-items-center"
+  >
     <img :src="img" alt="" />
     <span class="name"> {{ name }} </span>
   </div>

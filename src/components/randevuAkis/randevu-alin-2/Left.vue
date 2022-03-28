@@ -23,6 +23,7 @@
         :key="key"
         :name="item.name"
         :img="item.img"
+        @getTitle="handleChildData(item.name)"
       />
     </div>
   </div>
