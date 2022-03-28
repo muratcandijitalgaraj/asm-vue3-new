@@ -1,6 +1,7 @@
 <template>
   <div class="left d-flex flex-column">
-    <span class="title">Bölüm Seçin</span>
+    <span v-if="showDepartmentTitle" class="title">Bölüm Seçin</span>
+    <span v-if="showDoctorTitle" class="title">Doktor Seçin</span>
     <div
       class="whiteBox searchContainer d-flex flex-row justify-content-between align-items-center"
     >
@@ -42,6 +43,18 @@ const props = defineProps({
   name: { required: true, type: String },
 });
 
+//show hide title
+let showDepartmentTitle = ref(true);
+let showDoctorTitle = ref(false);
+//title hiding function that'll be passed to handleChildData
+const handleTitle = () => {
+  if (showDepartmentTitle.value == true) {
+    showDepartmentTitle.value = false;
+    showDoctorTitle.value = true;
+    console.log(showDoctorTitle.value);
+  }
+};
+
 //show/hide shoices
 let showChoices = ref(true);
 let showDoctors = ref(false);
@@ -60,11 +73,14 @@ const handleChildData = (value) => {
   console.log(value);
   chosenItem.value = value;
   console.log(chosenItem.value);
-  //calling the emitting function
+  //calling the emitting function (sending to the parent)
   handleProps();
   showChoices.value = false;
   showDoctors.value = true;
+  //invoke title handling function
+  handleTitle();
 };
+
 const box = ref([
   {
     title: "Ağrı Tedavisi (Algoloji)",
