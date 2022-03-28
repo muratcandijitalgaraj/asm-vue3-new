@@ -8,7 +8,7 @@
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
-    <div v-if="showDropdown">
+    <div v-if="showDropdown" class="dropdown">
       <Dropdown :dateData="dateData" />
     </div>
     <div v-if="showDates" class="d-flex flex-wrap">
@@ -228,5 +228,8 @@ const hours = ref([
   border: none;
 }
 img {
+}
+.dropdown {
+  width: 100% !important;
 }
 </style>

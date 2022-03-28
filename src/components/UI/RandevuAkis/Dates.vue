@@ -20,7 +20,7 @@ const props = defineProps({
   /* Form Shadow */
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 6px;
-  margin: 10px 15px;
+  margin: 10px 0 10px 15px;
 }
 .hour {
   /* baslik4 */
