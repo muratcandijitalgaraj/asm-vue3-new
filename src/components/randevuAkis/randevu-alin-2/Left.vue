@@ -8,9 +8,12 @@
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
-    <!-- <div v-if="showDropdown"> -->
-    <Dropdown :dateData="dateData" />
-    <!-- </div> -->
+    <div v-if="showDropdown">
+      <Dropdown :dateData="dateData" />
+    </div>
+    <div v-if="showDates">
+      <Dates v-for="(item, key) in hours" :key="key" :hour="item" />
+    </div>
 
     <div v-if="showChoices">
       <LeftBoxes
@@ -41,6 +44,7 @@ import Doctors from "./Doctors.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
 import doktorImg from "../../../assets/img/randevuAkis/doktor.svg";
 import Dropdown from "../../UI/RandevuAkis/Dropdown.vue";
+import Dates from "../../UI/RandevuAkis/Dates.vue";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
@@ -53,17 +57,38 @@ let showDepartmentTitle = ref(true);
 let showDoctorTitle = ref(false);
 //title hiding function that'll be passed to handleChildData
 const handleTitle = () => {
+  //2nd to 3rd
   if (showDepartmentTitle.value == true) {
     showDepartmentTitle.value = false;
     showDoctorTitle.value = true;
     console.log(showDoctorTitle.value);
+  }
+  //3rd to 4th
+  else if (showDoctorTitle.value == true) {
+    showDoctorTitle.value = false;
+    showDropdown.value = true;
+    showDates.value = true;
+  }
+};
+
+//show/hide components
+const handleComponents = () => {
+  if (showChoices.value == true) {
+    showChoices.value = false;
+    showDoctors.value = true;
+  } else if (showDoctors.value == true) {
+    showChoices.value = false;
+    showDropdown.value = false;
+    showDates.value = false;
+    showDoctors.value = false;
   }
 };
 
 //show/hide choices
 let showChoices = ref(true);
 let showDoctors = ref(false);
-let showDropdown = ref(true);
+let showDropdown = ref(false);
+let showDates = ref(false);
 
 //this is the function in the parent component
 //here we define which function in the parent component we want to emit to
@@ -81,8 +106,10 @@ const handleChildData = (value) => {
   console.log(chosenItem.value);
   //calling the emitting function (sending to the parent)
   handleProps();
-  showChoices.value = false;
-  showDoctors.value = true;
+  // showChoices.value = false;
+  // showDoctors.value = true;
+  //show /hide components
+  handleComponents();
   //invoke title handling function
   handleTitle();
 };
@@ -149,6 +176,26 @@ const dateData = ref([
   "14 Ağustos 2021 pazar",
 
   "1 Ağustos 2021 Cuma",
+]);
+
+//hours
+const hours = ref([
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
 ]);
 </script>
 

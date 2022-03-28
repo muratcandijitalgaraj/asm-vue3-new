@@ -1,6 +1,11 @@
 <template>
   <select name="cars" id="cars" class="date dropdown">
-    <option v-for="item in data" :key="key" class="date" value="{{item}}">
+    <option
+      v-for="(item, key) in data"
+      :key="key"
+      class="date"
+      value="{{item}}"
+    >
       {{ item }}
     </option>
   </select>
@@ -20,10 +25,11 @@ console.log(data);
   height: 48px;
   background: #ffffff;
   /* Form Shadow */
-
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border: none;
   border-radius: 6px;
+  margin-bottom: 34px;
+  padding-left: 15px;
 }
 .date {
   font-family: "Nunito Sans";
