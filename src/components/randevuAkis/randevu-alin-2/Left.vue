@@ -8,6 +8,10 @@
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
+    <!-- <div v-if="showDropdown"> -->
+    <Dropdown :dateData="dateData" />
+    <!-- </div> -->
+
     <div v-if="showChoices">
       <LeftBoxes
         v-for="(item, key) in box"
@@ -36,6 +40,7 @@ import LeftBoxes from "./LeftBoxes.vue";
 import Doctors from "./Doctors.vue";
 import logo from "../../../assets/img/medical-records/search.svg";
 import doktorImg from "../../../assets/img/randevuAkis/doktor.svg";
+import Dropdown from "../../UI/RandevuAkis/Dropdown.vue";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
@@ -55,9 +60,10 @@ const handleTitle = () => {
   }
 };
 
-//show/hide shoices
+//show/hide choices
 let showChoices = ref(true);
 let showDoctors = ref(false);
+let showDropdown = ref(true);
 
 //this is the function in the parent component
 //here we define which function in the parent component we want to emit to
@@ -129,6 +135,20 @@ const doktorBox = ref([
     img: doktorImg,
     name: "Prof. Dr. Mehmet Balkan",
   },
+]);
+
+//dropdown dates
+
+const dateData = ref([
+  "29 Ağustos 2021 Cuma",
+
+  "12 Ağustos 2021 salı",
+
+  "23 Ağustos 2021 cumartesi",
+
+  "14 Ağustos 2021 pazar",
+
+  "1 Ağustos 2021 Cuma",
 ]);
 </script>
 
