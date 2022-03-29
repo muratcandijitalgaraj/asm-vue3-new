@@ -34,21 +34,28 @@ const handleClick = (params) => {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 6px;
   margin: 10px 0 10px 15px;
+
+  .hour {
+    /* baslik4 */
+
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    text-align: center;
+
+    /* Primary */
+
+    color: #3c4e69;
+  }
 }
-.hour {
-  /* baslik4 */
-
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
-  /* identical to box height, or 24px */
-
-  text-align: center;
-
-  /* Primary */
-
-  color: #3c4e69;
+.date:hover {
+  background: #32a5df;
+  .hour:hover {
+    color: white;
+  }
 }
 </style>
