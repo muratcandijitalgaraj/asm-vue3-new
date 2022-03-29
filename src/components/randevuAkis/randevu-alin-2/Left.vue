@@ -10,11 +10,18 @@
       <img :src="logo" alt="" />
     </div>
     <!-- tarih starts here -->
+    <!-- showDates became obsolete, you can delete it -->
     <div v-if="showDropdown" class="dropdown">
+      <div class="tarihTitle">Tarih ve Saat Seçin</div>
       <Dropdown :dateData="dateData" />
-    </div>
-    <div v-if="showDates" class="d-flex flex-wrap">
-      <Dates v-for="(item, key) in hours" :key="key" :hour="item" />
+      <div v-if="showDates" class="d-flex flex-wrap">
+        <Dates
+          v-for="(item, key) in hours"
+          :key="key"
+          :hour="item"
+          @getHour="handleLeftData(item)"
+        />
+      </div>
     </div>
 
     <!-- tarih ends -->
@@ -25,7 +32,7 @@
         :key="key"
         :title="item.title"
         :para="item.para"
-        @getTitle="handleChildData(item.title)"
+        @getTitle="handleLeftData(item.title)"
       />
     </div>
     <!-- doktor seçim -->
@@ -35,7 +42,7 @@
         :key="key"
         :name="item.name"
         :img="item.img"
-        @getTitle="handleChildData(item.name)"
+        @getDoctorTitle="handleDoctorData(item.name)"
       />
     </div>
   </div>
@@ -61,7 +68,7 @@ let showDepartmentTitle = ref(true);
 let showDoctorTitle = ref(false);
 //show / hide searchbox
 let showSearchBox = ref(true);
-//title hiding function that'll be passed to handleChildData
+//title hiding function that'll be passed to handleData functions
 const handleTitle = () => {
   //2nd to 3rd
   if (showDepartmentTitle.value == true) {
@@ -103,17 +110,34 @@ let showDates = ref(false);
 const emit = defineEmits(["insertProp"]);
 //this function emits to the parent component
 //this function shall be called in here
-const handleProps = () => {
-  emit("insertProp", chosenItem.value);
+const handleBoxProps = () => {
+  emit("insertProp", chosenBoxItem.value);
 };
-//here I take the value I get from the click event (coming from the child), and write it into chosenItem variable
-let chosenItem = ref("");
-const handleChildData = (value) => {
+//here I take the value I get from the click event (coming from the child), and write it into chosenBoxItem variable
+let chosenBoxItem = ref("");
+let chosenDoctorItem = ref("");
+let chosenDateItem = ref("");
+
+const handleLeftData = (value) => {
   console.log(value);
-  chosenItem.value = value;
-  console.log(chosenItem.value);
+  chosenBoxItem.value = value;
+  console.log(chosenBoxItem.value);
   //calling the emitting function (sending to the parent)
-  handleProps();
+  handleBoxProps();
+  //show /hide components
+  handleComponents();
+  //invoke title handling function
+  handleTitle();
+};
+const handleDoctorProps = () => {
+  emit("insertDoctorProp", chosenDoctorItem.value);
+};
+const handleDoctorData = (value) => {
+  console.log(value);
+  chosenDoctorItem.value = value;
+  console.log(chosenDoctorItem.value);
+  //calling the emitting function (sending to the parent)
+  handleDoctorProps();
   //show /hide components
   handleComponents();
   //invoke title handling function
@@ -249,5 +273,15 @@ img {
 }
 .dropdown {
   width: 100% !important;
+}
+.tarihTitle {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+  color: #3c4e69;
+  margin-bottom: 22px;
 }
 </style>

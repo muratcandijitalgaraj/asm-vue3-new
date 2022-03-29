@@ -1,7 +1,7 @@
 <template>
   <div class="row body">
     <div class="col-12 col-lg-7 left">
-      <Left @insertProp="writeProp" />
+      <Left @insertProp="writeLeftProp" @insertDoctorProp="writeDoctorProp" />
     </div>
 
     <div class="col-12 col-lg-5 right d-flex flex-column align-items-center">
@@ -26,12 +26,19 @@ import { ref } from "vue";
 import Left from "./Left.vue";
 import Right from "./Right.vue";
 
-let propToWrite = ref();
-let bgColor = ref();
-const writeProp = (value) => {
+let leftPropToWrite = ref();
+let doctorPropToWrite = ref();
+let bgcolorLeft = ref();
+let bgcolorDoctor = ref();
+const writeLeftProp = (value) => {
   console.log(`new ${value}`);
-  propToWrite.value = value;
-  bgColor.value = "purple";
+  leftPropToWrite.value = value;
+  bgcolorLeft.value = "purple";
+};
+const writeDoctorProp = (value) => {
+  console.log(`new ${value}`);
+  doctorPropToWrite.value = value;
+  bgcolorDoctor.value = "blue";
 };
 
 const choices = ref([
@@ -46,9 +53,14 @@ const choices = ref([
     color: "black",
   },
   {
-    para: propToWrite,
+    para: leftPropToWrite,
     logo: purpleLogo,
-    color: bgColor,
+    color: bgcolorLeft,
+  },
+  {
+    para: doctorPropToWrite,
+    logo: purpleLogo,
+    color: bgcolorDoctor,
   },
 ]);
 </script>

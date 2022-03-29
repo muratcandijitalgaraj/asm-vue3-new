@@ -1,5 +1,8 @@
 <template>
-  <div class="date d-flex justify-content-center align-items-center">
+  <div
+    @click="handleClick"
+    class="date d-flex justify-content-center align-items-center"
+  >
     <span class="hour">
       {{ hour }}
     </span>
@@ -7,9 +10,19 @@
 </template>
 
 <script setup>
+import { defineEmits } from "vue";
 const props = defineProps({
   hour: { required: true, type: String },
 });
+
+//this is the function in the parent component
+//here we define which function in the parent component we want to emit to
+const emit = defineEmits(["getHour"]);
+//this function emits to the parent component
+//in this particular example, params are not really necessary at all
+const handleClick = (params) => {
+  emit("getHour", params);
+};
 </script>
 
 <style scoped lang="scss">

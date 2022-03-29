@@ -58,6 +58,9 @@ const props = defineProps({
 .purple {
   background: #7367f0;
 }
+.blue {
+  background: #2e95df;
+}
 .dots {
   width: 3px;
   height: 3px;

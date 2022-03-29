@@ -17,7 +17,7 @@ const props = defineProps({
 });
 
 let data = props.dateData;
-console.log(data);
+// console.log(data);
 </script>
 
 <style scoped lang="scss">

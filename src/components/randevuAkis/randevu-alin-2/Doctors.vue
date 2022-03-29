@@ -16,11 +16,11 @@ const props = defineProps({
 });
 //this is the function in the parent component
 //here we define which function in the parent component we want to emit to
-const emit = defineEmits(["getTitle"]);
+const emit = defineEmits(["getDoctorTitle"]);
 //this function emits to the parent component
 //in this particular example, params are not really necessary at all
 const handleButton = (params) => {
-  emit("getTitle", params);
+  emit("getDoctorTitle", params);
 };
 </script>
 
