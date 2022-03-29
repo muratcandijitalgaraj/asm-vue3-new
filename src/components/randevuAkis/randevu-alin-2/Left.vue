@@ -22,6 +22,9 @@
           @getHour="handleLeftData(item)"
         />
       </div>
+      <button class="devamBtn">
+        <span class="buttonText"> Devam </span>
+      </button>
     </div>
 
     <!-- tarih ends -->
@@ -283,5 +286,25 @@ img {
   letter-spacing: -0.01em;
   color: #3c4e69;
   margin-bottom: 22px;
+}
+.devamBtn {
+  background: #ff8038;
+  border-radius: 6px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  margin-top: 50px;
+}
+.buttonText {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
+
+  /* Beyaz */
+
+  color: #ffffff;
 }
 </style>
