@@ -3,17 +3,21 @@
     <span v-if="showDepartmentTitle" class="title">Bölüm Seçin</span>
     <span v-if="showDoctorTitle" class="title">Doktor Seçin</span>
     <div
+      v-if="showSearchBox"
       class="whiteBox searchContainer d-flex flex-row justify-content-between align-items-center"
     >
       <input type="text" class="searchBox" placeholder="Bölüm Arayın" />
       <img :src="logo" alt="" />
     </div>
+    <!-- tarih starts here -->
     <div v-if="showDropdown" class="dropdown">
       <Dropdown :dateData="dateData" />
     </div>
     <div v-if="showDates" class="d-flex flex-wrap">
       <Dates v-for="(item, key) in hours" :key="key" :hour="item" />
     </div>
+
+    <!-- tarih ends -->
 
     <div v-if="showChoices">
       <LeftBoxes
@@ -55,6 +59,8 @@ const props = defineProps({
 //show hide title
 let showDepartmentTitle = ref(true);
 let showDoctorTitle = ref(false);
+//show / hide searchbox
+let showSearchBox = ref(true);
 //title hiding function that'll be passed to handleChildData
 const handleTitle = () => {
   //2nd to 3rd
@@ -68,6 +74,8 @@ const handleTitle = () => {
     showDoctorTitle.value = false;
     showDropdown.value = true;
     showDates.value = true;
+    //hide search box too
+    showSearchBox.value = false;
   }
 };
 
@@ -178,6 +186,16 @@ const dateData = ref([
 
 //hours
 const hours = ref([
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
+  "09:30",
   "09:30",
   "09:30",
   "09:30",
