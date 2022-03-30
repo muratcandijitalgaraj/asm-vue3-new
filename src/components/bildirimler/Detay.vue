@@ -13,7 +13,18 @@
     </div>
     <div class="greyLine"></div>
     <!-- cards come here -->
-    <Card v-for="(item, key) in cards" :key="key" />
+    <div class="col-12">
+      <Card
+        v-for="(item, key) in cards"
+        :key="key"
+        :type="item.type"
+        :logo="item.logo"
+        :bgColor="item.bgColor"
+        :titleColor="item.titleColor"
+        :date="item.date"
+        :para="item.para"
+      />
+    </div>
   </div>
 </template>
 
@@ -24,7 +35,9 @@ import note from "../../assets/img/bildirimler/note.svg";
 import health from "../../assets/img/bildirimler/health.svg";
 import calendar from "../../assets/img/bildirimler/calendar.svg";
 import notification from "../../assets/img/bildirimler/notification.svg";
+import message from "../../assets/img/bildirimler/message.svg";
 import Card from "../UI/bildirimler/Card.vue";
+import { Bundle } from "magic-string";
 
 const props = defineProps({
   type: { required: true, type: Number },
@@ -35,7 +48,56 @@ const props = defineProps({
   para: { required: true, type: String },
 });
 
-const cards = ref([{ type: 1 }]);
+const cards = ref([
+  {
+    type: 1,
+    logo: notification,
+    bgColor: "blue",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+  {
+    type: 1,
+    logo: calendar,
+    bgColor: "blue",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+  {
+    type: 2,
+    logo: message,
+    bgColor: "blue",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+  {
+    type: 1,
+    logo: health,
+    bgColor: "blue",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+  {
+    type: 1,
+    logo: note,
+    bgColor: "blue",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+  {
+    type: 1,
+    logo: notification,
+    bgColor: "grey",
+    titleColor: "blue",
+    date: "11 Aralık 2020",
+    para: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusant dolorque laudantium, totam",
+  },
+]);
 </script>
 
 <style lang="scss">

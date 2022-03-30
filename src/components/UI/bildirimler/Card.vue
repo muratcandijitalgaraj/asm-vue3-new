@@ -34,6 +34,9 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
+.card {
+  background: #f2f8fb;
+}
 .para {
   /* baslik4 */
 
