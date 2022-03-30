@@ -90,7 +90,7 @@
       <RandevuAkis />
     </div>
     <!-- bildirimler -->
-    <div>
+    <div v-if="showNotifications">
       <Detay />
     </div>
   </div>
@@ -189,6 +189,12 @@ if (route.name === "RandevuDetay") {
 let showRandevularBos = false;
 if (route.name === "RandevularEmpty") {
   showRandevularBos = true;
+}
+
+//show/hide bildirimler detay
+let showNotifications = false;
+if (route.name === "BildirimlerDetay") {
+  showNotifications = true;
 }
 
 //TIBBİ KAYIT VE SONUÇLAR SECTION
