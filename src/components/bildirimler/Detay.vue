@@ -35,6 +35,7 @@ import note from "../../assets/img/bildirimler/note.svg";
 import health from "../../assets/img/bildirimler/health.svg";
 import calendar from "../../assets/img/bildirimler/calendar.svg";
 import notification from "../../assets/img/bildirimler/notification.svg";
+import notificationWhite from "../../assets/img/bildirimler/notificationWhite.svg";
 import message from "../../assets/img/bildirimler/message.svg";
 import Card from "../UI/bildirimler/Card.vue";
 import { Bundle } from "magic-string";
@@ -91,7 +92,7 @@ const cards = ref([
   },
   {
     type: 1,
-    logo: notification,
+    logo: notificationWhite,
     bgColor: "grey",
     titleColor: "blue",
     date: "11 Aralık 2020",

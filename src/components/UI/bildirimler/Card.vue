@@ -8,7 +8,7 @@
         class="textContainer d-flex flex-column align-items-start justify-content-center"
       >
         <span class="title" :class="titleColor"> {{ date }} </span>
-        <span class="para"> {{ para }} </span>
+        <span class="paraColor"> {{ para }} </span>
         <div v-if="type === 2" class="buttonContainer">
           <button class="buttonOne">Örnek Buton</button>
           <button class="buttonTwo">Örnek Buton 2</button>
@@ -16,12 +16,12 @@
       </div>
     </div>
     <!-- right is just trash logo -->
-    <img src="" alt="" class="deleteLogo" />
+    <img :src="trash" alt="" class="deleteLogo" />
   </div>
 </template>
 
 <script setup>
-// import trash from "../../../assets/img/bildirimler/trash.svg";
+import trash from "../../../assets/img/bildirimler/trash.svg";
 
 const props = defineProps({
   type: { required: true, type: Number },
@@ -36,8 +36,11 @@ const props = defineProps({
 <style lang="scss">
 .card {
   background: #f2f8fb;
+  border: none;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dae9f1;
 }
-.para {
+.paraColor {
   /* baslik4 */
 
   font-family: "Nunito Sans";
@@ -50,5 +53,18 @@ const props = defineProps({
   /* Primary */
 
   color: #3c4e69;
+}
+.logoContainer {
+  width: 40px;
+  height: 40px;
+  left: 0px;
+  top: 0px;
+  border-radius: 6px;
+}
+.blue {
+  background: #32a5df;
+}
+.grey {
+  background: #ffffff;
 }
 </style>
