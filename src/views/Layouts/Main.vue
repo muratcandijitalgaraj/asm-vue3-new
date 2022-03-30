@@ -87,7 +87,11 @@
       <RecetelerVue />
     </div>
     <div v-if="showAkis">
-      <randevuAkis />
+      <RandevuAkis />
+    </div>
+    <!-- bildirimler -->
+    <div>
+      <Detay />
     </div>
   </div>
 </template>
@@ -112,7 +116,9 @@ import { useRoute } from "vue-router";
 //reçeteler
 import RecetelerVue from "../../components/receteler/Receteler.vue";
 //randevu akış
-import randevuAkis from "../../components/randevuAkis/Main.vue";
+import RandevuAkis from "../../components/randevuAkis/Main.vue";
+//bildirimler
+import Detay from "../../components/bildirimler/Detay.vue";
 
 //in this part, we show/hide elements regarding routing
 const route = useRoute();

@@ -23,6 +23,8 @@ import orangeLogo from "../../../assets/img/randevuAkis/video.svg";
 import blackLogo from "../../../assets/img/randevuAkis/user.svg";
 import purpleLogo from "../../../assets/img/randevuAkis/secim.svg";
 import blueLogo from "../../../assets/img/randevuAkis/doktorLogo.svg";
+import greenLogo from "../../../assets/img/randevuAkis/calendar.svg";
+
 import { ref } from "vue";
 import Left from "./Left.vue";
 import Right from "./Right.vue";

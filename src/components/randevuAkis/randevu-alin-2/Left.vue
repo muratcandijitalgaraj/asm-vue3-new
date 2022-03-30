@@ -19,7 +19,7 @@
           v-for="(item, key) in hours"
           :key="key"
           :hour="item"
-          @getHour="handleLeftData(item)"
+          @getHour="handleDatesData(item)"
         />
       </div>
       <button class="devamBtn">
