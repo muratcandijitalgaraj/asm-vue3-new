@@ -9,20 +9,42 @@
       için işlem yapabilirsiniz
     </p>
     <div class="cards">
-      <Cards />
+      <Cards
+        v-for="(item, key) in cards"
+        :key="key"
+        :title="item.title"
+        :para="item.para"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import close from "../../../assets/img/profil/close.svg";
 import Cards from "./Cards.vue";
+
+const cards = ref([
+  {
+    title: "Mehmet Yılmaz",
+    para: "Siz",
+  },
+
+  {
+    title: "Akgül Yılmaz",
+    para: "Eşim",
+  },
+  {
+    title: "Akgül Yılmaz",
+    para: "Eşim",
+  },
+]);
 </script>
 
 <style scoped lang="scss">
 .body {
-  width: 409px;
-  height: 520px;
+  width: auto;
+  height: auto;
 
   background: #e9f3f9;
   border-radius: 16px;
