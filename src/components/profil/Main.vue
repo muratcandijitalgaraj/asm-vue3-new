@@ -1,7 +1,10 @@
 <template>
   <div class="body d-flex justify-content-center align-items-center">
-    <div class="item">
-      <Degistir />
+    <div v-if="showDegistir" class="item">
+      <Degistir @getData="handleChildData()" />
+    </div>
+    <div v-if="showEkle" class="item">
+      <Ekle />
     </div>
   </div>
 </template>
@@ -9,6 +12,17 @@
 <script setup>
 import { ref } from "vue";
 import Degistir from "./degistir/Degistir.vue";
+import Ekle from "./ekle/Ekle.vue";
+
+let showDegistir = ref(true);
+let showEkle = ref(false);
+
+const handleChildData = () => {
+  if (showDegistir.value == true) {
+    showDegistir.value = false;
+    showEkle.value = true;
+  }
+};
 </script>
 
 <style scoped lang="scss">

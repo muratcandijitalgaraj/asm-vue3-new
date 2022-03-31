@@ -16,14 +16,15 @@
         :para="item.para"
       />
     </div>
-    <button class="button">
+    <button @click="handleButton" class="button">
       <span class="buttonText">+ Yeni Profil Ekle</span>
     </button>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
+
 import close from "../../../assets/img/profil/close.svg";
 import Cards from "./Cards.vue";
 
@@ -42,6 +43,12 @@ const cards = ref([
     para: "Eşim",
   },
 ]);
+
+//emits
+const emit = defineEmits(["getData"]);
+const handleButton = (params) => {
+  emit("getData", params);
+};
 </script>
 
 <style scoped lang="scss">
