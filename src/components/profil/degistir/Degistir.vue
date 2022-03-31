@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="top d-flex justify-content-between">
-      <span class="title"> Profiller </span>
+      <div class="title">Profiller</div>
       <img :src="close" alt="" />
     </div>
     <p class="para">
@@ -54,12 +54,12 @@ const cards = ref([
   padding: 25px;
 }
 .title {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 130%;
-  letter-spacing: -0.01em;
+  font-family: "Nunito Sans" !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  line-height: 130% !important;
+  letter-spacing: -0.01em !important;
   color: #3c4e69;
 }
 .para {
