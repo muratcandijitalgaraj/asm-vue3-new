@@ -1,5 +1,8 @@
 <template>
-  <div class="card d-flex flex-row justify-content-between align-items-center">
+  <div
+    @click="chooseUser"
+    class="card d-flex flex-row justify-content-between align-items-center"
+  >
     <div class="left d-flex flex-row justify-content-start align-items-center">
       <img class="user" :src="user" alt="" />
       <div class="texts d-flex flex-column">
@@ -8,19 +11,29 @@
       </div>
     </div>
     <!-- right part is just the circle -->
-    <div class="circle d-flex justify-content-center align-items-center">
+    <div
+      :class="{ active: isActive }"
+      class="circle d-flex justify-content-center align-items-center"
+    >
       <img class="vector" :src="vector" alt="" />
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import user from "../../../assets/img/profil/user.svg";
 import vector from "../../../assets/img/profil/vector.svg";
 const props = defineProps({
   title: { required: true, type: String },
   para: { required: true, type: String },
 });
+
+let isActive = ref(false);
+
+const chooseUser = () => {
+  isActive.value = !isActive.value;
+};
 </script>
 
 <style scoped lang="scss">
@@ -66,5 +79,8 @@ const props = defineProps({
   border: 1px solid #e1e1e1;
   border-radius: 50%;
   // background: #32a5df;
+}
+.active {
+  background: #32a5df;
 }
 </style>
