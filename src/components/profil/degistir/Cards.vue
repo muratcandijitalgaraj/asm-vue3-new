@@ -28,8 +28,8 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .card {
-  width: auto;
-  height: auto;
+  width: 341px;
+  height: 70px;
   background: #ffffff;
   border: 1px solid #32a5df;
   box-sizing: border-box;
@@ -39,7 +39,6 @@ const props = defineProps({
   margin-bottom: 17px;
 }
 .left {
-  border: solid;
   width: 100%;
 }
 .title {
