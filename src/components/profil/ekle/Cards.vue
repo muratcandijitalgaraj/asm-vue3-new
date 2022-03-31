@@ -1,12 +1,20 @@
 <template>
-  <div class="card"></div>
+  <div class="card d-flex flex-row justify-content-start">
+    <div
+      :class="{ active: isActive }"
+      class="circle d-flex justify-content-center align-items-center"
+    >
+      <img class="vector" :src="vector" alt="" />
+    </div>
+    <p class="para">{{ para }}</p>
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import vector from "../../../assets/img/profil/vector.svg";
 
 const props = defineProps({
-  title: { required: true, type: String },
   para: { required: true, type: String },
 });
 </script>
@@ -24,5 +32,30 @@ const props = defineProps({
   border-radius: 6px;
   border: none;
   margin-left: 35px !important;
+  //   padding-top: 15px;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%;
+  // background: #32a5df;
+  margin: 15px;
+}
+.active {
+  background: #32a5df;
+}
+.para {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  /* identical to box height, or 24px */
+
+  /* Primary */
+
+  color: #3c4e69;
+  margin-top: 13.5px;
 }
 </style>

@@ -5,7 +5,7 @@
       <img :src="close" alt="" />
     </div>
     <div class="itemContainer d-flex flex-wrap">
-      <Cards />
+      <Cards v-for="(item, key) in cards" :key="key" :para="item.para" />
     </div>
   </div>
 </template>
@@ -13,6 +13,28 @@
 <script setup>
 import close from "../../../assets/img/profil/close.svg";
 import Cards from "./Cards.vue";
+import { ref, defineEmits } from "vue";
+
+const cards = ref([
+  {
+    para: "Eşim",
+  },
+  {
+    para: "Eşim",
+  },
+  {
+    para: "Eşim",
+  },
+  {
+    para: "Çocuğum",
+  },
+  {
+    para: "Çocuğum",
+  },
+  {
+    para: "Çocuğum",
+  },
+]);
 </script>
 
 <style scoped lang="scss">
