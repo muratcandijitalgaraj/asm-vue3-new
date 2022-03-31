@@ -4,11 +4,19 @@
       <span class="title"> Profiller </span>
       <img :src="close" alt="" />
     </div>
+    <p class="para">
+      Aile bireylerinizi ekleyebilir veya profil değiştirerek aile bireyleriniz
+      için işlem yapabilirsiniz
+    </p>
+    <div class="cards">
+      <Cards />
+    </div>
   </div>
 </template>
 
 <script setup>
-import close from "../../assets/img/profil/close.svg";
+import close from "../../../assets/img/profil/close.svg";
+import Cards from "./Cards.vue";
 </script>
 
 <style scoped lang="scss">
@@ -28,5 +36,21 @@ import close from "../../assets/img/profil/close.svg";
   line-height: 130%;
   letter-spacing: -0.01em;
   color: #3c4e69;
+}
+.para {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 140%;
+  /* or 21px */
+
+  letter-spacing: -0.01em;
+
+  /* Primary */
+
+  color: #3c4e69;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 </style>

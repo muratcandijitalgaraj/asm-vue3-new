@@ -8,10 +8,13 @@
 
 <script setup>
 import { ref } from "vue";
-import Degistir from "./Degistir.vue";
+import Degistir from "./degistir/Degistir.vue";
 </script>
 
 <style scoped lang="scss">
+.body {
+  height: 100vh;
+}
 .item {
 }
 </style>
