@@ -7,6 +7,11 @@
     <div class="itemContainer d-flex flex-wrap">
       <Cards v-for="(item, key) in cards" :key="key" :para="item.para" />
     </div>
+    <div class="buttonContainer d-flex justify-content-center">
+      <button @click="handleButton" class="button">
+        <span class="buttonText">+ Yeni Profil Ekle</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -14,6 +19,11 @@
 import close from "../../../assets/img/profil/close.svg";
 import Cards from "./Cards.vue";
 import { ref, defineEmits } from "vue";
+//emits
+const emit = defineEmits(["getData"]);
+const handleButton = (params) => {
+  emit("getData", params);
+};
 
 const cards = ref([
   {
@@ -80,5 +90,30 @@ const cards = ref([
 .givePadding {
   padding-left: 35px;
   padding-right: 15px;
+}
+.buttonContainer {
+  width: 100%;
+}
+.button {
+  padding: 12px 20px 11px;
+  width: 341px;
+  height: 50px;
+  background: #ff8038;
+  border-radius: 6px;
+  border: none;
+}
+.buttonText {
+  /* buton-text-orta */
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
+
+  /* Beyaz */
+
+  color: #ffffff;
 }
 </style>

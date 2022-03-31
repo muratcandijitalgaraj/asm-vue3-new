@@ -1,5 +1,5 @@
 <template>
-  <div class="card d-flex flex-row justify-content-start">
+  <div @click="chooseUser" class="card d-flex flex-row justify-content-start">
     <div
       :class="{ active: isActive }"
       class="circle d-flex justify-content-center align-items-center"
@@ -17,6 +17,12 @@ import vector from "../../../assets/img/profil/vector.svg";
 const props = defineProps({
   para: { required: true, type: String },
 });
+
+let isActive = ref(false);
+
+const chooseUser = () => {
+  isActive.value = !isActive.value;
+};
 </script>
 
 <style scoped lang="scss">

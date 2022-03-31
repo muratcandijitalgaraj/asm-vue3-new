@@ -4,7 +4,7 @@
       <Degistir @getData="handleChildData()" />
     </div>
     <div v-if="showEkle" class="item">
-      <Ekle />
+      <Ekle @getData="handleChildData()" />
     </div>
   </div>
 </template>
@@ -21,6 +21,9 @@ const handleChildData = () => {
   if (showDegistir.value == true) {
     showDegistir.value = false;
     showEkle.value = true;
+  } else if (showEkle.value == true) {
+    showEkle.value = false;
+    alert("hey");
   }
 };
 </script>
