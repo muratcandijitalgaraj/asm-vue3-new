@@ -14,8 +14,8 @@ import { ref } from "vue";
 import Degistir from "./degistir/Degistir.vue";
 import Ekle from "./ekle/Ekle.vue";
 
-let showDegistir = ref(true);
-let showEkle = ref(false);
+let showDegistir = ref(false);
+let showEkle = ref(true);
 
 const handleChildData = () => {
   if (showDegistir.value == true) {
