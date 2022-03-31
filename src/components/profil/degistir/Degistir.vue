@@ -16,6 +16,9 @@
         :para="item.para"
       />
     </div>
+    <button class="button">
+      <span class="buttonText">+ Yeni Profil Ekle</span>
+    </button>
   </div>
 </template>
 
@@ -60,19 +63,41 @@ const cards = ref([
   color: #3c4e69;
 }
 .para {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 140%;
+  font-family: "Nunito Sans" !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 140% !important;
   /* or 21px */
 
-  letter-spacing: -0.01em;
+  letter-spacing: -0.01em !important;
 
   /* Primary */
 
   color: #3c4e69;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.button {
+  padding: 12px 20px 11px;
+  width: 341px;
+  height: 50px;
+  background: #ff8038;
+  border-radius: 6px;
+  border: none;
+}
+.buttonText {
+  /* buton-text-orta */
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
+
+  /* Beyaz */
+
+  color: #ffffff;
 }
 </style>

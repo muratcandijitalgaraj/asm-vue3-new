@@ -1,19 +1,16 @@
 <template>
-  <div class="card d-flex justify-content-between align-items-center">
+  <div class="card d-flex flex-row justify-content-between align-items-center">
     <div class="left d-flex flex-row justify-content-start align-items-center">
-      <img :src="user" alt="" />
+      <img class="user" :src="user" alt="" />
       <div class="texts d-flex flex-column">
         <span class="title"> {{ title }} </span>
-        <span class="para">{{ para }} </span>
+        <span class="para">{{ para }}</span>
       </div>
     </div>
     <!-- right part is just the circle -->
-    <div class="circle">
-      <img :src="vector" alt="" />
+    <div class="circle d-flex justify-content-center align-items-center">
+      <img class="vector" :src="vector" alt="" />
     </div>
-    <!-- <button class="button">
-      <span class="buttonText">+ Yeni Profil Ekle</span>
-    </button> -->
   </div>
 </template>
 
@@ -36,10 +33,12 @@ const props = defineProps({
   box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
   border-radius: 6px;
   border: none;
-  margin-bottom: 17px;
+  // margin-bottom: 17px;
+  padding: 0 !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 .left {
-  width: 100%;
 }
 .title {
   font-family: "Nunito Sans";
@@ -50,34 +49,22 @@ const props = defineProps({
   color: #3c4e69;
 }
 .para {
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 140%;
-  letter-spacing: -0.01em;
-  color: #818b9a;
+  font-family: "Nunito Sans" !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 140% !important;
+  letter-spacing: -0.01em !important;
+  color: #818b9a !important;
 }
-.button {
-  padding: 12px 20px 11px;
-  width: 70%;
-  height: auto;
-  background: #ff8038;
-  border-radius: 6px;
-  border: none;
+.user {
+  margin-right: 20px;
 }
-.buttonText {
-  /* buton-text-orta */
-
-  font-family: "Nunito Sans";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 110%;
-  /* identical to box height, or 18px */
-
-  /* Beyaz */
-
-  color: #ffffff;
+.circle {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%;
+  // background: #32a5df;
 }
 </style>
