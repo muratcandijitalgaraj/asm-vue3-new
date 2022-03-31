@@ -6,6 +6,9 @@
     <div v-if="showEkle" class="item">
       <Ekle @getData="handleChildData()" />
     </div>
+    <div v-if="showEkle2" class="item">
+      <Ekle2 @getData="handleChildData()" />
+    </div>
   </div>
 </template>
 
@@ -13,9 +16,10 @@
 import { ref } from "vue";
 import Degistir from "./degistir/Degistir.vue";
 import Ekle from "./ekle/Ekle.vue";
+import Ekle2 from "./ekle-2/Ekle2.vue";
 
-let showDegistir = ref(false);
-let showEkle = ref(true);
+let showDegistir = ref(true);
+let showEkle = ref(false);
 
 const handleChildData = () => {
   if (showDegistir.value == true) {
@@ -23,7 +27,6 @@ const handleChildData = () => {
     showEkle.value = true;
   } else if (showEkle.value == true) {
     showEkle.value = false;
-    alert("hey");
   }
 };
 </script>

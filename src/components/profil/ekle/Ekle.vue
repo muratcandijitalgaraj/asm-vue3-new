@@ -50,7 +50,7 @@ const cards = ref([
 <style scoped lang="scss">
 .body {
   width: 409px;
-  height: 444px;
+  height: 444px !important;
   background: #e9f3f9;
   border-radius: 16px;
 }
