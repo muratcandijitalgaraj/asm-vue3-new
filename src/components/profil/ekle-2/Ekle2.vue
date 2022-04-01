@@ -83,8 +83,14 @@ import close from "../../../assets/img/profil/close.svg";
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.03);
   border-radius: 6px;
   border: none;
+  padding-left: 15px;
 }
-
+.top {
+  margin-bottom: 30px;
+}
+.tcPart {
+  margin-bottom: 17px;
+}
 .uyruk {
   width: 70px;
   height: 56px;
@@ -96,6 +102,7 @@ import close from "../../../assets/img/profil/close.svg";
 .card {
   width: 100%;
   height: 56px;
+  padding-top: 15px;
 }
 
 //this doesn't work
