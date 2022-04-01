@@ -20,6 +20,7 @@ import Ekle2 from "./ekle-2/Ekle2.vue";
 
 let showDegistir = ref(true);
 let showEkle = ref(false);
+let showEkle2 = ref(false);
 
 const handleChildData = () => {
   if (showDegistir.value == true) {
@@ -27,6 +28,7 @@ const handleChildData = () => {
     showEkle.value = true;
   } else if (showEkle.value == true) {
     showEkle.value = false;
+    showEkle2.value = true;
   }
 };
 </script>
