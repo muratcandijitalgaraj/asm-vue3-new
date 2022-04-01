@@ -13,6 +13,42 @@
           placeholder="T.C. Kimlik Numarası"
         />
       </div>
+      <input type="text" class="card item" placeholder="İsim" />
+      <input type="text" class="card item" placeholder="Soyisim" />
+      <input type="text" class="card item" placeholder="Doğum Tarihi" />
+      <select name="card" class="card item">
+        <option value="Cinsiyet" class="optionItem" disabled selected hidden>
+          Cinsiyet
+        </option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+      </select>
+      <select name="card" class="card item">
+        <option value="Ülke" class="optionItem" disabled selected hidden>
+          Ülke
+        </option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+      </select>
+      <select name="card" class="card item">
+        <option value="Şehir" class="optionItem" disabled selected hidden>
+          Şehir
+        </option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+      </select>
+      <select name="card" class="card item">
+        <option value="İlçe" class="optionItem" disabled selected hidden>
+          İlçe
+        </option>
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+      </select>
+      <div class="buttonContainer d-flex justify-content-center">
+        <button @click="handleButton" class="button">
+          <span class="buttonText">+ Yeni Profil Ekle</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -56,5 +92,52 @@ import close from "../../../assets/img/profil/close.svg";
 .tcNo {
   width: 310px;
   height: 56px;
+}
+.card {
+  width: 100%;
+  height: 56px;
+}
+
+//this doesn't work
+.optionItem {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  /* identical to box height, or 16px */
+
+  letter-spacing: -0.01em;
+
+  /* Gri */
+
+  color: red !important;
+  border: 2px solid red !important;
+}
+
+.buttonContainer {
+  width: 100%;
+}
+.button {
+  padding: 12px 20px 11px;
+  width: 100%;
+  height: 50px;
+  background: #ff8038;
+  border-radius: 6px;
+  border: none;
+}
+.buttonText {
+  /* buton-text-orta */
+
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
+
+  /* Beyaz */
+
+  color: #ffffff;
 }
 </style>
