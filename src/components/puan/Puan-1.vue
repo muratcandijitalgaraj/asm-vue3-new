@@ -71,6 +71,10 @@ let isActive = ref(false);
 const handleClick = () => {
   isActive.value = !isActive.value;
 };
+const emit = defineEmits(["changeComponent"]);
+const handleButton = (params) => {
+  emit("changeComponent", params);
+};
 </script>
 
 <style scoped>

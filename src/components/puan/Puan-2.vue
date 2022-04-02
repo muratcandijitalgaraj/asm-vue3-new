@@ -1,4 +1,4 @@
-<template></template>
+<template>puan 2</template>
 
 <script setup></script>
 
