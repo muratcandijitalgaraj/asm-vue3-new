@@ -20,7 +20,9 @@
       <div
         v-for="(card, index) in cards"
         :key="card.index"
+        :class="{ active: isActive }"
         class="card d-flex flex-row align-items-center"
+        @click="handleClick"
       >
         <div class="circle"></div>
         <span class="title"> {{ card.title }} </span>
@@ -63,6 +65,12 @@ const cards = ref([
   { title: "Kötü" },
   { title: "Çok Kötü" },
 ]);
+
+let isActive = ref(false);
+
+const handleClick = () => {
+  isActive.value = !isActive.value;
+};
 </script>
 
 <style scoped>
@@ -152,5 +160,8 @@ const cards = ref([
   /* Beyaz */
 
   color: #ffffff;
+}
+.active {
+  background: #32a5df;
 }
 </style>
