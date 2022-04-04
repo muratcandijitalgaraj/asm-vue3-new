@@ -45,6 +45,7 @@ const handleChildData = () => {
 <style scoped lang="scss">
 .body {
   height: 100vh;
+  overflow: scroll;
 }
 .item {
 }

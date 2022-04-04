@@ -64,6 +64,7 @@ import close from "../../../assets/img/profil/close.svg";
   background: #e9f3f9;
   border-radius: 16px;
   padding: 35px 25px;
+  margin-top: 5rem;
 }
 .title {
   // width: 198px;
@@ -146,5 +147,21 @@ import close from "../../../assets/img/profil/close.svg";
   /* Beyaz */
 
   color: #ffffff;
+}
+@media only screen and (max-width: 600px) {
+  .body {
+    width: 85vw;
+  }
+  .tcPart {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .item {
+    width: auto;
+    // margin-right: 2rem;
+  }
+  .uyruk {
+    margin-bottom: 1rem;
+  }
 }
 </style>
