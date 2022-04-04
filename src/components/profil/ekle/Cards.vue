@@ -66,7 +66,7 @@ const chooseUser = () => {
 }
 @media only screen and (max-width: 600px) {
   .card {
-    width: 90%;
+    // width: 90%;
   }
 }
 </style>

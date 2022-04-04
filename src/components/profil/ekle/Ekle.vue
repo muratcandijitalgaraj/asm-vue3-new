@@ -118,7 +118,11 @@ const cards = ref([
 }
 @media only screen and (max-width: 600px) {
   .body {
-    width: auto;
+    width: 90%;
+    height: auto !important;
+  }
+  .itemContainer {
+    justify-content: center;
   }
 }
 </style>
