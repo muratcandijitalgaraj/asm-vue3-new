@@ -83,4 +83,10 @@ const chooseUser = () => {
 .active {
   background: #32a5df;
 }
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: auto;
+  }
+}
 </style>

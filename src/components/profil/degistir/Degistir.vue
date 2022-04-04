@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body d-flex flex-column">
     <div class="top d-flex justify-content-between">
       <div class="title">Profiller</div>
       <img :src="close" alt="" />
@@ -8,7 +8,7 @@
       Aile bireylerinizi ekleyebilir veya profil değiştirerek aile bireyleriniz
       için işlem yapabilirsiniz
     </p>
-    <div class="cards">
+    <div class="cards align-self-center">
       <Cards
         v-for="(item, key) in cards"
         :key="key"
@@ -16,7 +16,7 @@
         :para="item.para"
       />
     </div>
-    <button @click="handleButton" class="button">
+    <button @click="handleButton" class="button align-self-center">
       <span class="buttonText">+ Yeni Profil Ekle</span>
     </button>
   </div>
@@ -106,5 +106,14 @@ const handleButton = (params) => {
   /* Beyaz */
 
   color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+  .body {
+    width: 90%;
+  }
+  .button {
+    width: auto;
+  }
 }
 </style>

@@ -1,12 +1,21 @@
 <template>
   <div class="body d-flex justify-content-center align-items-center">
-    <div v-if="showDegistir" class="item">
+    <div
+      v-if="showDegistir"
+      class="item d-flex justify-content-center align-items-center"
+    >
       <Degistir @getData="handleChildData()" />
     </div>
-    <div v-if="showEkle" class="item">
+    <div
+      v-if="showEkle"
+      class="item d-flex justify-content-center align-items-center"
+    >
       <Ekle @getData="handleChildData()" />
     </div>
-    <div v-if="showEkle2" class="item">
+    <div
+      v-if="showEkle2"
+      class="item d-flex justify-content-center align-items-center"
+    >
       <Ekle2 @getData="handleChildData()" />
     </div>
   </div>
