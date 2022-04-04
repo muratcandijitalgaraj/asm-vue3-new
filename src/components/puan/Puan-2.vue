@@ -20,8 +20,8 @@ import bulutlar from "../../assets/img/puan/bulutlar-2.svg";
 
 <style scoped>
 .body {
-  width: 675px;
-  height: 386px;
+  width: 675px !important;
+  height: 386px !important;
 
   background: #e9f3f9;
   border-radius: 16px;
