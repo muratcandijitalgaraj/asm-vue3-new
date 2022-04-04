@@ -33,5 +33,6 @@ const renderFunc = () => {
 .body {
   height: 100vh;
   padding: 2rem;
+  overflow: scroll;
 }
 </style>

@@ -19,7 +19,7 @@
     >
       <div
         v-for="(card, index) in cards"
-        :key="card.index"
+        :key="index"
         :class="{ active: isActive }"
         class="card d-flex flex-row align-items-center"
         @click="handleClick"
@@ -79,7 +79,7 @@ const handleButton = (params) => {
 
 <style scoped>
 .body {
-  width: 675px !important;
+  width: 675px;
   height: 629px !important;
   background: #e9f3f9;
   border-radius: 16px;
@@ -167,5 +167,28 @@ const handleButton = (params) => {
 }
 .active {
   background: #32a5df;
+}
+@media only screen and (max-width: 700px) {
+  .body {
+    width: auto;
+    height: auto !important;
+  }
+  .bigInput {
+    width: 100%;
+  }
+  .cards {
+    flex-wrap: wrap;
+  }
+  .card {
+    width: 150px !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .cards {
+    justify-content: center !important;
+  }
+  .card {
+    margin: 1rem;
+  }
 }
 </style>
