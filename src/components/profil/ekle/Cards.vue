@@ -64,4 +64,9 @@ const chooseUser = () => {
   color: #3c4e69;
   margin-top: 13.5px;
 }
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+}
 </style>

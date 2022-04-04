@@ -110,10 +110,10 @@ const handleButton = (params) => {
 
 @media only screen and (max-width: 600px) {
   .body {
-    width: 90%;
+    width: 340px;
   }
   .button {
-    width: auto;
+    width: 223px;
   }
 }
 </style>

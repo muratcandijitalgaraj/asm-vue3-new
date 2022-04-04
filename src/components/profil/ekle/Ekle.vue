@@ -116,4 +116,9 @@ const cards = ref([
 
   color: #ffffff;
 }
+@media only screen and (max-width: 600px) {
+  .body {
+    width: auto;
+  }
+}
 </style>
