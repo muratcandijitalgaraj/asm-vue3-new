@@ -68,7 +68,7 @@ const cards = ref([
 
 let isActive = ref(false);
 
-const handleClick = () => {
+const handleClick = (e) => {
   isActive.value = !isActive.value;
 };
 const emit = defineEmits(["changeComponent"]);
