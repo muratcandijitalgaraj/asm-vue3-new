@@ -4,7 +4,14 @@
     @click="handleClick"
     v-bind:class="{ active: isActive }"
   >
-    <div class="circle"></div>
+    <div
+      v-bind:class="{ circled: isCircled }"
+      class="circle d-flex justify-content-center align-items-center"
+    >
+      <span class="checkSymbole" v-bind:class="{ checked: isChecked }">
+        &#10003;</span
+      >
+    </div>
     <span class="title"> {{ title }} </span>
   </div>
 </template>
@@ -16,9 +23,13 @@ const props = defineProps({
 });
 
 let isActive = ref(false);
+let isChecked = ref(false);
+let isCircled = ref(false);
 
 const handleClick = (e) => {
   isActive.value = !isActive.value;
+  isChecked.value = !isChecked.value;
+  isCircled.value = !isCircled.value;
 };
 </script>
 
@@ -39,5 +50,15 @@ const handleClick = (e) => {
 }
 .active {
   background: #32a5df;
+}
+.checkSymbole {
+  display: none;
+}
+.checked {
+  display: flex;
+  color: #32a5df;
+}
+.circled {
+  background: white;
 }
 </style>
