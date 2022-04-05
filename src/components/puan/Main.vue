@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref } from "vue";
-import Puan1 from "./Puan-1.vue";
+import Puan1 from "./puan-1/Puan-1.vue";
 import Puan2 from "./Puan-2.vue";
 
 let showPuan1 = ref(true);

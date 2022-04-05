@@ -17,16 +17,7 @@
     <div
       class="cards d-flex flex-row align-items-center justify-content-between"
     >
-      <div
-        v-for="(card, index) in cards"
-        :key="index"
-        :class="{ active: isActive }"
-        class="card d-flex flex-row align-items-center"
-        @click="handleClick"
-      >
-        <div class="circle"></div>
-        <span class="title"> {{ card.title }} </span>
-      </div>
+      <Cards v-for="(card, index) in cards" :key="index" :title="card.title" />
     </div>
     <!-- second question -->
     <div
@@ -38,7 +29,7 @@
     <input
       type="text"
       class="bigInput"
-      placeholder="Dlerseniz boş bırakabilirsiniz."
+      placeholder="Dilerseniz boş bırakabilirsiniz."
     />
     <div class="buttonContainer d-flex justify-content-center">
       <button @click="handleButton" class="button">
@@ -50,11 +41,12 @@
 
 <script setup>
 import { ref } from "vue";
-import close from "../../assets/img/puan/close.svg";
-import like from "../../assets/img/puan/like.svg";
-import message from "../../assets/img/puan/message.svg";
-import video from "../../assets/img/puan/video.svg";
-import bulutlar from "../../assets/img/puan/bulutlar.svg";
+import close from "../../../assets/img/puan/close.svg";
+import like from "../../../assets/img/puan/like.svg";
+import message from "../../../assets/img/puan/message.svg";
+import video from "../../../assets/img/puan/video.svg";
+import bulutlar from "../../../assets/img/puan/bulutlar.svg";
+import Cards from "./Cards.vue";
 
 let title = ref("");
 
@@ -66,11 +58,6 @@ const cards = ref([
   { title: "Çok Kötü" },
 ]);
 
-let isActive = ref(false);
-
-const handleClick = (e) => {
-  isActive.value = !isActive.value;
-};
 const emit = defineEmits(["changeComponent"]);
 const handleButton = (params) => {
   emit("changeComponent", params);
@@ -107,20 +94,7 @@ const handleButton = (params) => {
 }
 .cards {
 }
-.card {
-  background: #ffffff;
-  /* Boxx Shadow */
-  box-shadow: 0px 1px 3px rgba(42, 49, 55, 0.11);
-  border-radius: 6px;
-  padding: 12px;
-}
-.circle {
-  height: 20px;
-  width: 20px;
-  border: 1px solid #e1e1e1;
-  border-radius: 50%;
-  margin-right: 10px;
-}
+
 .title {
   font-family: "Nunito Sans";
   font-style: normal;
@@ -165,9 +139,7 @@ const handleButton = (params) => {
 
   color: #ffffff;
 }
-.active {
-  background: #32a5df;
-}
+
 @media only screen and (max-width: 700px) {
   .body {
     width: auto;
