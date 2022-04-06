@@ -37,7 +37,7 @@ $backgroundColor: #e9f3f9;
       #e9f3f9 12.23%,
       rgba(233, 243, 249, 0) 77.17%
     ),
-    url("../assets/giris/bulutlar.svg");
+    url("../assets/img/giris/bulutlar.svg");
   background-repeat: no-repeat;
 }
 // tablet starts here
