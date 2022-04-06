@@ -157,6 +157,11 @@ csstype@^2.6.8:
   resolved "https://registry.npmjs.org/csstype/-/csstype-2.6.19.tgz"
   integrity sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==
 
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
+
 esbuild-android-arm64@0.14.23:
   version "0.14.23"
   resolved "https://registry.yarnpkg.com/esbuild-android-arm64/-/esbuild-android-arm64-0.14.23.tgz#c89b3c50b4f47668dcbeb0b34ee4615258818e71"
@@ -491,6 +496,18 @@ vue-router@4:
   integrity sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==
   dependencies:
     "@vue/devtools-api" "^6.0.0"
+
+vue3-carousel@^0.1.36:
+  version "0.1.38"
+  resolved "https://registry.yarnpkg.com/vue3-carousel/-/vue3-carousel-0.1.38.tgz#dbd832ef7eb936d1e699cabc83d34472787174f2"
+  integrity sha512-mTWvlyFIu2QqnMbHiphdJWKRBaPHG8oXr5fcRWjvnPwcQ3XCpI9/FLDI/l1vVBCs13hBSuKp/kYleuxs2WOoKA==
+
+vue3-date-time-picker@^2.6.0:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/vue3-date-time-picker/-/vue3-date-time-picker-2.8.2.tgz#7cacd5a710493821e39ccc58f072dbc1e9dac1b5"
+  integrity sha512-x15onUCn4Qcg+lHolKvb9f/bppaXlFA1gSnkc7M1I5EX69Ztgj5wJxJ38qFuTFc5AgTZpK5Y+0nzSocGM2PtOw==
+  dependencies:
+    date-fns "^2.28.0"
 
 vue@^3.2.25:
   version "3.2.31"

@@ -66,6 +66,7 @@ import close from "../../../assets/img/profil/close.svg";
   padding: 35px 25px;
   margin-top: 5rem;
 }
+
 .title {
   // width: 198px;
   // height: 52px;
@@ -147,6 +148,12 @@ import close from "../../../assets/img/profil/close.svg";
   /* Beyaz */
 
   color: #ffffff;
+}
+//style the select tags
+select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
 }
 @media only screen and (max-width: 600px) {
   .body {
