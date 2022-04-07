@@ -16,7 +16,7 @@ export default {
   },
   async mounted() {
     try {
-      const url = "http://localhost:8080/connect/token";
+      const url = "api/connect/token";
       const data = {
         client_id: "iCoMed_Mobile_IOS",
         client_secret: "c@mEd3234_21!",
