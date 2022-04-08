@@ -29,9 +29,7 @@
         <div v-if="accountBelongsToUser" class="sifrePart">
           <div class="sifreContainer">
             <input placeholder="Şifreniz" type="password" class="sifre" />
-            <span v-bind:class="{ active: isActive }" class="errorMessage"
-              >Hatalı şifre girdiniz</span
-            >
+            <span v-bind:class="{ active: isActive }" class="errorMessage">Hatalı şifre girdiniz</span>
           </div>
           <div class="loginActions">
             <div class="checkboxContainer">
