@@ -5,11 +5,11 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   server: {
     proxy: {
-      "/api": {
+      "/auth": {
         target: "https://auth.comed.com.tr/",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/auth/, ""),
       },
     },
   },
