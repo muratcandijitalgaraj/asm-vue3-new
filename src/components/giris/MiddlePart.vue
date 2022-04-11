@@ -29,7 +29,9 @@
         <div v-if="accountBelongsToUser" class="sifrePart">
           <div class="sifreContainer">
             <input placeholder="Şifreniz" type="password" class="sifre" />
-            <span v-bind:class="{ active: isActive }" class="errorMessage">Hatalı şifre girdiniz</span>
+            <span v-bind:class="{ active: isActive }" class="errorMessage"
+              >Hatalı şifre girdiniz</span
+            >
           </div>
           <div class="loginActions">
             <div class="checkboxContainer">
@@ -512,7 +514,7 @@ export default {
   width: 585px;
   height: 211px;
   // border: 1px solid gold;
-  background: url("../../assets/giris/orta-bulut.svg");
+  background: url("../../assets/img/giris/orta-bulut.svg");
   // background: black;
   @include flexCenter(column);
 }
