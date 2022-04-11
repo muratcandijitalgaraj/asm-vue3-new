@@ -39,7 +39,7 @@ export default {
                 client_secret: state.defaultCredentials.clientSecret,
                 grant_type: state.defaultCredentials.grantType
             }
-            let response = await authAxios.post('connect/token', qs.stringify(credentials)).then((response) => {
+            let response = await authAxios.post('api/connect/token', qs.stringify(credentials)).then((response) => {
                 commit('SET_EXPIRE_DATE')
                 localStorage.setItem('token', response.data.access_token)
                 localStorage.setItem('expire', response.data.expires_in)

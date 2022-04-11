@@ -1,6 +1,6 @@
 import axios from "axios";
 const authAxios = axios.create({
-    baseURL: "https://auth.comed.com.tr/"
+    //baseURL: "https://auth.comed.com.tr/"
 })
 
 authAxios.interceptors.request.use(request => {
