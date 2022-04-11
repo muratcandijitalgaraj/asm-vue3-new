@@ -1,4 +1,5 @@
 import authAxios from "../../utils/authAxios";
+import appAxios from "../../utils/appAxios";
 import qs from "qs";
 
 export default {
@@ -9,6 +10,9 @@ export default {
         expire: 360000,
         expireDate: null,
         user: null,
+        phoneNumber: null,
+        notificationToken: null,
+        notificationCode: null,
         defaultCredentials: {
             clientId: 'iCoMed_Mobile_IOS',
             clientSecret: 'c@mEd3234_21!',
@@ -17,9 +21,9 @@ export default {
     },
 
     mutations: {
-        SET_TOKEN(state, {token, expire}) {
-            state.token = token
-            state.expire = expire
+        SET_TOKEN(state, data) {
+            state.token = data.token
+            state.expire = data.expire
         },
         SET_USER(state, data) {
             state.user = data
@@ -29,6 +33,15 @@ export default {
             date.setMilliseconds(state.expire)
             localStorage.setItem('expireDate', date)
             state.expireDate = date
+        },
+        SET_PHONE_NUMBER(state, {phoneNumber}) {
+            state.phoneNumber = phoneNumber
+        },
+        SET_NOTIFICATION_TOKEN(state, {notificationToken}) {
+            state.notificationToken = notificationToken
+        },
+        SET_NOTIFICATION_CODE(state, {notificationCode}) {
+            state.notificationCode = notificationCode
         }
     },
 
@@ -43,23 +56,44 @@ export default {
                 commit('SET_EXPIRE_DATE')
                 localStorage.setItem('token', response.data.access_token)
                 localStorage.setItem('expire', response.data.expires_in)
-                dispatch('accessTokenAttempt', response.data.access_token, response.data.expires_in)
+                dispatch('accessTokenAttempt', {token: response.data.access_token, expire: response.data.expires_in})
 
             }).catch((err) => {
                 console.log(err)
             })
         },
 
-        async accessTokenAttempt({ commit, state }, token, expire) {
-
-            if (token) {
-                commit('SET_TOKEN', token, expire)
+        async accessTokenAttempt({ commit, state }, data) {
+            if (data.token) {
+                commit('SET_TOKEN', data)
             }
 
             if (!state.token) {
                 return false
             }
         },
+
+        async phoneNotify({commit, state, dispatch}, phone) {
+            await dispatch('checkExpireToken')
+            appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+            let response = await appAxios.post('endpoint/profile-service/user/notify', qs.stringify({mobileNumber:phone})).then((response) => {
+                commit('SET_PHONE_NUMBER', phone)
+
+                //burada kaldık
+                console.log(response.data);
+
+
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+
+        checkExpireToken({dispatch, state}) {
+            if (new Date() > state.expireDate) {
+                dispatch('getAccessToken')
+            }
+        }
+
     },
 
     getters: {

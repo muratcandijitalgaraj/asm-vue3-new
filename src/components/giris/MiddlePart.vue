@@ -137,6 +137,7 @@
 
 <script>
 import Carousel from "./Carousel.vue";
+import store from "../../store";
 export default {
   components: { Carousel },
   data() {
@@ -148,8 +149,8 @@ export default {
       //first click/telefon no
       //let's give +90 as default for country code
       countryCode: +90,
-      telNo: "",
-      smsCode: "",
+      telNo: 5384000042,
+      smsCode: 123456,
     };
   },
   methods: {
@@ -162,13 +163,16 @@ export default {
       this.isChecked = !this.isChecked;
       // console.log(this.isChecked);
     },
-    firstButtonControl: function (e) {
+    firstButtonControl: async function (e) {
       e.preventDefault();
       //if the telNo part does not contain 10 digits
       if (this.telNo.toString().length != 10) {
         this.isActive = true;
       } else if (this.telNo.toString().length == 10) {
         //if the number seems correct, remove the error message
+
+        await store.dispatch('auth/phoneNotify', this.telNo)
+
         this.isActive = false;
         //show sms code input section
         this.userTelNoCorrect = true;

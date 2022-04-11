@@ -11,6 +11,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/auth/, ""),
       },
+      "/endpoint": {
+        target: "https://mag.comed.com.tr/api/",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/endpoint/, ""),
+      },
     },
   },
   plugins: [vue()],
