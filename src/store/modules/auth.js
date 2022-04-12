@@ -34,13 +34,13 @@ export default {
             localStorage.setItem('expireDate', date)
             state.expireDate = date
         },
-        SET_PHONE_NUMBER(state, {phoneNumber}) {
+        SET_PHONE_NUMBER(state, phoneNumber) {
             state.phoneNumber = phoneNumber
         },
-        SET_NOTIFICATION_TOKEN(state, {notificationToken}) {
+        SET_NOTIFICATION_TOKEN(state, notificationToken) {
             state.notificationToken = notificationToken
         },
-        SET_NOTIFICATION_CODE(state, {notificationCode}) {
+        SET_NOTIFICATION_CODE(state, notificationCode) {
             state.notificationCode = notificationCode
         }
     },
@@ -78,13 +78,17 @@ export default {
             appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
             let response = await appAxios.post('endpoint/profile-service/user/notify', qs.stringify({mobileNumber:phone})).then((response) => {
                 commit('SET_PHONE_NUMBER', phone)
-
-                //burada kaldık
-                console.log(response.data);
-
+                commit('SET_NOTIFICATION_TOKEN', response.data.data)
             }).catch((err) => {
                 console.log(err)
             })
+        },
+
+        async phoneVerify({commit, state, dispatch}, notificationCode) {
+            await dispatch('checkExpireToken')
+            console.log(state.notificationToken)
+            appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+            return await appAxios.post('endpoint/profile-service/user/verify', qs.stringify({notificationToken: state.notificationToken, notificationCode}))
         },
 
         checkExpireToken({dispatch, state}) {
@@ -97,5 +101,6 @@ export default {
 
     getters: {
         _user: state => state.user,
+        _notification_token: state => state.notificationToken
     }
 };

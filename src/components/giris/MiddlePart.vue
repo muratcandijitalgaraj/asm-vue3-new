@@ -138,6 +138,7 @@
 <script>
 import Carousel from "./Carousel.vue";
 import store from "../../store";
+
 export default {
   components: { Carousel },
   data() {
@@ -178,22 +179,18 @@ export default {
         this.userTelNoCorrect = true;
       }
     },
-    secondButtonControl: function (e) {
+    secondButtonControl: async function (e) {
       e.preventDefault();
 
-      //check if the sms code is correct
-      //at this stage, I'm just using a length
-      //when the API i connected, it'll use a different logic
-      //so if the user does not have an account, direct him/her to the sign-up page
-      if (this.smsCode.toString().length != 4) {
-        // this.$router.push("Kayit");
-        console.log("routing?");
-        this.$router.push({ name: "Kayit" });
-      }
-      //if s/he has an account, open pop-up
-      else if (this.smsCode.toString().length == 4) {
-        document.querySelector(".triggerModal").click();
-      }
+      await store.dispatch('auth/phoneVerify', this.smsCode).then((res) => {
+        if (res.data.profileId == null) {
+          this.$router.push('kayit')
+        } else {
+          document.querySelector(".triggerModal").click()
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     confirmaccountBelongsToUser: function (e) {
       e.preventDefault();
