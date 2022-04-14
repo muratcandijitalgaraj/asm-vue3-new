@@ -28,7 +28,7 @@
 
         <div v-if="accountBelongsToUser" class="sifrePart">
           <div class="sifreContainer">
-            <input placeholder="Şifreniz" type="password" class="sifre" />
+            <input placeholder="Şifreniz" type="password" class="sifre" v-model="password" />
             <span v-bind:class="{ active: isActive }" class="errorMessage"
               >Hatalı şifre girdiniz</span
             >
@@ -110,7 +110,7 @@
             <!-- <img src="" alt="" class="modalImage"> -->
             <div class="modalTitle">Bu Kullanıcı hesabı size mi ait?</div>
             <div class="modalText">
-              Girmiş olduğunuz 0555 666 77 88 telefon numarası A** Y***** adına
+              Girmiş olduğunuz {{ getUserData?.mobileNumber }} telefon numarası {{ getUserData?.givenName + " " + getUserData?.familyName }} adına
               kayıtlıdır
             </div>
             <button
@@ -149,9 +149,11 @@ export default {
       userTelNoCorrect: false,
       //first click/telefon no
       //let's give +90 as default for country code
-      countryCode: +90,
+      countryCode: "+90",
       telNo: 5384000042,
       smsCode: 123456,
+      loginAction: false,
+      password: "",
     };
   },
   methods: {
@@ -172,7 +174,7 @@ export default {
       } else if (this.telNo.toString().length == 10) {
         //if the number seems correct, remove the error message
 
-        await store.dispatch('auth/phoneNotify', this.telNo)
+        await store.dispatch('auth/phoneNotify', this.countryCode + this.telNo)
 
         this.isActive = false;
         //show sms code input section
@@ -182,18 +184,46 @@ export default {
     secondButtonControl: async function (e) {
       e.preventDefault();
 
-      await store.dispatch('auth/phoneVerify', this.smsCode).then((res) => {
-        if (res.data.profileId == null) {
-          this.$router.push('kayit')
-        } else {
-          document.querySelector(".triggerModal").click()
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      if (this.accountBelongsToUser) {
+
+        await store.dispatch('auth/loginAction', this.password).then(res => {
+          console.log(res)
+        }).catch(error => {
+          if (error.response) {
+            // İstek gönderildi ve sunucu 2xx aralığının dışında bir durum koduyla yanıt verdi
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            // İstek gönderildi ancak herhangi bir yanıt alınmadı
+            // `error.request`, tarayıcıda bir XMLHttpRequest objesidir ve
+            // node.js'de ise bir http.ClientRequest objesidir
+            console.log(error.request);
+          } else {
+            // İsteği yapılandırırken bir şey oldu ve bu hatayı tetikledi
+            console.log('Hata', error.message);
+          }
+          console.log(error.config);
+        })
+
+      } else {
+
+        await store.dispatch('auth/phoneVerify', this.smsCode).then((res) => {
+          if (res.data.profileId == null) {
+            this.$router.push('kayit')
+          } else {
+            store.commit('auth/SET_NOTIFICATION_USER_DATA', res.data)
+            document.querySelector(".triggerModal").click()
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+
+      }
     },
     confirmaccountBelongsToUser: function (e) {
       e.preventDefault();
+      store.commit('auth/SET_PROFILE_ID', store.getters["auth/_notification_user_data"]?.profileId)
       this.accountBelongsToUser = true;
     },
     accountDoesNotBelongToUser: function (e) {
@@ -201,6 +231,11 @@ export default {
       this.$router.push({ name: "Kayit" });
     },
   },
+  computed: {
+    getUserData: () => {
+      return store.getters["auth/_notification_user_data"]
+    }
+  }
 };
 </script>
 

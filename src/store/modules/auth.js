@@ -10,9 +10,11 @@ export default {
         expire: 360000,
         expireDate: null,
         user: null,
+        profileID: null,
         phoneNumber: null,
         notificationToken: null,
         notificationCode: null,
+        notificationUserData: null,
         defaultCredentials: {
             clientId: 'iCoMed_Mobile_IOS',
             clientSecret: 'c@mEd3234_21!',
@@ -42,6 +44,12 @@ export default {
         },
         SET_NOTIFICATION_CODE(state, notificationCode) {
             state.notificationCode = notificationCode
+        },
+        SET_NOTIFICATION_USER_DATA(state, data) {
+            state.notificationUserData = data
+        },
+        SET_PROFILE_ID(state, profileId) {
+            state.profileId = profileId
         }
     },
 
@@ -86,7 +94,6 @@ export default {
 
         async phoneVerify({commit, state, dispatch}, notificationCode) {
             await dispatch('checkExpireToken')
-            console.log(state.notificationToken)
             appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
             return await appAxios.post('endpoint/profile-service/user/verify', qs.stringify({notificationToken: state.notificationToken, notificationCode}))
         },
@@ -95,12 +102,27 @@ export default {
             if (new Date() > state.expireDate) {
                 dispatch('getAccessToken')
             }
+        },
+
+        async loginAction({state, commit, dispatch}, password) {
+            await dispatch('checkExpireToken')
+            appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+            let req = {
+                client_id: state.defaultCredentials.clientId,
+                client_secret: state.defaultCredentials.clientSecret,
+                grant_type: "password",
+                username: state.phoneNumber,
+                password,
+                profile_id: state.profileID
+            }
+            return await appAxios.post('auth/connect/token', qs.stringify(req))
         }
 
     },
 
     getters: {
         _user: state => state.user,
-        _notification_token: state => state.notificationToken
+        _notification_token: state => state.notificationToken,
+        _notification_user_data: state => state.notificationUserData
     }
 };
