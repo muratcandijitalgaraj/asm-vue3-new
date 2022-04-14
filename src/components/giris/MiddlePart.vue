@@ -192,7 +192,6 @@ export default {
         //show sms code input section
         this.userTelNoCorrect = true;
 
-        console.log(this.telNo);
       }
     },
     secondButtonControl: async function (e) {
@@ -202,24 +201,21 @@ export default {
         await store
           .dispatch("auth/loginAction", this.password)
           .then((res) => {
-            console.log(res);
+            store.commit('auth/SET_TOKEN', {token: res.data.access_token, expire: res.data.expires_in})
+            store.commit('auth/SET_REFRESH_TOKEN', res.data.refresh_token)
+            localStorage.setItem('refreshToken', res.data.refresh_token)
+            this.$router.push('anasayfa')
           })
           .catch((error) => {
             if (error.response) {
-              // İstek gönderildi ve sunucu 2xx aralığının dışında bir durum koduyla yanıt verdi
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-            } else if (error.request) {
-              // İstek gönderildi ancak herhangi bir yanıt alınmadı
-              // `error.request`, tarayıcıda bir XMLHttpRequest objesidir ve
-              // node.js'de ise bir http.ClientRequest objesidir
-              console.log(error.request);
-            } else {
-              // İsteği yapılandırırken bir şey oldu ve bu hatayı tetikledi
-              console.log("Hata", error.message);
+              this.$swal({
+                icon: 'error',
+                title: error.response.data.error_description,
+                showConfirmButton: false,
+                timer: 2000
+              });
             }
-            console.log(error.config);
+            console.log(error.response);
           });
       } else {
         await store
@@ -243,6 +239,7 @@ export default {
         "auth/SET_PROFILE_ID",
         store.getters["auth/_notification_user_data"]?.profileId
       );
+      localStorage.setItem('profileId', store.getters["auth/_notification_user_data"]?.profileId)
       this.accountBelongsToUser = true;
     },
     accountDoesNotBelongToUser: function (e) {

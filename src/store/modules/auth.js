@@ -7,6 +7,7 @@ export default {
 
     state: {
         token: null,
+        refreshToken: null,
         expire: 360000,
         expireDate: null,
         user: null,
@@ -26,6 +27,9 @@ export default {
         SET_TOKEN(state, data) {
             state.token = data.token
             state.expire = data.expire
+        },
+        SET_REFRESH_TOKEN(state, token) {
+            state.refreshToken = token
         },
         SET_USER(state, data) {
             state.user = data
@@ -49,7 +53,7 @@ export default {
             state.notificationUserData = data
         },
         SET_PROFILE_ID(state, profileId) {
-            state.profileId = profileId
+            state.profileID = profileId
         }
     },
 
@@ -104,6 +108,32 @@ export default {
             }
         },
 
+        async getRefreshToken ({dispatch, commit, state}) {
+            let credentials = {
+                refresh_token: state.refreshToken,
+                client_id: state.defaultCredentials.clientId,
+                client_secret: state.defaultCredentials.clientSecret,
+                grant_type: 'refresh_token'
+            }
+            let response = await authAxios.post('auth/connect/token', qs.stringify(credentials)).then((response) => {
+                commit('SET_EXPIRE_DATE')
+                localStorage.setItem('token', response.data.access_token)
+                localStorage.setItem('expire', response.data.expires_in)
+                localStorage.setItem('refreshToken', response.data.refresh_token)
+                commit('SET_REFRESH_TOKEN', response.data.refresh_token)
+                dispatch('accessTokenAttempt', {token: response.data.access_token, expire: response.data.expires_in})
+
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+
+        checkRefreshToken({dispatch, state}) {
+            if (new Date() > state.expireDate) {
+                dispatch('getRefreshToken')
+            }
+        },
+
         async loginAction({state, commit, dispatch}, password) {
             await dispatch('checkExpireToken')
             appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
@@ -116,6 +146,23 @@ export default {
                 profile_id: state.profileID
             }
             return await appAxios.post('auth/connect/token', qs.stringify(req))
+        },
+
+        checkStoreData({commit}) {
+            if (localStorage.getItem('token') && localStorage.getItem('expire') && localStorage.getItem('refreshToken') && localStorage.getItem('profileId')) {
+                let token = {
+                    token: localStorage.getItem('token'),
+                    expire: localStorage.getItem('expire'),
+                }
+                commit('SET_TOKEN', token)
+                commit('SET_REFRESH_TOKEN', localStorage.getItem('refreshToken'))
+                commit('SET_PROFILE_ID', localStorage.getItem('profileId'))
+            } else {
+                localStorage.clear('token')
+                localStorage.clear('expire')
+                localStorage.clear('refreshToken')
+                localStorage.clear('profileId')
+            }
         }
 
     },
@@ -123,6 +170,9 @@ export default {
     getters: {
         _user: state => state.user,
         _notification_token: state => state.notificationToken,
-        _notification_user_data: state => state.notificationUserData
+        _notification_user_data: state => state.notificationUserData,
+        _auth: state => (state.token?.length > 0 && state.refreshToken?.length > 0) ? true:false,
+        _token: state => state.token,
+        _profile_id: state => state.profileID
     }
 };
