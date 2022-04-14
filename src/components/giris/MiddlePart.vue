@@ -171,6 +171,12 @@ export default {
       // e.preventDefault();
       this.isChecked = !this.isChecked;
       // console.log(this.isChecked);
+
+      //set local storage for telNo
+      localStorage.setItem("telNo", this.telNo);
+
+      //set local storage for password
+      localStorage.setItem("password", this.password);
     },
     firstButtonControl: async function (e) {
       e.preventDefault();
@@ -187,8 +193,6 @@ export default {
         this.userTelNoCorrect = true;
 
         console.log(this.telNo);
-        //set local storage for telNo
-        localStorage.setItem("telNo", this.telNo);
       }
     },
     secondButtonControl: async function (e) {
@@ -252,8 +256,10 @@ export default {
     },
   },
   //lifeCycle hooks
+  //get user credentials on startup
   mounted() {
     this.telNo = localStorage.getItem("telNo");
+    this.password = localStorage.getItem("password");
   },
 };
 </script>
