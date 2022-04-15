@@ -21,7 +21,9 @@ export default {
             let token = store.getters['auth/_token']
             let profileID = store.getters['auth/_profile_id']
             appAxios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-            return await appAxios.get('endpoint/appointment-service/appointments?facilityId=' + profileID)
+            //return await appAxios.get('endpoint/timeline-service/visits/?facilityId=3a029fc2-135c-0e05-2d77-d817861825d8')
+            return await appAxios.get('endpoint/appointment-service/appointments/?facilityId=3a029fc2-135c-0e05-2d77-d817861825d8')
+            //return await appAxios.get('endpoint/profile-service/profile')
         },
 
     },
