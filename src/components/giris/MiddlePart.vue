@@ -171,12 +171,21 @@ export default {
       // e.preventDefault();
       this.isChecked = !this.isChecked;
       // console.log(this.isChecked);
+    },
+    handleUserCredentials: function () {
+      if (this.isChecked == true) {
+        //saving the data if the beni hatirla section is checked
+        //set local storage for telNo
+        localStorage.setItem("telNo", this.telNo);
 
-      //set local storage for telNo
-      localStorage.setItem("telNo", this.telNo);
+        //set local storage for password
+        localStorage.setItem("password", this.password);
 
-      //set local storage for password
-      localStorage.setItem("password", this.password);
+        console.log(this.password + this.telNo);
+      } else if (this.isChecked == false) {
+        localStorage.clear();
+        console.log("cleared");
+      }
     },
     firstButtonControl: async function (e) {
       e.preventDefault();
@@ -191,7 +200,6 @@ export default {
         this.isActive = false;
         //show sms code input section
         this.userTelNoCorrect = true;
-
       }
     },
     secondButtonControl: async function (e) {
@@ -201,18 +209,23 @@ export default {
         await store
           .dispatch("auth/loginAction", this.password)
           .then((res) => {
-            store.commit('auth/SET_TOKEN', {token: res.data.access_token, expire: res.data.expires_in})
-            store.commit('auth/SET_REFRESH_TOKEN', res.data.refresh_token)
-            localStorage.setItem('refreshToken', res.data.refresh_token)
-            this.$router.push('anasayfa')
+            store.commit("auth/SET_TOKEN", {
+              token: res.data.access_token,
+              expire: res.data.expires_in,
+            });
+            store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
+            localStorage.setItem("refreshToken", res.data.refresh_token);
+            // //this function saves the user credentials if the beni hatirla box is checked
+            this.handleUserCredentials();
+            this.$router.push("anasayfa");
           })
           .catch((error) => {
             if (error.response) {
               this.$swal({
-                icon: 'error',
+                icon: "error",
                 title: error.response.data.error_description,
                 showConfirmButton: false,
-                timer: 2000
+                timer: 2000,
               });
             }
             console.log(error.response);
@@ -239,7 +252,10 @@ export default {
         "auth/SET_PROFILE_ID",
         store.getters["auth/_notification_user_data"]?.profileId
       );
-      localStorage.setItem('profileId', store.getters["auth/_notification_user_data"]?.profileId)
+      localStorage.setItem(
+        "profileId",
+        store.getters["auth/_notification_user_data"]?.profileId
+      );
       this.accountBelongsToUser = true;
     },
     accountDoesNotBelongToUser: function (e) {
