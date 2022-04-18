@@ -102,7 +102,13 @@
       <div v-if="two" class="TWO">
         <form action="" class="box">
           <div class="nationalityPart">
-            <select class="uyruk" name="" id="">
+            <select
+              v-model="uyruk"
+              @click="writeUyruk"
+              class="uyruk"
+              name=""
+              id=""
+            >
               <option class="optionValue" value="Uyruk">Uyruk</option>
               <option class="optionValue" value="saab">Saab</option>
               <option class="optionValue" value="opel">Opel</option>
@@ -143,17 +149,17 @@
       <!-- THREE -->
       <div v-if="three" class="THREE">
         <form action="" class="box">
-          <select class="dropDownSelect" name=" " id=" ">
+          <select v-model="country" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Ülke</option>
             <option class="optionValue" value="dog">Dog</option>
             <option class="optionValue" value="cat">Cat</option>
           </select>
-          <select class="dropDownSelect" name=" " id=" ">
+          <select v-model="city" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Şehir</option>
             <option class="optionValue" value="dog">Dog</option>
             <option class="optionValue" value="cat">Cat</option>
           </select>
-          <select class="dropDownSelect" name=" " id=" ">
+          <select v-model="district" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">İlçe</option>
             <option class="optionValue" value="dog">Dog</option>
             <option class="optionValue" value="cat">Cat</option>
@@ -261,6 +267,10 @@ export default {
       ePosta: "",
       sifre: "",
       sifreRepeated: "",
+      uyruk: "",
+      country: "",
+      city: "",
+      district: "",
     };
   },
   methods: {
@@ -284,6 +294,9 @@ export default {
     },
     ppUpload: function () {
       this.$refs.fileInput.click();
+    },
+    writeUyruk: function () {
+      console.log(this.uyruk);
     },
   },
 };
