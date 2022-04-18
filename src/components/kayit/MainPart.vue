@@ -134,6 +134,30 @@
       <!-- THREE -->
       <div v-if="three" class="THREE">
         <form action="" class="box">
+          <div @click="ppUpload" class="profilFotoContainer">
+            <div class="uploadImageGroupContainer">
+              <img
+                src="../../assets/img//kayit/ppGroup.svg"
+                alt=""
+                class="uploadImageGroup"
+              />
+            </div>
+            <div class="fileInputContainer">
+              <img
+                src="../../assets/img//kayit/ppUpload.svg"
+                alt=""
+                class="ppUploadLogo"
+              />
+              <div class="fileUploadPara">Profil Fotoğrafını Değiştir</div>
+              <!-- this is hidden -->
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                class="fileInput"
+                ref="fileInput"
+              />
+            </div>
+          </div>
           <select v-model="country" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Ülke</option>
             <option class="optionValue" value="dog">Dog</option>
@@ -224,11 +248,9 @@ export default {
       this.three = false;
       this.four = true;
     },
-    // this part has been deleted,
-    // keeping it for possible confusion
-    // ppUpload: function () {
-    //   this.$refs.fileInput.click();
-    // },
+    ppUpload: function () {
+      this.$refs.fileInput.click();
+    },
     // this function is just for test purposes
     writeUyruk: function () {
       console.log(this.uyruk);
@@ -656,7 +678,13 @@ input::placeholder {
   /* opacity: 0; */
   display: none;
 }
-
+.ppUploadLogo {
+  height: 50px;
+  width: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 0px;
+}
 .fileUploadPara {
   width: 100%;
   height: 21px;
@@ -675,7 +703,7 @@ input::placeholder {
   /* Primary */
   color: #3c4e69;
 }
-.FOUR {
+.THREE {
   margin-top: 145px;
 }
 ::placeholder {
