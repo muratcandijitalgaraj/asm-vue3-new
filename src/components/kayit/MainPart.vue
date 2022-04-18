@@ -211,7 +211,6 @@ export default {
       one: true,
       two: false,
       three: false,
-      four: false,
       //toggle
       oneIsCurrent: true,
       oneIsOnHold: false,
@@ -245,8 +244,7 @@ export default {
     },
     buttonThree: function (e) {
       e.preventDefault();
-      this.three = false;
-      this.four = true;
+      // this.three = false;
     },
     ppUpload: function () {
       this.$refs.fileInput.click();
