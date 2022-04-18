@@ -59,19 +59,19 @@
         <!-- box -->
         <form class="box">
           <input
-            v-model="ePosta"
+            v-model="email"
             placeholder="E-posta"
             type="text"
             class="input"
           />
           <input
-            v-model="sifre"
+            v-model="password"
             placeholder="Şifreniz"
             type="password"
             class="input"
           />
           <input
-            v-model="sifreRepeated"
+            v-model="passwordRepeated"
             placeholder="Şifreniz (tekrar)"
             type="password"
             class="input"
@@ -219,9 +219,9 @@ export default {
       // date: null,
       //user inputs
       //section One
-      ePosta: "",
-      sifre: "",
-      sifreRepeated: "",
+      email: "",
+      password: "",
+      passwordRepeated: "",
       uyruk: "",
       country: "",
       city: "",
