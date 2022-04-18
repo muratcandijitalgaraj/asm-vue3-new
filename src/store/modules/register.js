@@ -27,9 +27,19 @@ export default {
   mutations: {},
 
   actions: {
-    // these first 2 actions are for demonstration purposes
+    // these first 3 actions are for demonstration purposes
     // delete them as soon as you get your onw action working
-
+    async getAppointments() {
+      await store.dispatch("auth/checkRefreshToken");
+      let token = store.getters["auth/_token"];
+      let profileID = store.getters["auth/_profile_id"];
+      appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      //return await appAxios.get('endpoint/timeline-service/visits/?facilityId=3a029fc2-135c-0e05-2d77-d817861825d8')
+      return await appAxios.get(
+        "endpoint/appointment-service/appointments/?facilityId=3a029fc2-135c-0e05-2d77-d817861825d8"
+      );
+      //return await appAxios.get('endpoint/profile-service/profile')
+    },
     async getAccessToken({ dispatch, commit, state }) {
       let credentials = {
         client_id: state.defaultCredentials.clientId,
@@ -80,7 +90,9 @@ export default {
       };
       let response = await appAxios.post(
         "endpoint/profile-service/user",
-        qs.stringify(userData)
+        qs.stringify(userData).then((response) => {
+          console.log(response);
+        })
       );
     },
   },
