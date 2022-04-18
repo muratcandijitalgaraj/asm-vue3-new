@@ -295,6 +295,7 @@ export default {
     ppUpload: function () {
       this.$refs.fileInput.click();
     },
+    // this function is just for test purposes
     writeUyruk: function () {
       console.log(this.uyruk);
     },
