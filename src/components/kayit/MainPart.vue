@@ -52,21 +52,6 @@
             </div>
             <!-- <div class="sectionOnHold">3</div> -->
           </div>
-          <img src="../../assets/img//kayit/dots.svg" alt="" class="dots" />
-          <!-- section 4 -->
-          <div class="section" id="section-4">
-            <div v-if="four" class="currentSection">4</div>
-            <div v-else-if="one" class="sectionOnHold">4</div>
-            <div v-else-if="two" class="sectionOnHold">4</div>
-            <div v-else-if="three" class="sectionOnHold">4</div>
-            <div v-else class="vectorContainer">
-              <img
-                src="../../assets/img//kayit/vector.svg"
-                alt=""
-                class="sectionChecked"
-              />
-            </div>
-          </div>
         </div>
       </div>
       <!-- ONE -->
@@ -169,59 +154,6 @@
           </button>
         </form>
       </div>
-      <!-- FOUR -->
-      <div v-if="four" class="FOUR">
-        <form action="" class="box">
-          <div @click="ppUpload" class="profilFotoContainer">
-            <div class="uploadImageGroupContainer">
-              <img
-                src="../../assets/img//kayit/ppGroup.svg"
-                alt=""
-                class="uploadImageGroup"
-              />
-            </div>
-            <div class="fileInputContainer">
-              <img
-                src="../../assets/img//kayit/ppUpload.svg"
-                alt=""
-                class="ppUploadLogo"
-              />
-              <div class="fileUploadPara">Profil Fotoğrafını Değiştir</div>
-              <!-- this is hidden -->
-              <input
-                type="file"
-                accept="image/png, image/jpeg"
-                class="fileInput"
-                ref="fileInput"
-              />
-            </div>
-          </div>
-          <!-- <select class="dropDownSelect" name=" " id=" ">
-            <option class="optionValue" value="">Ülke</option>
-            <option class="optionValue" value="dog">Dog</option>
-            <option class="optionValue" value="cat">Cat</option>
-          </select> -->
-
-          <input placeholder="Kilo" type="number" min="10" max="1000" />
-          <input placeholder="Boy (cm)" type="number" min="10" max="1000" />
-
-          <select class="dropDownSelect" name=" " id=" ">
-            <option class="optionValue" disabled value="">Kan Grubu</option>
-            <option class="optionValue">0+</option>
-            <option class="optionValue">0-</option>
-            <option class="optionValue">A+</option>
-            <option class="optionValue">A-</option>
-            <option class="optionValue">B+</option>
-            <option class="optionValue">B-</option>
-            <option class="optionValue">AB+</option>
-            <option class="optionValue">AB-</option>
-          </select>
-          <button @click="buttonThree" id="buttonThree" class="button">
-            <span class="buttonText">Devam</span>
-          </button>
-          <button class="skipStep">Bu Adımı Atla</button>
-        </form>
-      </div>
     </div>
   </div>
 </template>
@@ -292,9 +224,11 @@ export default {
       this.three = false;
       this.four = true;
     },
-    ppUpload: function () {
-      this.$refs.fileInput.click();
-    },
+    // this part has been deleted,
+    // keeping it for possible confusion
+    // ppUpload: function () {
+    //   this.$refs.fileInput.click();
+    // },
     // this function is just for test purposes
     writeUyruk: function () {
       console.log(this.uyruk);
@@ -722,13 +656,7 @@ input::placeholder {
   /* opacity: 0; */
   display: none;
 }
-.ppUploadLogo {
-  height: 50px;
-  width: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 0px;
-}
+
 .fileUploadPara {
   width: 100%;
   height: 21px;
