@@ -186,7 +186,7 @@
 import { ref } from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
-// import store from "../store";
+import store from "../../store";
 
 const date = ref();
 
@@ -235,6 +235,7 @@ const buttonTwo = function (e) {
 const buttonThree = function (e) {
   e.preventDefault();
   // three.value = false;
+  store.dispatch("register/registerUser");
 };
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
@@ -243,6 +244,17 @@ const ppUpload = function () {
 // this function is just for test purposes
 const writeUyruk = function () {
   console.log(uyruk.value);
+};
+
+// onMounted(() => {
+//   store
+//     .dispatch("appointments/getAppointments")
+//     .then((res) => (appointments.value = res?.data?.items))
+//     .catch((err) => console.log(err.response));
+// });
+
+const callStore = function () {
+  store.dispatch("register/registerUser");
 };
 </script>
 
