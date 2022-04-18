@@ -182,79 +182,67 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
-import store from "../store";
-export default {
-  components: { Datepicker },
-  setup() {
-    const date = ref();
+// import store from "../store";
 
-    const format = (date) => {
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
+const date = ref();
 
-      return `${day}/${month}/${year}`;
-    };
-    const startDate = ref(new Date(1985, 1));
+const format = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
 
-    return {
-      date,
-      format,
-      startDate,
-    };
-  },
-  data() {
-    return {
-      one: true,
-      two: false,
-      three: false,
-      //toggle
-      oneIsCurrent: true,
-      oneIsOnHold: false,
-      isChecked: false,
-      //date
-      // date: null,
-      //user inputs
-      //section One
-      email: "",
-      password: "",
-      passwordRepeated: "",
-      uyruk: "",
-      country: "",
-      city: "",
-      district: "",
-    };
-  },
-  methods: {
-    buttonOne: function (e) {
-      e.preventDefault();
-      this.one = false;
-      this.two = true;
-      //toggle
-      this.oneIsCurrent = false;
-      this.isChecked = true;
-    },
-    buttonTwo: function (e) {
-      e.preventDefault();
-      this.two = false;
-      this.three = true;
-    },
-    buttonThree: function (e) {
-      e.preventDefault();
-      // this.three = false;
-    },
-    ppUpload: function () {
-      this.$refs.fileInput.click();
-    },
-    // this function is just for test purposes
-    writeUyruk: function () {
-      console.log(this.uyruk);
-    },
-  },
+  return `${day}/${month}/${year}`;
+};
+const startDate = ref(new Date(1985, 1));
+
+let one = ref(true);
+let two = ref(false);
+let three = ref(false);
+//toggle
+let oneIsCurrent = ref(true);
+let oneIsOnHold = ref(false);
+let isChecked = ref(false);
+//date
+// date: null,
+//user inputs
+//section One
+let email = ref("");
+let password = ref("");
+let passwordRepeated = ref("");
+let uyruk = ref("");
+let country = ref("");
+let city = ref("");
+let district = ref("");
+
+const buttonOne = function (e) {
+  e.preventDefault();
+  one.value = false;
+  two.value = true;
+  //toggle
+  oneIsCurrent.value = false;
+  isChecked.value = true;
+};
+
+const buttonTwo = function (e) {
+  e.preventDefault();
+  two.value = false;
+  three.value = true;
+};
+const buttonThree = function (e) {
+  e.preventDefault();
+  // three.value = false;
+};
+//this doesn't work anymore since I changed to script setup
+const ppUpload = function () {
+  $refs.fileInput.click();
+};
+// this function is just for test purposes
+const writeUyruk = function () {
+  console.log(uyruk.value);
 };
 </script>
 
