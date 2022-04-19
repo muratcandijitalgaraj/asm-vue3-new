@@ -11,22 +11,22 @@
               v-model="telNo"
               placeholder="Telefon Numaranız"
               type="number"
-              class="telNo"
+              class="telNo "
+              :class="{ 'is-invalid': telNoValidate.telNo.$errors.length }"
             />
-            <span v-bind:class="{ active: isActive }" class="errorMessage"
-              >Geçerli bir telefon numarası yazın</span
-            >
+            <div v-for="error in telNoValidate.telNo.$errors" :key="error.$uid" class="invalid-feedback">
+              {{ error.$message }}
+            </div>
           </div>
         </div>
         <input
-          v-if="userTelNoCorrect"
+          v-if="state.userTelNoCorrect"
           placeholder="Sms Kodunu Giriniz"
           type="text"
           class="input"
           v-model="smsCode"
         />
-
-        <div v-if="accountBelongsToUser" class="sifrePart">
+        <div v-if="state.accountBelongsToUser" class="sifrePart">
           <div class="sifreContainer">
             <input
               placeholder="Şifreniz"
@@ -34,14 +34,14 @@
               class="sifre"
               v-model="password"
             />
-            <span v-bind:class="{ active: isActive }" class="errorMessage"
+            <span v-bind:class="{ active: state.isActive }" class="errorMessage"
               >Hatalı şifre girdiniz</span
             >
           </div>
           <div class="loginActions">
             <div class="checkboxContainer">
               <div
-                v-bind:class="{ checked: isChecked }"
+                v-bind:class="{ checked: state.isChecked }"
                 @click="handleCheck"
                 class="unChecked"
               >
@@ -66,7 +66,7 @@
         <!-- first button -->
         <!-- show this button only if the user tel no is NOT correct -->
         <button
-          v-if="!userTelNoCorrect"
+          v-if="!state.userTelNoCorrect"
           @click="firstButtonControl"
           class="tamamButton"
         >
@@ -75,7 +75,7 @@
         <!-- second button -->
         <!-- show this button once the user's tel no is correct -->
         <button
-          v-if="userTelNoCorrect"
+          v-if="state.userTelNoCorrect"
           @click="secondButtonControl"
           class="tamamButton"
         >
@@ -141,140 +141,136 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Carousel from "./Carousel.vue";
 import store from "../../store";
+import {computed, onMounted, reactive, ref} from "vue";
+import useVuelidate from '@vuelidate/core'
+import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
+import {useRouter, useRoute} from "vue-router";
 
-export default {
-  components: { Carousel },
-  data() {
-    return {
+const router = useRouter()
+const route = useRoute()
+
+const state = reactive({
       isActive: false,
       isChecked: false,
       accountBelongsToUser: false,
       userTelNoCorrect: false,
-      //first click/telefon no
-      //let's give +90 as default for country code
-      countryCode: "+90",
-      telNo: "",
-      smsCode: 123456,
       loginAction: false,
-      password: "",
-    };
-  },
-  methods: {
-    showError: function (e) {
-      e.preventDefault();
-      this.isActive = true;
-    },
-    handleCheck: function () {
-      // e.preventDefault();
-      this.isChecked = !this.isChecked;
-      // console.log(this.isChecked);
-    },
-    handleUserCredentials: function () {
-      if (this.isChecked == true) {
-        //saving the data if the beni hatirla section is checked
-        //set local storage for telNo
-        localStorage.setItem("telNo", this.telNo);
+})
 
-        //set local storage for password
-        localStorage.setItem("password", this.password);
+const telNo = ref('')
 
-        console.log(this.password + this.telNo);
-      } else if (this.isChecked == false) {
-        localStorage.clear();
-        console.log("cleared");
-      }
-    },
-    firstButtonControl: async function (e) {
-      e.preventDefault();
-      //if the telNo part does not contain 10 digits
-      if (this.telNo.toString().length != 10) {
-        this.isActive = true;
-      } else if (this.telNo.toString().length == 10) {
-        //if the number seems correct, remove the error message
+const smsCode = ref('')
 
-        await store.dispatch("auth/phoneNotify", this.countryCode + this.telNo);
+const password = ref('')
 
-        this.isActive = false;
-        //show sms code input section
-        this.userTelNoCorrect = true;
-      }
-    },
-    secondButtonControl: async function (e) {
-      e.preventDefault();
+const countryCode = ref('')
 
-      if (this.accountBelongsToUser) {
-        await store
-          .dispatch("auth/loginAction", this.password)
-          .then((res) => {
-            store.commit("auth/SET_TOKEN", {
-              token: res.data.access_token,
-              expire: res.data.expires_in,
+const handleCheck = () => {state.isChecked = !state.isChecked}
+
+const showError = () => {state.isActive = true}
+
+const handleUserCredentials = () => {
+  if (state.isChecked === true) {
+    localStorage.setItem("telNo", telNo.value);
+    localStorage.setItem("password", password.value);
+  } else {
+    localStorage.clear();
+  }
+}
+
+const telNoRules = computed(() => ({
+  telNo: {
+    required: helpers.withMessage("Telefon Numaranız zorunlu bir alandır.", required),
+    minlength: helpers.withMessage("Telefon Numaranız 10 haneli olmalıdır.", minLength(10)),
+    maxlength: helpers.withMessage("Telefon Numaranız 10 haneli olmalıdır.", maxLength(10)),
+  }
+}))
+
+/*const telNoRules = computed(() => ({
+  telNo: {required},
+  smsCode: {required},
+  password: {required},
+  countryCode: {required}
+}))*/
+
+const telNoValidate = useVuelidate(telNoRules, { telNo })
+
+const firstButtonControl = async () => {
+  const isValid = await telNoValidate.value.$validate()
+
+  if (!isValid) return
+
+  await store.dispatch("auth/phoneNotify", countryCode.value + telNo.value);
+  state.userTelNoCorrect = true
+}
+
+const secondButtonControl = async () => {
+  if (state.accountBelongsToUser) {
+    await store
+        .dispatch("auth/loginAction", password.value)
+        .then((res) => {
+          store.commit("auth/SET_TOKEN", {
+            token: res.data.access_token,
+            expire: res.data.expires_in,
+          });
+          store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
+          localStorage.setItem("refreshToken", res.data.refresh_token);
+          handleUserCredentials();
+          router.push("anasayfa");
+        })
+        .catch((error) => {
+          if (error.response) {
+            new Swal({
+              icon: "error",
+              title: error.response.data.error_description,
+              showConfirmButton: false,
+              timer: 2000,
             });
-            store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
-            localStorage.setItem("refreshToken", res.data.refresh_token);
-            // //this function saves the user credentials if the beni hatirla box is checked
-            this.handleUserCredentials();
-            this.$router.push("anasayfa");
-          })
-          .catch((error) => {
-            if (error.response) {
-              this.$swal({
-                icon: "error",
-                title: error.response.data.error_description,
-                showConfirmButton: false,
-                timer: 2000,
-              });
-            }
-            console.log(error.response);
-          });
-      } else {
-        await store
-          .dispatch("auth/phoneVerify", this.smsCode)
-          .then((res) => {
-            if (res.data.profileId == null) {
-              this.$router.push("kayit");
-            } else {
-              store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
-              document.querySelector(".triggerModal").click();
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    },
-    confirmaccountBelongsToUser: function (e) {
-      e.preventDefault();
-      store.commit(
-        "auth/SET_PROFILE_ID",
-        store.getters["auth/_notification_user_data"]?.profileId
-      );
-      localStorage.setItem(
-        "profileId",
-        store.getters["auth/_notification_user_data"]?.profileId
-      );
-      this.accountBelongsToUser = true;
-    },
-    accountDoesNotBelongToUser: function (e) {
-      e.preventDefault();
-      this.$router.push({ name: "Kayit" });
-    },
-  },
-  computed: {
-    getUserData: () => {
-      return store.getters["auth/_notification_user_data"];
-    },
-  },
-  //lifeCycle hooks
-  //get user credentials on startup
-  mounted() {
-    this.telNo = localStorage.getItem("telNo");
-    this.password = localStorage.getItem("password");
-  },
-};
+          }
+          console.log(error.response);
+        });
+  } else {
+    await store
+        .dispatch("auth/phoneVerify", smsCode.value)
+        .then((res) => {
+          if (res.data.profileId == null) {
+            this.$router.push("kayit");
+          } else {
+            store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
+            document.querySelector(".triggerModal").click();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
+}
+
+const confirmaccountBelongsToUser = () => {
+  store.commit(
+      "auth/SET_PROFILE_ID",
+      store.getters["auth/_notification_user_data"]?.profileId
+  );
+  localStorage.setItem(
+      "profileId",
+      store.getters["auth/_notification_user_data"]?.profileId
+  );
+  state.accountBelongsToUser = true;
+}
+
+const accountDoesNotBelongToUser = () => {router.push({ name: "Kayit" })}
+
+const getUserData = computed(() => store.getters["auth/_notification_user_data"])
+
+onMounted(() => {
+  telNo.value = localStorage.getItem("telNo");
+  password.value = localStorage.getItem("password");
+})
+
 </script>
 
 <style scoped lang="scss">
