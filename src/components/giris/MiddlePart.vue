@@ -4,17 +4,21 @@
       <form class="welcomePart">
         <div class="hosgeldiniz">Hoşgeldiniz</div>
         <div class="giris">Giriş Yapın</div>
-        <div class="telContainer">
+        <div class="telContainer d-flex align-items-start">
           <input placeholder="+90" type="text" class="countryCode" />
           <div class="telefonNoContainer">
             <input
               v-model="telNo"
               placeholder="Telefon Numaranız"
               type="number"
-              class="telNo "
+              class="telNo"
               :class="{ 'is-invalid': telNoValidate.telNo.$errors.length }"
             />
-            <div v-for="error in telNoValidate.telNo.$errors" :key="error.$uid" class="invalid-feedback">
+            <div
+              v-for="error in telNoValidate.telNo.$errors"
+              :key="error.$uid"
+              class="invalid-feedback"
+            >
               {{ error.$message }}
             </div>
           </div>
@@ -142,36 +146,46 @@
 </template>
 
 <script setup>
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import Carousel from "./Carousel.vue";
 import store from "../../store";
-import {computed, onMounted, reactive, ref} from "vue";
-import useVuelidate from '@vuelidate/core'
-import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators'
-import {useRouter, useRoute} from "vue-router";
+import { computed, onMounted, reactive, ref } from "vue";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  helpers,
+} from "@vuelidate/validators";
+import { useRouter, useRoute } from "vue-router";
 
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 
 const state = reactive({
-      isActive: false,
-      isChecked: false,
-      accountBelongsToUser: false,
-      userTelNoCorrect: false,
-      loginAction: false,
-})
+  isActive: false,
+  isChecked: false,
+  accountBelongsToUser: false,
+  userTelNoCorrect: false,
+  loginAction: false,
+});
 
-const telNo = ref('')
+const telNo = ref("");
 
-const smsCode = ref('')
+const smsCode = ref("");
 
-const password = ref('')
+const password = ref("");
 
-const countryCode = ref('')
+const countryCode = ref("");
 
-const handleCheck = () => {state.isChecked = !state.isChecked}
+const handleCheck = () => {
+  state.isChecked = !state.isChecked;
+};
 
-const showError = () => {state.isActive = true}
+const showError = () => {
+  state.isActive = true;
+};
 
 const handleUserCredentials = () => {
   if (state.isChecked === true) {
@@ -180,15 +194,24 @@ const handleUserCredentials = () => {
   } else {
     localStorage.clear();
   }
-}
+};
 
 const telNoRules = computed(() => ({
   telNo: {
-    required: helpers.withMessage("Telefon Numaranız zorunlu bir alandır.", required),
-    minlength: helpers.withMessage("Telefon Numaranız 10 haneli olmalıdır.", minLength(10)),
-    maxlength: helpers.withMessage("Telefon Numaranız 10 haneli olmalıdır.", maxLength(10)),
-  }
-}))
+    required: helpers.withMessage(
+      "Telefon Numaranız zorunlu bir alandır.",
+      required
+    ),
+    minlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      minLength(10)
+    ),
+    maxlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      maxLength(10)
+    ),
+  },
+}));
 
 /*const telNoRules = computed(() => ({
   telNo: {required},
@@ -197,80 +220,83 @@ const telNoRules = computed(() => ({
   countryCode: {required}
 }))*/
 
-const telNoValidate = useVuelidate(telNoRules, { telNo })
+const telNoValidate = useVuelidate(telNoRules, { telNo });
 
 const firstButtonControl = async () => {
-  const isValid = await telNoValidate.value.$validate()
+  const isValid = await telNoValidate.value.$validate();
 
-  if (!isValid) return
+  if (!isValid) return;
 
   await store.dispatch("auth/phoneNotify", countryCode.value + telNo.value);
-  state.userTelNoCorrect = true
-}
+  state.userTelNoCorrect = true;
+};
 
 const secondButtonControl = async () => {
   if (state.accountBelongsToUser) {
     await store
-        .dispatch("auth/loginAction", password.value)
-        .then((res) => {
-          store.commit("auth/SET_TOKEN", {
-            token: res.data.access_token,
-            expire: res.data.expires_in,
-          });
-          store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
-          localStorage.setItem("refreshToken", res.data.refresh_token);
-          handleUserCredentials();
-          router.push("anasayfa");
-        })
-        .catch((error) => {
-          if (error.response) {
-            new Swal({
-              icon: "error",
-              title: error.response.data.error_description,
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          }
-          console.log(error.response);
+      .dispatch("auth/loginAction", password.value)
+      .then((res) => {
+        store.commit("auth/SET_TOKEN", {
+          token: res.data.access_token,
+          expire: res.data.expires_in,
         });
+        store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
+        localStorage.setItem("refreshToken", res.data.refresh_token);
+        handleUserCredentials();
+        router.push("anasayfa");
+      })
+      .catch((error) => {
+        if (error.response) {
+          new Swal({
+            icon: "error",
+            title: error.response.data.error_description,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+        console.log(error.response);
+      });
   } else {
     await store
-        .dispatch("auth/phoneVerify", smsCode.value)
-        .then((res) => {
-          if (res.data.profileId == null) {
-            this.$router.push("kayit");
-          } else {
-            store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
-            document.querySelector(".triggerModal").click();
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .dispatch("auth/phoneVerify", smsCode.value)
+      .then((res) => {
+        if (res.data.profileId == null) {
+          this.$router.push("kayit");
+        } else {
+          store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
+          document.querySelector(".triggerModal").click();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-}
+};
 
 const confirmaccountBelongsToUser = () => {
   store.commit(
-      "auth/SET_PROFILE_ID",
-      store.getters["auth/_notification_user_data"]?.profileId
+    "auth/SET_PROFILE_ID",
+    store.getters["auth/_notification_user_data"]?.profileId
   );
   localStorage.setItem(
-      "profileId",
-      store.getters["auth/_notification_user_data"]?.profileId
+    "profileId",
+    store.getters["auth/_notification_user_data"]?.profileId
   );
   state.accountBelongsToUser = true;
-}
+};
 
-const accountDoesNotBelongToUser = () => {router.push({ name: "Kayit" })}
+const accountDoesNotBelongToUser = () => {
+  router.push({ name: "Kayit" });
+};
 
-const getUserData = computed(() => store.getters["auth/_notification_user_data"])
+const getUserData = computed(
+  () => store.getters["auth/_notification_user_data"]
+);
 
 onMounted(() => {
   telNo.value = localStorage.getItem("telNo");
   password.value = localStorage.getItem("password");
-})
-
+});
 </script>
 
 <style scoped lang="scss">
@@ -340,7 +366,7 @@ onMounted(() => {
 .telContainer {
   @include flexCenter(row);
   width: auto;
-  height: 93px !important;
+  // height: 93px !important;
 }
 .telefonNoContainer {
   margin-bottom: 9px;
