@@ -57,15 +57,15 @@ export default {
 
         nationalityId: "bb25e87d-135a-0e42-b5e9-3a014b76f8b0",
         identityNumber: "18142984096",
-        givenName: "Murat",
-        familyName: "Yüksel",
+        givenName: state.name,
+        familyName: state.surname,
         gender: 1,
         birthDate: "1992-11-02",
         countryId: "bb25e87d-135a-0e42-b5e9-3a014b76f8b0",
         cityId: "3668db6f-ca24-7d19-ee1c-3a014b76f8b0",
         regionId: null,
-        emailAddress: "muratcan@mail.com",
-        password: "123456",
+        emailAddress: state.email,
+        password: state.password,
         notificationToken:
           "L7eWx4yibPYXE80afz+xMXlxZPq8OnRZaXsOwBvl0QAIBcJ5ggutoKf9M//iwvirsurmGU48g9DyyMA/h0Ma+DhmSvh4kLbNd3VkI2rEd8XJWJVWmjZV20tYJhnmbGFLwmlh49++HuglT8Gfnkfus+PeKDkxQUgoCuilRnFlmRK1I9LIkq6/PVyLnrZhnYqSuvZaSoJU3jR+GrpifPj08Jv7gY5cND2Eah/EYOORzNc5pnqUZlmMocQwMNThMvS4ljD3ukotwZlJ1uIkBUmW0CjX0RaeJ31gPIXYUe1D7vE=",
         notificationCode: "123456",
@@ -73,15 +73,7 @@ export default {
           "n9KphoyjSM6wGAcP6E8CiswMVap+n/LotkNqBGfnz354rk7Yr1M76JvojgtXqzanQaSQd3CrMI6izgbQSxFd0GvYQ2obJdk80Tb3uTl0FcFUqFhfO3Ht9oU3HNkm9hkZzuTmCbW/rBoQtyP+sPMWvFOJFWsqJ9hE/fv09lgC/b87RmOOcQLnQ3ZObsdd2LnKhfSnyUrrrku/OOdiDk1/SOHOxRD7LuDCbB1+ruv7+EA=",
         permissionCode1: "123456",
       };
-      console.log(
-        "registered" + state.email,
-        state.password,
-        state.gender,
-        state.name,
-        state.surname,
-        state.tcNo,
-        state.uyruk
-      );
+      console.log("registered" + JSON.stringify(userData));
 
       await store.dispatch("auth/checkRefreshToken");
       let token = store.getters["auth/_token"];

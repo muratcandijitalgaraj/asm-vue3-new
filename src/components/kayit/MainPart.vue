@@ -216,10 +216,10 @@ let isChecked = ref(false);
 // date: null,
 //user inputs
 //section One
-let email = "looooolllz";
-let password = "looooolllz";
-let passwordRepeated = "looooolllz";
-let uyruk = "looooolllz";
+let email = ref("");
+let password = ref("");
+let passwordRepeated = ref("");
+let uyruk = ref("");
 let tcNo = ref("");
 let name = ref("");
 let surName = ref("");
@@ -255,6 +255,17 @@ const buttonTwo = function (e) {
   two.value = false;
   three.value = true;
   //denemeler
+  store
+    .dispatch("register/registerUser")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.response));
+};
+
+const buttonThree = function (e) {
+  e.preventDefault();
+  // three.value = false;
+  // store.dispatch("register/registerUser");
+  //denemeler
   store.commit("register/setCredentials", {
     email: email.value,
     password: password.value,
@@ -267,12 +278,6 @@ const buttonTwo = function (e) {
     city: city.value,
     district: district.value,
   });
-};
-
-const buttonThree = function (e) {
-  e.preventDefault();
-  // three.value = false;
-  // store.dispatch("register/registerUser");
   store
     .dispatch("register/registerUser")
     .then((res) => console.log(res))
