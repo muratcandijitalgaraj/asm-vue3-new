@@ -216,10 +216,10 @@ let isChecked = ref(false);
 // date: null,
 //user inputs
 //section One
-let email = ref("");
-let password = ref("");
-let passwordRepeated = ref("");
-let uyruk = ref("");
+let email = "looooolllz";
+let password = "looooolllz";
+let passwordRepeated = "looooolllz";
+let uyruk = "looooolllz";
 let tcNo = ref("");
 let name = ref("");
 let surName = ref("");
@@ -255,15 +255,28 @@ const buttonTwo = function (e) {
   two.value = false;
   three.value = true;
   //denemeler
+  store.commit("register/setCredentials", {
+    email: email.value,
+    password: password.value,
+    uyruk: uyruk.value,
+    tcNo: tcNo.value,
+    name: name.value,
+    surName: surName.value,
+    gender: gender.value,
+    country: country.value,
+    city: city.value,
+    district: district.value,
+  });
+};
+
+const buttonThree = function (e) {
+  e.preventDefault();
+  // three.value = false;
+  // store.dispatch("register/registerUser");
   store
     .dispatch("register/registerUser")
     .then((res) => console.log(res))
     .catch((err) => console.log(err.response));
-};
-const buttonThree = function (e) {
-  e.preventDefault();
-  // three.value = false;
-  store.dispatch("register/registerUser");
 };
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
@@ -272,6 +285,7 @@ const ppUpload = function () {
 // this function is just for test purposes
 const writeUyruk = function () {
   console.log(uyruk.value);
+  //denemeler
 };
 
 const sendDispatch = () => {};

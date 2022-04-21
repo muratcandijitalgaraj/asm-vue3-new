@@ -75,9 +75,12 @@ export default {
       };
       console.log(
         "registered" + state.email,
+        state.password,
         state.gender,
+        state.name,
+        state.surname,
         state.tcNo,
-        state.name
+        state.uyruk
       );
 
       await store.dispatch("auth/checkRefreshToken");
