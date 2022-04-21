@@ -1,39 +1,98 @@
 <template>
-  <div class="playground">{{ info }}</div>
+  <div class="form-group mb-3">
+    <input
+      type="text"
+      v-model="telNo"
+      class="form-control"
+      placeholder="Phone"
+    />
+    <div class="alert alert-danger" v-for="error in telNoValidate.$errors">
+      {{ error.$message }}
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <input
+      type="text"
+      v-model="smsCode"
+      class="form-control"
+      placeholder="SMS Code"
+    />
+    <div class="alert alert-danger" v-for="error in smsCodeValidate.$errors">
+      {{ error.$message }}
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary mx-3"
+    @click="firstButtonControl"
+  >
+    Phone Check
+  </button>
+  <button type="button" class="btn btn-info" @click="secondButtonControl">
+    SMS Code Check
+  </button>
 </template>
 
-<script>
-// axios.<method> will now provide autocomplete and parameter typings
-import axios from "axios";
-//this library ensures that url encoded headers are read correctly.
-//Without it the logic doesn't work
-import qs from "qs";
-export default {
-  data() {
-    return {
-      info: null,
-    };
+<script setup>
+import { computed, onMounted, reactive, ref } from "vue";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  helpers,
+} from "@vuelidate/validators";
+import store from "../store";
+
+const telNo = ref("5384000042");
+
+const smsCode = ref("123456");
+
+const telNoRules = computed(() => ({
+  telNo: {
+    required: helpers.withMessage(
+      "Telefon Numaranız zorunlu bir alandır.",
+      required
+    ),
+    minlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      minLength(10)
+    ),
+    maxlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      maxLength(10)
+    ),
   },
-  async mounted() {
-    try {
-      const url = "api/connect/token";
-      const data = {
-        client_id: "iCoMed_Mobile_IOS",
-        client_secret: "c@mEd3234_21!",
-        grant_type: "client_credentials",
-      };
-      const options = {
-        method: "POST",
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-        data: qs.stringify(data),
-        url,
-      };
-      let res = await axios(options);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+}));
+
+const smsCodeRules = computed(() => ({
+  smsCode: {
+    required: helpers.withMessage("SMS Kodu zorunlu bir alandır.", required),
+    minlength: helpers.withMessage(
+      "SMS Kodu 6 haneli olmalıdır.",
+      minLength(6)
+    ),
+    maxlength: helpers.withMessage(
+      "SMS Kodu 6 haneli olmalıdır.",
+      maxLength(6)
+    ),
   },
+}));
+
+const smsCodeValidate = useVuelidate(smsCodeRules, { smsCode });
+const telNoValidate = useVuelidate(telNoRules, { telNo });
+
+const firstButtonControl = async () => {
+  const isValid = await telNoValidate.value.$validate();
+  console.log(`Phone Check. ${isValid}`);
+};
+
+const secondButtonControl = async () => {
+  const isValid = await smsCodeValidate.value.$validate();
+  console.log(`SMS Code Check. ${isValid}`);
 };
 </script>
 <style scoped></style>
