@@ -100,13 +100,19 @@
               <option class="optionValue" value="audi">Audi</option>
             </select>
             <input
+              v-model="tcNo"
               placeholder="T.C. Kimlik Numarası"
               type="text"
               class="tcNo"
             />
           </div>
-          <input placeholder="İsim" type="text" class="input" />
-          <input placeholder="Soyisim" type="text" class="input" />
+          <input v-model="name" placeholder="İsim" type="text" class="input" />
+          <input
+            v-model="surName"
+            placeholder="Soyisim"
+            type="text"
+            class="input"
+          />
           <!--///////// DATE PICKER HERE ///////////////////////////// -->
           <Datepicker
             placeholder="Doğum Tarihi (GG/AA/YYYY)"
@@ -120,7 +126,7 @@
             :startDate="startDate"
           />
 
-          <select class="dropDownSelect" name=" " id=" ">
+          <select v-model="gender" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Cinsiyet</option>
             <option class="optionValue" value="dog">Erkek</option>
             <option class="optionValue" value="cat">Kadın</option>
@@ -183,7 +189,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
 import store from "../../store";
@@ -214,6 +220,10 @@ let email = ref("");
 let password = ref("");
 let passwordRepeated = ref("");
 let uyruk = ref("");
+let tcNo = ref("");
+let name = ref("");
+let surName = ref("");
+let gender = ref("");
 let country = ref("");
 let city = ref("");
 let district = ref("");
@@ -225,12 +235,19 @@ const buttonOne = function (e) {
   //toggle
   oneIsCurrent.value = false;
   isChecked.value = true;
+  //denemeler
+  store.commit("register/setCredentials", email.value);
 };
 
 const buttonTwo = function (e) {
   e.preventDefault();
   two.value = false;
   three.value = true;
+  //denemeler
+  store
+    .dispatch("register/registerUser")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.response));
 };
 const buttonThree = function (e) {
   e.preventDefault();
@@ -246,16 +263,14 @@ const writeUyruk = function () {
   console.log(uyruk.value);
 };
 
-// onMounted(() => {
-//   store
-//     .dispatch("appointments/getAppointments")
-//     .then((res) => (appointments.value = res?.data?.items))
-//     .catch((err) => console.log(err.response));
-// });
+const sendDispatch = () => {};
 
-const callStore = function () {
-  store.dispatch("register/registerUser");
-};
+onMounted(() => {
+  store
+    .dispatch("register/registerUser")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.response));
+});
 </script>
 
 <style>

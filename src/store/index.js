@@ -1,27 +1,22 @@
 import { createStore } from "vuex";
-import auth from "./modules/auth.js"
+import auth from "./modules/auth.js";
 import appointments from "./modules/appointments";
+import register from "./modules/register";
 
 const store = createStore({
+  modules: {
+    auth,
+    appointments,
+    register,
+  },
 
-    modules: {
-        auth,
-        appointments
-    },
+  state: {},
 
-    state: {
+  mutations: {},
 
-    },
+  actions: {},
 
-    mutations: {
-
-    },
-
-    actions: {},
-
-    getters: {
-
-    }
+  getters: {},
 });
 
 export default store;
