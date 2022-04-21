@@ -236,7 +236,18 @@ const buttonOne = function (e) {
   oneIsCurrent.value = false;
   isChecked.value = true;
   //denemeler
-  store.commit("register/setCredentials", email.value);
+  store.commit("register/setCredentials", {
+    email: email.value,
+    password: password.value,
+    uyruk: uyruk.value,
+    tcNo: tcNo.value,
+    name: name.value,
+    surName: surName.value,
+    gender: gender.value,
+    country: country.value,
+    city: city.value,
+    district: district.value,
+  });
 };
 
 const buttonTwo = function (e) {
