@@ -235,30 +235,12 @@ const buttonOne = function (e) {
   //toggle
   oneIsCurrent.value = false;
   isChecked.value = true;
-  //denemeler
-  store.commit("register/setCredentials", {
-    email: email.value,
-    password: password.value,
-    uyruk: uyruk.value,
-    tcNo: tcNo.value,
-    name: name.value,
-    surName: surName.value,
-    gender: gender.value,
-    country: country.value,
-    city: city.value,
-    district: district.value,
-  });
 };
 
 const buttonTwo = function (e) {
   e.preventDefault();
   two.value = false;
   three.value = true;
-  //denemeler
-  store
-    .dispatch("register/registerUser")
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.response));
 };
 
 const buttonThree = function (e) {
@@ -292,8 +274,6 @@ const writeUyruk = function () {
   console.log(uyruk.value);
   //denemeler
 };
-
-const sendDispatch = () => {};
 
 onMounted(() => {
   store
