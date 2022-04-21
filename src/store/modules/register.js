@@ -47,16 +47,8 @@ export default {
   actions: {
     async registerUser({ commit, state, dispatch }) {
       let userData = {
-        // email: state.email,
-        // password: state.password,
-        // passwordRepeated: state.passwordRepeated,
-        // uyruk: state.uyruk,
-        // country: state.country,
-        // city: state.city,
-        // district: state.district,
-
         nationalityId: "bb25e87d-135a-0e42-b5e9-3a014b76f8b0",
-        identityNumber: "18142984096",
+        identityNumber: state.tcNo,
         givenName: state.name,
         familyName: state.surname,
         gender: 1,
