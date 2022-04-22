@@ -47,14 +47,14 @@ export default {
   actions: {
     async registerUser({ commit, state, dispatch }) {
       let userData = {
-        nationalityId: "bb25e87d-135a-0e42-b5e9-3a014b76f8b0",
+        nationalityId: state.country,
         identityNumber: state.tcNo,
         givenName: state.name,
         familyName: state.surname,
         gender: state.gender,
         birthDate: "1992-11-02",
-        countryId: "bb25e87d-135a-0e42-b5e9-3a014b76f8b0",
-        cityId: "3668db6f-ca24-7d19-ee1c-3a014b76f8b0",
+        countryId: state.country,
+        cityId: state.city,
         regionId: null,
         emailAddress: state.email,
         password: state.password,
@@ -71,7 +71,12 @@ export default {
       appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
       return await appAxios.post(
         "endpoint/profile-service/user",
-        qs.stringify({ userData })
+        qs.stringify({ userData }),
+        {
+          headers: {
+            "Content-Type: application/json": "Accept: application/json",
+          },
+        }
       );
     },
   },

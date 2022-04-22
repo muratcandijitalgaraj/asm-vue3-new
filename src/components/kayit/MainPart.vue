@@ -246,7 +246,11 @@ const buttonTwo = function (e) {
   two.value = false;
   three.value = true;
 
-  //set gender value according to the API
+  //invoke setting gender value function
+  setGenderValue();
+};
+//set gender value according to the API
+const setGenderValue = () => {
   if (gender.value == "Erkek") {
     gender.value = 1;
   } else if (gender.value == "Kadın") {
@@ -255,8 +259,34 @@ const buttonTwo = function (e) {
   console.log(gender.value);
 };
 
+//set city value according to the API
+const setCityValue = () => {
+  if (city.value == "Ankara") {
+    city.value = "3668db6f-ca24-7d19-ee1c-3a014b76f8b0";
+  } else if (city.value == "Baku") {
+    city.value = "0adfc3ef-e423-8b7d-6056-3a014b76f8b0";
+  } else if (city.value == "Nicosia") {
+    city.value = "eee80834-8b7a-3606-e7ca-3a014b76f8b0";
+  }
+  console.log(city.value);
+};
+//set country value according to the API
+const setCountryValue = () => {
+  if (country.value == "Türkiye") {
+    country.value = "bb25e87d-135a-0e42-b5e9-3a014b76f8b0";
+  } else if (country.value == "Azerbaycan") {
+    country.value = "4a75b544-3b0e-5c29-a1b5-3a014b76f8b0";
+  } else if (country.value == "Kuzey Kıbrıs Türk Cumhuriyeti") {
+    country.value = "463a005d-3913-80ce-cf7a-3a014b76f8b0";
+  }
+  console.log(country.value);
+};
+
 const buttonThree = function (e) {
   e.preventDefault();
+  //invoke setcountryvalue &  setcityvalue  function
+  setCountryValue();
+  setCityValue();
   // three.value = false;
   // store.dispatch("register/registerUser");
   //denemeler
