@@ -95,9 +95,9 @@
               id=""
             >
               <option class="optionValue" value="Uyruk">Uyruk</option>
-              <option class="optionValue" value="saab">Saab</option>
-              <option class="optionValue" value="opel">Opel</option>
-              <option class="optionValue" value="audi">Audi</option>
+              <option class="optionValue" value="Türkiye">Türkiye</option>
+              <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
+              <option class="optionValue" value="KKTC">KKTC</option>
             </select>
             <input
               v-model="tcNo"
@@ -166,13 +166,17 @@
           </div>
           <select v-model="country" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Ülke</option>
-            <option class="optionValue" value="dog">Dog</option>
-            <option class="optionValue" value="cat">Cat</option>
+            <option class="optionValue" value="Türkiye">Türkiye</option>
+            <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
+            <option class="optionValue" value="Kuzey Kıbrıs Türk Cumhuriyeti">
+              Kuzey Kıbrıs Türk Cumhuriyeti
+            </option>
           </select>
           <select v-model="city" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Şehir</option>
-            <option class="optionValue" value="dog">Dog</option>
-            <option class="optionValue" value="cat">Cat</option>
+            <option class="optionValue" value="Baku">Baku</option>
+            <option class="optionValue" value="Ankara">Ankara</option>
+            <option class="optionValue" value="Nicosia">Nicosia</option>
           </select>
           <select v-model="district" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">İlçe</option>
