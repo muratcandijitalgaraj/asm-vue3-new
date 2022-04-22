@@ -31,9 +31,9 @@
           v-model="smsCode"
         />
         <div
-            v-for="error in smsCodeValidate.smsCode.$errors"
-            :key="error.$uid"
-            class="invalid-feedback"
+          v-for="error in smsCodeValidate.smsCode.$errors"
+          :key="error.$uid"
+          class="invalid-feedback"
         >
           {{ error.$message }}
         </div>
@@ -222,17 +222,14 @@ const telNoRules = computed(() => ({
 
 const smsCodeRules = computed(() => ({
   smsCode: {
-    required: helpers.withMessage(
-        "SMS Kodu zorunlu bir alandır.",
-        required
-    ),
+    required: helpers.withMessage("SMS Kodu zorunlu bir alandır.", required),
     minlength: helpers.withMessage(
-        "SMS Kodu 6 haneli olmalıdır.",
-        minLength(10)
+      "SMS Kodu 6 haneli olmalıdır.",
+      minLength(10)
     ),
     maxlength: helpers.withMessage(
-        "SMS Kodu 6 haneli olmalıdır.",
-        maxLength(10)
+      "SMS Kodu 6 haneli olmalıdır.",
+      maxLength(10)
     ),
   },
 }));
@@ -244,8 +241,16 @@ const smsCodeRules = computed(() => ({
   countryCode: {required}
 }))*/
 
-const telNoValidate = useVuelidate(telNoRules, { telNo }, {$stopPropagation: false});
-const smsCodeValidate = useVuelidate(smsCodeRules, { smsCode }, {$stopPropagation: false});
+const telNoValidate = useVuelidate(
+  telNoRules,
+  { telNo },
+  { $stopPropagation: false }
+);
+const smsCodeValidate = useVuelidate(
+  smsCodeRules,
+  { smsCode },
+  { $stopPropagation: false }
+);
 
 const firstButtonControl = async () => {
   const isValid = await telNoValidate.value.$validate();
@@ -282,15 +287,14 @@ const secondButtonControl = async () => {
         console.log(error.response);
       });
   } else {
+    const isValidPhone = await telNoValidate.value.$validate();
+    const isValidSmsCode = await smsCodeValidate.value.$validate();
 
-    const isValidPhone = await telNoValidate.value.$validate()
-    const isValidSmsCode = await smsCodeValidate.value.$validate()
+    console.log(isValidPhone);
+    console.log(isValidSmsCode);
+    console.log(smsCode.value);
 
-    console.log(isValidPhone)
-    console.log(isValidSmsCode)
-    console.log(smsCode.value)
-
-    if (!isValidPhone || !isValidSmsCode) return
+    if (!isValidPhone || !isValidSmsCode) return;
 
     await store
       .dispatch("auth/phoneVerify", smsCode.value)

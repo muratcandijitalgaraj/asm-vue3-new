@@ -128,8 +128,8 @@
 
           <select v-model="gender" class="dropDownSelect" name=" " id=" ">
             <option class="optionValue" value="">Cinsiyet</option>
-            <option class="optionValue" value="dog">Erkek</option>
-            <option class="optionValue" value="cat">Kadın</option>
+            <option class="optionValue" value="Erkek">Erkek</option>
+            <option class="optionValue" value="Kadın">Kadın</option>
           </select>
           <button @click="buttonTwo" id="buttonTwo" class="button">
             <span class="buttonText">Devam</span>
@@ -241,6 +241,14 @@ const buttonTwo = function (e) {
   e.preventDefault();
   two.value = false;
   three.value = true;
+
+  //set gender value according to the API
+  if (gender.value == "Erkek") {
+    gender.value = 1;
+  } else if (gender.value == "Kadın") {
+    gender.value = 2;
+  }
+  console.log(gender.value);
 };
 
 const buttonThree = function (e) {
@@ -276,10 +284,11 @@ const writeUyruk = function () {
 };
 
 onMounted(() => {
-  store
-    .dispatch("register/registerUser")
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.response));
+  // store
+  //   .dispatch("register/registerUser")
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.log(err.response));
+  console.log(store.SET_NOTIFICATION_TOKEN);
 });
 </script>
 
