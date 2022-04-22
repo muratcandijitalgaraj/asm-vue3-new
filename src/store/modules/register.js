@@ -47,7 +47,7 @@ export default {
   actions: {
     async registerUser({ commit, state, dispatch }) {
       let userData = {
-        nationalityId: state.country,
+        nationalityId: state.uyruk,
         identityNumber: state.tcNo,
         givenName: state.name,
         familyName: state.surname,

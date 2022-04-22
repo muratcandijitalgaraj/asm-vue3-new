@@ -97,7 +97,9 @@
               <option class="optionValue" value="Uyruk">Uyruk</option>
               <option class="optionValue" value="Türkiye">Türkiye</option>
               <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
-              <option class="optionValue" value="KKTC">KKTC</option>
+              <option class="optionValue" value="Kuzey Kıbrıs Türk Cumhuriyeti">
+                Kuzey Kıbrıs Türk Cumhuriyeti
+              </option>
             </select>
             <input
               v-model="tcNo"
@@ -248,7 +250,36 @@ const buttonTwo = function (e) {
 
   //invoke setting gender value function
   setGenderValue();
+  //invoke nationalityID value function
+  setNationalityIdValue();
 };
+
+const buttonThree = function (e) {
+  e.preventDefault();
+  //invoke setcountryvalue &  setcityvalue  function
+  setCountryValue();
+  setCityValue();
+  // three.value = false;
+  // store.dispatch("register/registerUser");
+  //denemeler
+  store.commit("register/setCredentials", {
+    email: email.value,
+    password: password.value,
+    uyruk: uyruk.value,
+    tcNo: tcNo.value,
+    name: name.value,
+    surName: surName.value,
+    gender: gender.value,
+    country: country.value,
+    city: city.value,
+    district: district.value,
+  });
+  store
+    .dispatch("register/registerUser")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.response));
+};
+
 //set gender value according to the API
 const setGenderValue = () => {
   if (gender.value == "Erkek") {
@@ -281,31 +312,16 @@ const setCountryValue = () => {
   }
   console.log(country.value);
 };
-
-const buttonThree = function (e) {
-  e.preventDefault();
-  //invoke setcountryvalue &  setcityvalue  function
-  setCountryValue();
-  setCityValue();
-  // three.value = false;
-  // store.dispatch("register/registerUser");
-  //denemeler
-  store.commit("register/setCredentials", {
-    email: email.value,
-    password: password.value,
-    uyruk: uyruk.value,
-    tcNo: tcNo.value,
-    name: name.value,
-    surName: surName.value,
-    gender: gender.value,
-    country: country.value,
-    city: city.value,
-    district: district.value,
-  });
-  store
-    .dispatch("register/registerUser")
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.response));
+//set nationality ID (uyruk) value according to the API
+const setNationalityIdValue = () => {
+  if (uyruk.value == "Türkiye") {
+    uyruk.value = "bb25e87d-135a-0e42-b5e9-3a014b76f8b0";
+  } else if (uyruk.value == "Azerbaycan") {
+    uyruk.value = "4a75b544-3b0e-5c29-a1b5-3a014b76f8b0";
+  } else if (uyruk.value == "Kuzey Kıbrıs Türk Cumhuriyeti") {
+    uyruk.value = "463a005d-3913-80ce-cf7a-3a014b76f8b0";
+  }
+  console.log(uyruk.value);
 };
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
