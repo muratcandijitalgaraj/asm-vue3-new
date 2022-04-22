@@ -45,6 +45,17 @@ export default {
   },
 
   actions: {
+
+    async getCountry({}) {
+      await store.dispatch("auth/checkExpireToken");
+      console.log(store.getters['auth/_token'])
+      appAxios.defaults.headers.common["Authorization"] =
+          "Bearer " + store.getters['auth/_token'];
+      return await appAxios.get(
+          "endpoint/profile-service/lookups?title=Country&includeDetails=true",
+      );
+    },
+
     async registerUser({ commit, state, dispatch }) {
       let userData = {
         nationalityId: state.uyruk,

@@ -59,19 +59,36 @@
         <!-- box -->
         <form class="box">
           <input
-            v-model="email"
+            v-model="stepOne.email"
             placeholder="E-posta"
             type="text"
             class="input"
+            :class="{'is-invalid': stepOneValidate.email.$errors.length}"
           />
+
+          <div
+              v-for="error in stepOneValidate.email.$errors"
+              :key="error.$uid"
+              class="invalid-feedback"
+          >
+            {{ error.$message }}
+          </div>
           <input
-            v-model="password"
+            v-model="stepOne.password"
             placeholder="Şifreniz"
             type="password"
             class="input"
+            :class="{'is-invalid': stepOneValidate.password.$errors.length}"
           />
+          <div
+              v-for="error in stepOneValidate.password.$errors"
+              :key="error.$uid"
+              class="invalid-feedback"
+          >
+            {{ error.$message }}
+          </div>
           <input
-            v-model="passwordRepeated"
+            v-model="stepOne.passwordRepeated"
             placeholder="Şifreniz (tekrar)"
             type="password"
             class="input"
@@ -88,7 +105,7 @@
         <form action="" class="box">
           <div class="nationalityPart">
             <select
-              v-model="uyruk"
+              v-model="stepTwo.uyruk"
               @click="writeUyruk"
               class="uyruk"
               name=""
@@ -108,9 +125,9 @@
               class="tcNo"
             />
           </div>
-          <input v-model="name" placeholder="İsim" type="text" class="input" />
+          <input v-model="stepTwo.name" placeholder="İsim" type="text" class="input" />
           <input
-            v-model="surName"
+            v-model="stepTwo.surName"
             placeholder="Soyisim"
             type="text"
             class="input"
@@ -119,7 +136,7 @@
           <Datepicker
             placeholder="Doğum Tarihi (GG/AA/YYYY)"
             class="picker"
-            v-model="date"
+            v-model="stepTwo.date"
             :format="format"
             autoApply
             :closeOnAutoApply="false"
@@ -128,10 +145,10 @@
             :startDate="startDate"
           />
 
-          <select v-model="gender" class="dropDownSelect" name=" " id=" ">
-            <option class="optionValue" value="">Cinsiyet</option>
-            <option class="optionValue" value="Erkek">Erkek</option>
-            <option class="optionValue" value="Kadın">Kadın</option>
+          <select v-model="stepTwo.gender" class="dropDownSelect">
+            <option class="optionValue">Cinsiyet</option>
+            <option class="optionValue" value="1">Erkek</option>
+            <option class="optionValue" value="2">Kadın</option>
           </select>
           <button @click="buttonTwo" id="buttonTwo" class="button">
             <span class="buttonText">Devam</span>
@@ -166,7 +183,7 @@
               />
             </div>
           </div>
-          <select v-model="country" class="dropDownSelect" name=" " id=" ">
+          <select v-model="stepThree.country" class="dropDownSelect">
             <option class="optionValue" value="">Ülke</option>
             <option class="optionValue" value="Türkiye">Türkiye</option>
             <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
@@ -174,13 +191,13 @@
               Kuzey Kıbrıs Türk Cumhuriyeti
             </option>
           </select>
-          <select v-model="city" class="dropDownSelect" name=" " id=" ">
+          <select v-model="stepThree.city" class="dropDownSelect">
             <option class="optionValue" value="">Şehir</option>
             <option class="optionValue" value="Baku">Baku</option>
             <option class="optionValue" value="Ankara">Ankara</option>
             <option class="optionValue" value="Nicosia">Nicosia</option>
           </select>
-          <select v-model="district" class="dropDownSelect" name=" " id=" ">
+          <select v-model="stepThree.district" class="dropDownSelect">
             <option class="optionValue" value="">İlçe</option>
             <option class="optionValue" value="dog">Dog</option>
             <option class="optionValue" value="cat">Cat</option>
@@ -195,12 +212,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import {ref, onMounted, reactive, computed} from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
 import store from "../../store";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  helpers
+} from "@vuelidate/validators";
+import { useRouter, useRoute } from "vue-router";
 
-const date = ref();
+const router = useRouter();
+const route = useRoute();
 
 const format = (date) => {
   const day = date.getDate();
@@ -222,25 +249,91 @@ let isChecked = ref(false);
 // date: null,
 //user inputs
 //section One
-let email = ref("");
-let password = ref("");
-let passwordRepeated = ref("");
-let uyruk = ref("");
-let tcNo = ref("");
-let name = ref("");
-let surName = ref("");
-let gender = ref("");
-let country = ref("");
-let city = ref("");
-let district = ref("");
 
-const buttonOne = function (e) {
+
+const stepOne = reactive({
+  email: null,
+  password: null,
+  passwordRepeated: null
+})
+
+const stepTwo = reactive({
+  uyruk: null,
+  tcNo: null,
+  name: null,
+  date: null,
+  surName: null,
+  gender: null,
+})
+
+const stepThree = reactive({
+  country: null,
+  city: null,
+  district: null
+})
+
+const passwordMatch = (value) => {
+  console.log(value, stepOne.password)
+  const match = stepOne.password === value ? true:false
+  console.log(match)
+  return match
+}
+
+const stepOneRules = computed(() => ({
+  email: {
+    required: helpers.withMessage(
+        "Email zorunlu bir alandır.",
+        required
+    ),
+    email: helpers.withMessage(
+        "Email geçerli bir email olmaldır.",
+        email
+    )
+  },
+  password: {
+    required: helpers.withMessage(
+        "Şifre zorunlu bir alandır.",
+        required
+    ),
+    minlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        minLength(6)
+    ),
+    maxlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        maxLength(6)
+    ),
+/*    passwordRepeated: {
+      required: helpers.withMessage(
+          "Şifre Tekrar Şifre ile uyuşmuyor.",
+          passwordMatch
+      )
+    }*/
+  }
+}))
+
+const stepOneValidate = useVuelidate(stepOneRules, stepOne)
+
+const buttonOne = async (e) => {
   e.preventDefault();
+  const stepOneIsValid = await stepOneValidate.value.$validate()
+
+  if (!stepOneIsValid) return
+
   one.value = false;
   two.value = true;
   //toggle
   oneIsCurrent.value = false;
   isChecked.value = true;
+
+  //ülkeler çekiliyor
+  await store.dispatch('register/getCountry').then(res => {
+    //gelen ülkelerin abbr kodunu vfor ile uyruk selectine bağlanacak.
+    console.log(res.data)
+  }).catch(err => {
+    console.log(err)
+  })
+
 };
 
 const buttonTwo = function (e) {
@@ -249,7 +342,7 @@ const buttonTwo = function (e) {
   three.value = true;
 
   //invoke setting gender value function
-  setGenderValue();
+  //setGenderValue();
   //invoke nationalityID value function
   setNationalityIdValue();
 };
@@ -263,16 +356,17 @@ const buttonThree = function (e) {
   // store.dispatch("register/registerUser");
   //denemeler
   store.commit("register/setCredentials", {
-    email: email.value,
-    password: password.value,
-    uyruk: uyruk.value,
-    tcNo: tcNo.value,
-    name: name.value,
-    surName: surName.value,
-    gender: gender.value,
-    country: country.value,
-    city: city.value,
-    district: district.value,
+    email: stepOne.email,
+    password: stepOne.password,
+    uyruk: stepTwo.uyruk,
+    tcNo: stepTwo.tcNo,
+    name: stepTwo.name,
+    date: stepTwo.date,
+    surName: stepTwo.surName,
+    gender: stepTwo.gender,
+    country: stepThree.country,
+    city: stepThree.city,
+    district: stepThree.district,
   });
   store
     .dispatch("register/registerUser")
@@ -280,15 +374,6 @@ const buttonThree = function (e) {
     .catch((err) => console.log(err.response));
 };
 
-//set gender value according to the API
-const setGenderValue = () => {
-  if (gender.value == "Erkek") {
-    gender.value = 1;
-  } else if (gender.value == "Kadın") {
-    gender.value = 2;
-  }
-  console.log(gender.value);
-};
 
 //set city value according to the API
 const setCityValue = () => {
@@ -325,11 +410,10 @@ const setNationalityIdValue = () => {
 };
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
-  $refs.fileInput.click();
+  //$refs.fileInput.click();
 };
 // this function is just for test purposes
 const writeUyruk = function () {
-  console.log(uyruk.value);
   //denemeler
 };
 

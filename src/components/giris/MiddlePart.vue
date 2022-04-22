@@ -5,17 +5,17 @@
         <div class="hosgeldiniz">Hoşgeldiniz</div>
         <div class="giris">Giriş Yapın</div>
         <div class="telContainer d-flex align-items-start">
-          <input placeholder="+90" type="text" class="countryCode" />
+          <input v-model="countryCode" type="text" class="countryCode" />
           <div class="telefonNoContainer">
             <input
               v-model="telNo"
               placeholder="Telefon Numaranız"
               type="number"
               class="telNo"
-              :class="{ 'is-invalid': telNoValidate.telNo.$errors.length }"
+              :class="{ 'is-invalid':telNoValidate?.$errors.length}"
             />
             <div
-              v-for="error in telNoValidate.telNo.$errors"
+              v-for="error in telNoValidate.$errors"
               :key="error.$uid"
               class="invalid-feedback"
             >
@@ -28,10 +28,11 @@
           placeholder="Sms Kodunu Giriniz"
           type="text"
           class="input"
+          :class="{ 'is-invalid':smsCodeValidate?.$errors.length}"
           v-model="smsCode"
         />
         <div
-          v-for="error in smsCodeValidate.smsCode.$errors"
+          v-for="error in smsCodeValidate.$errors"
           :key="error.$uid"
           class="invalid-feedback"
         >
@@ -43,11 +44,16 @@
               placeholder="Şifreniz"
               type="password"
               class="sifre"
+              :class="{ 'is-invalid':passwordValidate?.$errors.length}"
               v-model="password"
             />
-            <span v-bind:class="{ active: state.isActive }" class="errorMessage"
-              >Hatalı şifre girdiniz</span
+            <div
+                v-for="error in passwordValidate.$errors"
+                :key="error.$uid"
+                class="invalid-feedback"
             >
+              {{ error.$message }}
+            </div>
           </div>
           <div class="loginActions">
             <div class="checkboxContainer">
@@ -163,7 +169,7 @@ import {
   email,
   minLength,
   maxLength,
-  helpers,
+  helpers
 } from "@vuelidate/validators";
 import { useRouter, useRoute } from "vue-router";
 
@@ -184,7 +190,7 @@ const smsCode = ref("");
 
 const password = ref("");
 
-const countryCode = ref("");
+const countryCode = ref("+90");
 
 const handleCheck = () => {
   state.isChecked = !state.isChecked;
@@ -192,15 +198,6 @@ const handleCheck = () => {
 
 const showError = () => {
   state.isActive = true;
-};
-
-const handleUserCredentials = () => {
-  if (state.isChecked === true) {
-    localStorage.setItem("telNo", telNo.value);
-    localStorage.setItem("password", password.value);
-  } else {
-    localStorage.clear();
-  }
 };
 
 const telNoRules = computed(() => ({
@@ -225,32 +222,32 @@ const smsCodeRules = computed(() => ({
     required: helpers.withMessage("SMS Kodu zorunlu bir alandır.", required),
     minlength: helpers.withMessage(
       "SMS Kodu 6 haneli olmalıdır.",
-      minLength(10)
+      minLength(6)
     ),
     maxlength: helpers.withMessage(
       "SMS Kodu 6 haneli olmalıdır.",
-      maxLength(10)
+      maxLength(6)
     ),
   },
 }));
 
-/*const telNoRules = computed(() => ({
-  telNo: {required},
-  smsCode: {required},
-  password: {required},
-  countryCode: {required}
-}))*/
+const passwordRules = computed(() => ({
+  password: {
+    required: helpers.withMessage("Şifreniz zorunlu bir alandır.", required),
+    minlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        minLength(6)
+    ),
+    maxlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        maxLength(6)
+    ),
+  },
+}));
 
-const telNoValidate = useVuelidate(
-  telNoRules,
-  { telNo },
-  { $stopPropagation: false }
-);
-const smsCodeValidate = useVuelidate(
-  smsCodeRules,
-  { smsCode },
-  { $stopPropagation: false }
-);
+const telNoValidate = useVuelidate(telNoRules,{ telNo });
+const smsCodeValidate = useVuelidate(smsCodeRules,{ smsCode });
+const passwordValidate = useVuelidate(passwordRules,{ password });
 
 const firstButtonControl = async () => {
   const isValid = await telNoValidate.value.$validate();
@@ -263,6 +260,13 @@ const firstButtonControl = async () => {
 
 const secondButtonControl = async () => {
   if (state.accountBelongsToUser) {
+
+    const isValidPhone = await telNoValidate.value.$validate();
+    const isValidSmsCode = await smsCodeValidate.value.$validate();
+    const isValidPassword = await passwordValidate.value.$validate();
+
+    if (!isValidPhone || !isValidSmsCode || !isValidPassword) return;
+
     await store
       .dispatch("auth/loginAction", password.value)
       .then((res) => {
@@ -270,9 +274,12 @@ const secondButtonControl = async () => {
           token: res.data.access_token,
           expire: res.data.expires_in,
         });
+
         store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
-        localStorage.setItem("refreshToken", res.data.refresh_token);
-        handleUserCredentials();
+
+        if (state.isChecked)
+          localStorage.setItem("refreshToken", res.data.refresh_token);
+
         router.push("anasayfa");
       })
       .catch((error) => {
@@ -290,17 +297,13 @@ const secondButtonControl = async () => {
     const isValidPhone = await telNoValidate.value.$validate();
     const isValidSmsCode = await smsCodeValidate.value.$validate();
 
-    console.log(isValidPhone);
-    console.log(isValidSmsCode);
-    console.log(smsCode.value);
-
     if (!isValidPhone || !isValidSmsCode) return;
 
     await store
       .dispatch("auth/phoneVerify", smsCode.value)
       .then((res) => {
         if (res.data.profileId == null) {
-          this.$router.push("kayit");
+          router.push("kayit");
         } else {
           store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
           document.querySelector(".triggerModal").click();
