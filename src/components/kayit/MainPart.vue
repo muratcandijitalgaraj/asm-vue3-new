@@ -115,7 +115,7 @@
                 v-for="(item, key) in countries"
                 :key="key"
                 class="optionValue"
-                value="item.abbr"
+                :value="item.id"
               >
                 {{ item.title }}
               </option>
@@ -392,23 +392,14 @@ const setCountryValue = () => {
   }
   console.log(country.value);
 };
-//set nationality ID (uyruk) value according to the API
-const setNationalityIdValue = () => {
-  if (uyruk.value == "Türkiye") {
-    uyruk.value = "bb25e87d-135a-0e42-b5e9-3a014b76f8b0";
-  } else if (uyruk.value == "Azerbaycan") {
-    uyruk.value = "4a75b544-3b0e-5c29-a1b5-3a014b76f8b0";
-  } else if (uyruk.value == "Kuzey Kıbrıs Türk Cumhuriyeti") {
-    uyruk.value = "463a005d-3913-80ce-cf7a-3a014b76f8b0";
-  }
-  console.log(uyruk.value);
-};
+
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
   //$refs.fileInput.click();
 };
 // this function is just for test purposes
 const writeUyruk = function () {
+  console.log(stepTwo.uyruk);
   //denemeler
 };
 
