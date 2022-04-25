@@ -45,15 +45,22 @@ export default {
   },
 
   actions: {
-
     async getCountry({}) {
       await store.dispatch("auth/checkExpireToken");
-      console.log(store.getters['auth/_token'])
+      console.log(store.getters["auth/_token"]);
       appAxios.defaults.headers.common["Authorization"] =
-          "Bearer " + store.getters['auth/_token'];
+        "Bearer " + store.getters["auth/_token"];
       return await appAxios.get(
-          "endpoint/profile-service/lookups?title=Country&includeDetails=true",
+        "endpoint/profile-service/lookups?title=Country&includeDetails=true"
       );
+    },
+
+    async getCity({}) {
+      await store.dispatch("auth/checkExpireToken");
+      console.log(store.getters["auth/_token"]);
+      appAxios.defaults.headers.common["Authorization"] =
+        "Bearer " + store.getters["auth/_token"];
+      return await appAxios.get("endpoint/profile-service/lookups/city");
     },
 
     async registerUser({ commit, state, dispatch }) {

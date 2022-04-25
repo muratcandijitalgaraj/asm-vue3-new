@@ -203,10 +203,15 @@
             </option>
           </select>
           <select v-model="stepThree.city" class="dropDownSelect">
-            <option class="optionValue" value="">Şehir</option>
-            <option class="optionValue" value="Baku">Baku</option>
-            <option class="optionValue" value="Ankara">Ankara</option>
-            <option class="optionValue" value="Nicosia">Nicosia</option>
+            <option class="optionValue" value="" selected>Şehir</option>
+            <option
+              v-for="(item, key) in cities"
+              :key="key"
+              class="optionValue"
+              :value="item.id"
+            >
+              {{ item.title }}
+            </option>
           </select>
           <select v-model="stepThree.district" class="dropDownSelect">
             <option class="optionValue" value="">İlçe</option>
@@ -335,12 +340,28 @@ const buttonOne = async (e) => {
 };
 
 const countries = ref(null);
+const cities = ref(null);
+
+//get cities form the API
+const getCities = async (e) => {
+  await store
+    .dispatch("register/getCity")
+    .then((res) => {
+      //gelen ülkelerin abbr kodunu vfor ile uyruk selectine bağlanacak.
+      console.log(res.data.items);
+      cities.value = res.data.items;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const buttonTwo = function (e) {
   e.preventDefault();
   two.value = false;
   three.value = true;
-
+  //call get cities function
+  getCities();
   //invoke setting gender value function
   //setGenderValue();
   //invoke nationalityID value function
