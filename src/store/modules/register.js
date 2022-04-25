@@ -76,26 +76,27 @@ export default {
         regionId: null,
         emailAddress: state.email,
         password: state.password,
-        notificationToken: store.state.notificationToken,
+        notificationToken: store.getters["auth/_notification_token"],
         notificationCode: "123456",
         permissionToken1:
           "n9KphoyjSM6wGAcP6E8CiswMVap+n/LotkNqBGfnz354rk7Yr1M76JvojgtXqzanQaSQd3CrMI6izgbQSxFd0GvYQ2obJdk80Tb3uTl0FcFUqFhfO3Ht9oU3HNkm9hkZzuTmCbW/rBoQtyP+sPMWvFOJFWsqJ9hE/fv09lgC/b87RmOOcQLnQ3ZObsdd2LnKhfSnyUrrrku/OOdiDk1/SOHOxRD7LuDCbB1+ruv7+EA=",
         permissionCode1: "123456",
       };
-      console.log("registered" + JSON.stringify(userData));
 
-      await store.dispatch("auth/checkRefreshToken");
-      let token = store.getters["auth/_token"];
-      appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
-      return await appAxios.post(
-        "endpoint/profile-service/user",
-        qs.stringify({ userData }),
-        {
-          headers: {
-            "Content-Type: application/json": "Accept: application/json",
-          },
-        }
-      );
+      try {
+        console.log("registered" + JSON.stringify(userData));
+        console.log("not token" + userData.notificationToken);
+
+        await store.dispatch("auth/checkRefreshToken");
+        let token = store.getters["auth/_token"];
+        appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
+        return await appAxios.post(
+          "endpoint/profile-service/user",
+          qs.stringify({ userData })
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 

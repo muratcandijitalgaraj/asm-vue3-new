@@ -118,7 +118,7 @@
                 class="optionValue"
                 :value="item.id"
               >
-                {{ item.title }}
+                {{ item.attributes.abbr }}
               </option>
             </select>
             <input
@@ -371,8 +371,7 @@ const buttonTwo = function (e) {
 const buttonThree = function (e) {
   e.preventDefault();
   //invoke setcountryvalue &  setcityvalue  function
-  setCountryValue();
-  setCityValue();
+
   // three.value = false;
   // store.dispatch("register/registerUser");
   //denemeler
@@ -395,29 +394,6 @@ const buttonThree = function (e) {
     .catch((err) => console.log(err.response));
 };
 
-//set city value according to the API
-const setCityValue = () => {
-  if (city.value == "Ankara") {
-    city.value = "3668db6f-ca24-7d19-ee1c-3a014b76f8b0";
-  } else if (city.value == "Baku") {
-    city.value = "0adfc3ef-e423-8b7d-6056-3a014b76f8b0";
-  } else if (city.value == "Nicosia") {
-    city.value = "eee80834-8b7a-3606-e7ca-3a014b76f8b0";
-  }
-  console.log(city.value);
-};
-//set country value according to the API
-const setCountryValue = () => {
-  if (country.value == "Türkiye") {
-    country.value = "bb25e87d-135a-0e42-b5e9-3a014b76f8b0";
-  } else if (country.value == "Azerbaycan") {
-    country.value = "4a75b544-3b0e-5c29-a1b5-3a014b76f8b0";
-  } else if (country.value == "Kuzey Kıbrıs Türk Cumhuriyeti") {
-    country.value = "463a005d-3913-80ce-cf7a-3a014b76f8b0";
-  }
-  console.log(country.value);
-};
-
 //this doesn't work anymore since I changed to script setup
 const ppUpload = function () {
   //$refs.fileInput.click();
@@ -433,7 +409,10 @@ onMounted(() => {
   //   .dispatch("register/registerUser")
   //   .then((res) => console.log(res))
   //   .catch((err) => console.log(err.response));
-  console.log(store.SET_NOTIFICATION_TOKEN);
+  store
+    .dispatch("register/registerUser")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err.response));
 });
 </script>
 

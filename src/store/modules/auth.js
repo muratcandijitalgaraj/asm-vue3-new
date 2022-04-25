@@ -103,6 +103,8 @@ export default {
         .then((response) => {
           commit("SET_PHONE_NUMBER", phone);
           commit("SET_NOTIFICATION_TOKEN", response.data.data);
+          console.log(response.data.data);
+          console.log(state.notificationToken);
         })
         .catch((err) => {
           console.log(err);
@@ -196,19 +198,19 @@ export default {
       }
     },
 
-    logOut({commit, state}) {
+    logOut({ commit, state }) {
       localStorage.clear("token");
       localStorage.clear("expire");
       localStorage.clear("refreshToken");
       localStorage.clear("profileId");
       localStorage.clear("expireDate");
-      commit("SET_TOKEN", {token:null, expire: null})
-      commit("SET_REFRESH_TOKEN", null)
-      commit("SET_PROFILE_ID", null)
-      commit("SET_EXPIRE_DATE", null)
-      commit("SET_PHONE_NUMBER", null)
-      commit("SET_NOTIFICATION_TOKEN", null)
-    }
+      commit("SET_TOKEN", { token: null, expire: null });
+      commit("SET_REFRESH_TOKEN", null);
+      commit("SET_PROFILE_ID", null);
+      commit("SET_EXPIRE_DATE", null);
+      commit("SET_PHONE_NUMBER", null);
+      commit("SET_NOTIFICATION_TOKEN", null);
+    },
   },
 
   getters: {
