@@ -122,7 +122,7 @@
               </option>
             </select>
             <input
-              v-model="tcNo"
+              v-model="stepTwo.tcNo"
               placeholder="T.C. Kimlik Numarası"
               type="text"
               class="tcNo"
