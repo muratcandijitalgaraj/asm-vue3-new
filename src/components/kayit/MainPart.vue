@@ -63,13 +63,13 @@
             placeholder="E-posta"
             type="text"
             class="input"
-            :class="{'is-invalid': stepOneValidate.email.$errors.length}"
+            :class="{ 'is-invalid': stepOneValidate.email.$errors.length }"
           />
 
           <div
-              v-for="error in stepOneValidate.email.$errors"
-              :key="error.$uid"
-              class="invalid-feedback"
+            v-for="error in stepOneValidate.email.$errors"
+            :key="error.$uid"
+            class="invalid-feedback"
           >
             {{ error.$message }}
           </div>
@@ -78,12 +78,12 @@
             placeholder="Şifreniz"
             type="password"
             class="input"
-            :class="{'is-invalid': stepOneValidate.password.$errors.length}"
+            :class="{ 'is-invalid': stepOneValidate.password.$errors.length }"
           />
           <div
-              v-for="error in stepOneValidate.password.$errors"
-              :key="error.$uid"
-              class="invalid-feedback"
+            v-for="error in stepOneValidate.password.$errors"
+            :key="error.$uid"
+            class="invalid-feedback"
           >
             {{ error.$message }}
           </div>
@@ -111,11 +111,13 @@
               name=""
               id=""
             >
-              <option class="optionValue" value="Uyruk">Uyruk</option>
-              <option class="optionValue" value="Türkiye">Türkiye</option>
-              <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
-              <option class="optionValue" value="Kuzey Kıbrıs Türk Cumhuriyeti">
-                Kuzey Kıbrıs Türk Cumhuriyeti
+              <option
+                v-for="(item, key) in countries"
+                :key="key"
+                class="optionValue"
+                value="item.abbr"
+              >
+                {{ item.title }}
               </option>
             </select>
             <input
@@ -125,7 +127,12 @@
               class="tcNo"
             />
           </div>
-          <input v-model="stepTwo.name" placeholder="İsim" type="text" class="input" />
+          <input
+            v-model="stepTwo.name"
+            placeholder="İsim"
+            type="text"
+            class="input"
+          />
           <input
             v-model="stepTwo.surName"
             placeholder="Soyisim"
@@ -212,7 +219,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted, reactive, computed} from "vue";
+import { ref, onMounted, reactive, computed } from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
 import store from "../../store";
@@ -222,7 +229,7 @@ import {
   email,
   minLength,
   maxLength,
-  helpers
+  helpers,
 } from "@vuelidate/validators";
 import { useRouter, useRoute } from "vue-router";
 
@@ -250,12 +257,11 @@ let isChecked = ref(false);
 //user inputs
 //section One
 
-
 const stepOne = reactive({
   email: null,
   password: null,
-  passwordRepeated: null
-})
+  passwordRepeated: null,
+});
 
 const stepTwo = reactive({
   uyruk: null,
@@ -264,61 +270,46 @@ const stepTwo = reactive({
   date: null,
   surName: null,
   gender: null,
-})
+});
 
 const stepThree = reactive({
   country: null,
   city: null,
-  district: null
-})
+  district: null,
+});
 
 const passwordMatch = (value) => {
-  console.log(value, stepOne.password)
-  const match = stepOne.password === value ? true:false
-  console.log(match)
-  return match
-}
+  console.log(value, stepOne.password);
+  const match = stepOne.password === value ? true : false;
+  console.log(match);
+  return match;
+};
 
 const stepOneRules = computed(() => ({
   email: {
-    required: helpers.withMessage(
-        "Email zorunlu bir alandır.",
-        required
-    ),
-    email: helpers.withMessage(
-        "Email geçerli bir email olmaldır.",
-        email
-    )
+    required: helpers.withMessage("Email zorunlu bir alandır.", required),
+    email: helpers.withMessage("Email geçerli bir email olmaldır.", email),
   },
   password: {
-    required: helpers.withMessage(
-        "Şifre zorunlu bir alandır.",
-        required
-    ),
-    minlength: helpers.withMessage(
-        "Şifre 6 haneli olmalıdır.",
-        minLength(6)
-    ),
-    maxlength: helpers.withMessage(
-        "Şifre 6 haneli olmalıdır.",
-        maxLength(6)
-    ),
-/*    passwordRepeated: {
+    required: helpers.withMessage("Şifre zorunlu bir alandır.", required),
+    minlength: helpers.withMessage("Şifre 6 haneli olmalıdır.", minLength(6)),
+    maxlength: helpers.withMessage("Şifre 6 haneli olmalıdır.", maxLength(6)),
+    /*    passwordRepeated: {
       required: helpers.withMessage(
           "Şifre Tekrar Şifre ile uyuşmuyor.",
           passwordMatch
       )
     }*/
-  }
-}))
+  },
+}));
 
-const stepOneValidate = useVuelidate(stepOneRules, stepOne)
+const stepOneValidate = useVuelidate(stepOneRules, stepOne);
 
 const buttonOne = async (e) => {
   e.preventDefault();
-  const stepOneIsValid = await stepOneValidate.value.$validate()
+  const stepOneIsValid = await stepOneValidate.value.$validate();
 
-  if (!stepOneIsValid) return
+  if (!stepOneIsValid) return;
 
   one.value = false;
   two.value = true;
@@ -327,14 +318,19 @@ const buttonOne = async (e) => {
   isChecked.value = true;
 
   //ülkeler çekiliyor
-  await store.dispatch('register/getCountry').then(res => {
-    //gelen ülkelerin abbr kodunu vfor ile uyruk selectine bağlanacak.
-    console.log(res.data)
-  }).catch(err => {
-    console.log(err)
-  })
-
+  await store
+    .dispatch("register/getCountry")
+    .then((res) => {
+      //gelen ülkelerin abbr kodunu vfor ile uyruk selectine bağlanacak.
+      console.log(res.data[0].items);
+      countries.value = res.data[0].items;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
+
+const countries = ref(null);
 
 const buttonTwo = function (e) {
   e.preventDefault();
@@ -373,7 +369,6 @@ const buttonThree = function (e) {
     .then((res) => console.log(res))
     .catch((err) => console.log(err.response));
 };
-
 
 //set city value according to the API
 const setCityValue = () => {
