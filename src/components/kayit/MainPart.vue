@@ -111,6 +111,8 @@
               name=""
               id=""
             >
+              <option class="optionValue" selected>Uyruk</option>
+
               <option
                 v-for="(item, key) in countries"
                 :key="key"
