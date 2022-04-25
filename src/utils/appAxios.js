@@ -5,6 +5,7 @@ const appAxios = axios.create({
 
 appAxios.interceptors.request.use((request) => {
   request.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
+  //   request.headers.common["Accept"] = "application/x-www-form-urlencoded";
   return request;
 });
 
