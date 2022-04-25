@@ -112,7 +112,6 @@
               id=""
             >
               <option class="optionValue" selected>Uyruk</option>
-
               <option
                 v-for="(item, key) in countries"
                 :key="key"
@@ -193,11 +192,14 @@
             </div>
           </div>
           <select v-model="stepThree.country" class="dropDownSelect">
-            <option class="optionValue" value="">Ülke</option>
-            <option class="optionValue" value="Türkiye">Türkiye</option>
-            <option class="optionValue" value="Azerbaycan">Azerbaycan</option>
-            <option class="optionValue" value="Kuzey Kıbrıs Türk Cumhuriyeti">
-              Kuzey Kıbrıs Türk Cumhuriyeti
+            <option class="optionValue" selected>Ülke</option>
+            <option
+              v-for="(item, key) in countries"
+              :key="key"
+              class="optionValue"
+              :value="item.id"
+            >
+              {{ item.title }}
             </option>
           </select>
           <select v-model="stepThree.city" class="dropDownSelect">
