@@ -86,6 +86,7 @@ export default {
       try {
         console.log("registered" + JSON.stringify(userData));
         console.log("not token" + userData.notificationToken);
+        console.log("soyisim" + userData.familyName);
 
         await store.dispatch("auth/checkRefreshToken");
         let token = store.getters["auth/_token"];

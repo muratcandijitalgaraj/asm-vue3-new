@@ -135,7 +135,7 @@
             class="input"
           />
           <input
-            v-model="stepTwo.surName"
+            v-model="stepTwo.surname"
             placeholder="Soyisim"
             type="text"
             class="input"
@@ -277,7 +277,7 @@ const stepTwo = reactive({
   tcNo: null,
   name: null,
   date: null,
-  surName: null,
+  surname: null,
   gender: null,
 });
 
@@ -382,7 +382,7 @@ const buttonThree = function (e) {
     tcNo: stepTwo.tcNo,
     name: stepTwo.name,
     date: stepTwo.date,
-    surName: stepTwo.surName,
+    surname: stepTwo.surname,
     gender: stepTwo.gender,
     country: stepThree.country,
     city: stepThree.city,
