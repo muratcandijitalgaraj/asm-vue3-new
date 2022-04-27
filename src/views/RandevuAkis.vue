@@ -29,6 +29,7 @@ import SecimVue from "../components/randevuAkis/Secim.vue";
 @media only screen and (max-width: 992px) {
   .zemin {
     width: 100%;
+    height: auto;
     border-top-right-radius: 0;
     border-bottom-left-radius: 18px;
   }
