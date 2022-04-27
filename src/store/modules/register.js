@@ -88,12 +88,12 @@ export default {
         console.log("not token" + userData.notificationToken);
         console.log("soyisim" + userData.familyName);
 
-        await store.dispatch("auth/checkRefreshToken");
+        await store.dispatch("auth/checkExpireToken");
         let token = store.getters["auth/_token"];
+        appAxios.defaults.headers.common["Content-Type"] = "application/json";
         appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
         return await appAxios.post(
-          "endpoint/profile-service/user",
-          Json.stringify({ userData })
+          "endpoint/profile-service/user", userData
         );
       } catch (error) {
         console.log(error);
