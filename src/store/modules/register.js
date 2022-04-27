@@ -93,7 +93,7 @@ export default {
         appAxios.defaults.headers.common["Authorization"] = "Bearer " + token;
         return await appAxios.post(
           "endpoint/profile-service/user",
-          qs.stringify({ userData })
+          Json.stringify({ userData })
         );
       } catch (error) {
         console.log(error);
