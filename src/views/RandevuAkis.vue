@@ -3,12 +3,35 @@
     <template v-slot:header><Header /></template>
     <template v-slot:sidebar><Sidebar /></template>
     <template v-slot:section>
-      <Main> </Main>
+      <!-- your code comes here -->
+      <div class="zemin">
+        <SecimVue />
+      </div>
     </template>
     <template v-slot:footer><Footer /></template>
   </Master>
 </template>
 
-<script setup></script>
+<script setup>
+import SecimVue from "../components/randevuAkis/Secim.vue";
+</script>
 
-<style></style>
+<style lang="scss" scoped>
+.zemin {
+  width: 60%;
+  height: 100%;
+  background: #f2f8fb;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 18px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+@media only screen and (max-width: 992px) {
+  .zemin {
+    width: 100%;
+    height: auto;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 18px;
+  }
+}
+</style>
