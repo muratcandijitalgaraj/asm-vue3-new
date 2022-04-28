@@ -107,15 +107,6 @@
         </div>
       </div>
     </div>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary triggerModal"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-    >
-      Launch static backdrop modal
-    </button>
 
     <!-- Modal -->
     <div
@@ -155,6 +146,41 @@
         </div>
       </div>
     </div>
+    <div
+      class="modal fade"
+      id="staticBackdrop2"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdrop2Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body modalItemsContainer">
+            <!-- <img src="" alt="" class="modalImage"> -->
+            <div class="modalText">
+              {{ getUserData?.mobileNumber }} telefon numarası ile ilişkilendilirmiş diğer profiller iptal edilecektir.
+            </div>
+            <div class="modalTitle">Devam etmek istiyor musunuz?</div>
+            <button
+              class="positiveBtn"
+              data-bs-dismiss="modal"
+              @click="accountContinueAction"
+            >
+              <div class="modalButtonText">Vazgeç</div>
+            </button>
+            <button
+              data-bs-dismiss="modal"
+              @click="accountCancelAction"
+              class="negativeBtn"
+            >
+              <div class="modalButtonText">Evet</div>
+            </button>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -172,6 +198,8 @@ import {
   helpers
 } from "@vuelidate/validators";
 import { useRouter, useRoute } from "vue-router";
+import { Modal } from 'bootstrap';
+
 
 const router = useRouter();
 const route = useRoute();
@@ -258,7 +286,11 @@ const firstButtonControl = async () => {
   state.userTelNoCorrect = true;
 };
 
+let myModal = null,
+    myModal2 = null;
+
 const secondButtonControl = async () => {
+
   if (state.accountBelongsToUser) {
 
     const isValidPhone = await telNoValidate.value.$validate();
@@ -306,7 +338,7 @@ const secondButtonControl = async () => {
           router.push("kayit");
         } else {
           store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
-          document.querySelector(".triggerModal").click();
+          myModal.show()
         }
       })
       .catch((err) => {
@@ -328,8 +360,22 @@ const confirmaccountBelongsToUser = () => {
 };
 
 const accountDoesNotBelongToUser = () => {
-  router.push({ name: "Kayit" });
+  myModal.hide()
+  myModal2.show()
 };
+
+const accountContinueAction = () => {
+  myModal.hide()
+  state.accountBelongsToUser = true
+}
+const accountCancelAction = async () => {
+
+  await store.dispatch('auth/deactivate').then(res => {
+    console.log(res.data)
+  }).catch(err => console.log(err.response))
+
+  //router.push({ name: "Kayit" });
+}
 
 const getUserData = computed(
   () => store.getters["auth/_notification_user_data"]
@@ -338,6 +384,13 @@ const getUserData = computed(
 onMounted(() => {
   telNo.value = localStorage.getItem("telNo");
   password.value = localStorage.getItem("password");
+  myModal = new Modal(document.getElementById('staticBackdrop'), {
+    keyboard: true
+  })
+
+  myModal2 = new Modal(document.getElementById('staticBackdrop2'), {
+    keyboard: true
+  })
 });
 </script>
 

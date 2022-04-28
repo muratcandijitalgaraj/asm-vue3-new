@@ -198,6 +198,18 @@ export default {
       }
     },
 
+    async deactivate({state, dispatch}){
+      await dispatch("checkExpireToken")
+      appAxios.defaults.headers.common["Authorization"] =
+          "Bearer " + state.token;
+      let req = {
+        notificationCode: state.notificationCode,
+        notificationToken: state.notificationToken,
+        profileId: state.profileID,
+      };
+      return await appAxios.post("endpoint/profile-service/user", qs.stringify(req));
+    },
+
     logOut({ commit, state }) {
       localStorage.clear("token");
       localStorage.clear("expire");

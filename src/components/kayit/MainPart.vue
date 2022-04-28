@@ -405,14 +405,7 @@ const writeUyruk = function () {
 };
 
 onMounted(() => {
-  // store
-  //   .dispatch("register/registerUser")
-  //   .then((res) => console.log(res))
-  //   .catch((err) => console.log(err.response));
-  store
-    .dispatch("register/registerUser")
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err.response));
+
 });
 </script>
 
