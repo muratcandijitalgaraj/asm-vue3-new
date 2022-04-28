@@ -165,16 +165,16 @@
             <button
               class="positiveBtn"
               data-bs-dismiss="modal"
-              @click="accountContinueAction"
+              @click="accountCancelAction"
             >
-              <div class="modalButtonText">Vazgeç</div>
+              <div class="modalButtonText">Evet</div>
             </button>
             <button
               data-bs-dismiss="modal"
-              @click="accountCancelAction"
+              @click="accountContinueAction"
               class="negativeBtn"
             >
-              <div class="modalButtonText">Evet</div>
+              <div class="modalButtonText">Vazgeç</div>
             </button>
           </div>
           <div class="modal-footer"></div>
@@ -331,6 +331,8 @@ const secondButtonControl = async () => {
 
     if (!isValidPhone || !isValidSmsCode) return;
 
+    store.commit('auth/SET_NOTIFICATION_CODE', smsCode.value)
+
     await store
       .dispatch("auth/phoneVerify", smsCode.value)
       .then((res) => {
@@ -370,11 +372,11 @@ const accountContinueAction = () => {
 }
 const accountCancelAction = async () => {
 
-  await store.dispatch('auth/deactivate').then(res => {
-    console.log(res.data)
+  await store.dispatch('auth/deactivate', smsCode.value).then(res => {
+    if (res.data.data === true)
+      router.push({ name: "Kayit" });
   }).catch(err => console.log(err.response))
 
-  //router.push({ name: "Kayit" });
 }
 
 const getUserData = computed(

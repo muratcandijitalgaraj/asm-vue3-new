@@ -3,7 +3,6 @@
     <div class="container">
       <div class="upperSection">
         <div class="title">Hesap Oluştur</div>
-
         <div class="sections">
           <!-- section 1 -->
           <div class="section" id="section-1">
@@ -144,13 +143,13 @@
           <Datepicker
             placeholder="Doğum Tarihi (GG/AA/YYYY)"
             class="picker"
-            v-model="stepTwo.date"
+            v-model="date"
             :format="format"
             autoApply
-            :closeOnAutoApply="false"
+            :closeOnAutoApply="true"
             locale="tr"
             :autoPosition="false"
-            :startDate="startDate"
+            :start-date="startDate"
           />
 
           <select v-model="stepTwo.gender" class="dropDownSelect">
@@ -250,9 +249,13 @@ const format = (date) => {
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
 
-  return `${day}/${month}/${year}`;
+  let formatDate  = `${year}-${month}-${day}`;
+  stepTwo.date = formatDate
+  return formatDate
 };
 const startDate = ref(new Date(1985, 1));
+
+const date = ref('')
 
 let one = ref(true);
 let two = ref(false);
@@ -276,7 +279,7 @@ const stepTwo = reactive({
   uyruk: null,
   tcNo: null,
   name: null,
-  date: null,
+  date: new Date(1985, 1),
   surname: null,
   gender: null,
 });

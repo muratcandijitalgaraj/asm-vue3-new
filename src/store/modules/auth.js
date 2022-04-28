@@ -198,16 +198,16 @@ export default {
       }
     },
 
-    async deactivate({state, dispatch}){
+    async deactivate({state, dispatch}, smsCode){
       await dispatch("checkExpireToken")
       appAxios.defaults.headers.common["Authorization"] =
           "Bearer " + state.token;
       let req = {
-        notificationCode: state.notificationCode,
+        notificationCode: smsCode,
         notificationToken: state.notificationToken,
-        profileId: state.profileID,
+        profileId: state.notificationUserData.profileId,
       };
-      return await appAxios.post("endpoint/profile-service/user", qs.stringify(req));
+      return await appAxios.delete("endpoint/profile-service/user", {data: qs.stringify(req)});
     },
 
     logOut({ commit, state }) {
@@ -228,6 +228,7 @@ export default {
   getters: {
     _user: (state) => state.user,
     _notification_token: (state) => state.notificationToken,
+    _notification_code: (state) => state.notificationCode,
     _notification_user_data: (state) => state.notificationUserData,
     _auth: (state) =>
       state.token?.length > 0 && state.refreshToken?.length > 0 ? true : false,

@@ -26,6 +26,7 @@ export default {
     country: null,
     city: null,
     district: null,
+    date: null,
   },
 
   mutations: {
@@ -41,6 +42,7 @@ export default {
       state.country = payload.country;
       state.city = payload.city;
       state.district = payload.district;
+      state.date = payload.date;
     },
   },
 
@@ -64,12 +66,12 @@ export default {
     },
 
     async registerUser({ commit, state, dispatch }) {
-      let userData = {
+/*      let userData = {
         nationalityId: state.uyruk,
         identityNumber: state.tcNo,
         givenName: state.name,
         familyName: state.surname,
-        gender: state.gender,
+        gender: parseInt(state.gender),
         birthDate: "1992-11-02",
         countryId: state.country,
         cityId: state.city,
@@ -81,13 +83,27 @@ export default {
         permissionToken1:
           "n9KphoyjSM6wGAcP6E8CiswMVap+n/LotkNqBGfnz354rk7Yr1M76JvojgtXqzanQaSQd3CrMI6izgbQSxFd0GvYQ2obJdk80Tb3uTl0FcFUqFhfO3Ht9oU3HNkm9hkZzuTmCbW/rBoQtyP+sPMWvFOJFWsqJ9hE/fv09lgC/b87RmOOcQLnQ3ZObsdd2LnKhfSnyUrrrku/OOdiDk1/SOHOxRD7LuDCbB1+ruv7+EA=",
         permissionCode1: "123456",
-      };
+      };*/
+
+      let userData = {
+        nationalityId: state.uyruk,
+        identityNumber: state.tcNo,
+        givenName : state.name,
+        familyName: state.surname,
+        gender: parseInt(state.gender),
+        birthDate: "1989-07-01",//state.date,
+        countryId: state.country,
+        cityId: state.city,
+        regionId: null,
+        emailAddress: state.email,
+        password: state.password,
+        notificationToken: store.getters["auth/_notification_token"],
+        notificationCode: store.getters['auth/_notification_code'],
+        permissionToken1: "n9KphoyjSM6wGAcP6E8CiswMVap+n/LotkNqBGfnz354rk7Yr1M76JvojgtXqzanQaSQd3CrMI6izgbQSxFd0GvYQ2obJdk80Tb3uTl0FcFUqFhfO3Ht9oU3HNkm9hkZzuTmCbW/rBoQtyP+sPMWvFOJFWsqJ9hE/fv09lgC/b87RmOOcQLnQ3ZObsdd2LnKhfSnyUrrrku/OOdiDk1/SOHOxRD7LuDCbB1+ruv7+EA=",
+        permissionCode1: "123456"
+      }
 
       try {
-        console.log("registered" + JSON.stringify(userData));
-        console.log("not token" + userData.notificationToken);
-        console.log("soyisim" + userData.familyName);
-
         await store.dispatch("auth/checkExpireToken");
         let token = store.getters["auth/_token"];
         appAxios.defaults.headers.common["Content-Type"] = "application/json";
@@ -96,7 +112,7 @@ export default {
           "endpoint/profile-service/user", userData
         );
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
   },
