@@ -4,39 +4,61 @@
       <form class="welcomePart">
         <div class="hosgeldiniz">Hoşgeldiniz</div>
         <div class="giris">Giriş Yapın</div>
-        <div class="telContainer">
-          <input placeholder="+90" type="text" class="countryCode" />
+        <div class="telContainer d-flex align-items-start">
+          <input v-model="countryCode" type="text" class="countryCode" />
           <div class="telefonNoContainer">
             <input
               v-model="telNo"
               placeholder="Telefon Numaranız"
               type="number"
               class="telNo"
+              :class="{ 'is-invalid':telNoValidate?.$errors.length}"
             />
-            <span v-bind:class="{ active: isActive }" class="errorMessage"
-              >Geçerli bir telefon numarası yazın</span
+            <div
+              v-for="error in telNoValidate.$errors"
+              :key="error.$uid"
+              class="invalid-feedback"
             >
+              {{ error.$message }}
+            </div>
           </div>
         </div>
         <input
-          v-if="userTelNoCorrect"
+          v-if="state.userTelNoCorrect"
           placeholder="Sms Kodunu Giriniz"
           type="text"
           class="input"
+          :class="{ 'is-invalid':smsCodeValidate?.$errors.length}"
           v-model="smsCode"
         />
-
-        <div v-if="accountBelongsToUser" class="sifrePart">
+        <div
+          v-for="error in smsCodeValidate.$errors"
+          :key="error.$uid"
+          class="invalid-feedback"
+        >
+          {{ error.$message }}
+        </div>
+        <div v-if="state.accountBelongsToUser" class="sifrePart">
           <div class="sifreContainer">
-            <input placeholder="Şifreniz" type="password" class="sifre" />
-            <span v-bind:class="{ active: isActive }" class="errorMessage"
-              >Hatalı şifre girdiniz</span
+            <input
+              placeholder="Şifreniz"
+              type="password"
+              class="sifre"
+              :class="{ 'is-invalid':passwordValidate?.$errors.length}"
+              v-model="password"
+            />
+            <div
+                v-for="error in passwordValidate.$errors"
+                :key="error.$uid"
+                class="invalid-feedback"
             >
+              {{ error.$message }}
+            </div>
           </div>
           <div class="loginActions">
             <div class="checkboxContainer">
               <div
-                v-bind:class="{ checked: isChecked }"
+                v-bind:class="{ checked: state.isChecked }"
                 @click="handleCheck"
                 class="unChecked"
               >
@@ -61,7 +83,7 @@
         <!-- first button -->
         <!-- show this button only if the user tel no is NOT correct -->
         <button
-          v-if="!userTelNoCorrect"
+          v-if="!state.userTelNoCorrect"
           @click="firstButtonControl"
           class="tamamButton"
         >
@@ -70,7 +92,7 @@
         <!-- second button -->
         <!-- show this button once the user's tel no is correct -->
         <button
-          v-if="userTelNoCorrect"
+          v-if="state.userTelNoCorrect"
           @click="secondButtonControl"
           class="tamamButton"
         >
@@ -85,15 +107,6 @@
         </div>
       </div>
     </div>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary triggerModal"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-    >
-      Launch static backdrop modal
-    </button>
 
     <!-- Modal -->
     <div
@@ -110,7 +123,8 @@
             <!-- <img src="" alt="" class="modalImage"> -->
             <div class="modalTitle">Bu Kullanıcı hesabı size mi ait?</div>
             <div class="modalText">
-              Girmiş olduğunuz 0555 666 77 88 telefon numarası A** Y***** adına
+              Girmiş olduğunuz {{ getUserData?.mobileNumber }} telefon numarası
+              {{ getUserData?.givenName + " " + getUserData?.familyName }} adına
               kayıtlıdır
             </div>
             <button
@@ -132,75 +146,254 @@
         </div>
       </div>
     </div>
+    <div
+      class="modal fade"
+      id="staticBackdrop2"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdrop2Label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body modalItemsContainer">
+            <!-- <img src="" alt="" class="modalImage"> -->
+            <div class="modalText">
+              {{ getUserData?.mobileNumber }} telefon numarası ile ilişkilendilirmiş diğer profiller iptal edilecektir.
+            </div>
+            <div class="modalTitle">Devam etmek istiyor musunuz?</div>
+            <button
+              class="positiveBtn"
+              data-bs-dismiss="modal"
+              @click="accountCancelAction"
+            >
+              <div class="modalButtonText">Evet</div>
+            </button>
+            <button
+              data-bs-dismiss="modal"
+              @click="accountContinueAction"
+              class="negativeBtn"
+            >
+              <div class="modalButtonText">Vazgeç</div>
+            </button>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import Carousel from "./Carousel.vue";
-export default {
-  components: { Carousel },
-  data() {
-    return {
-      isActive: false,
-      isChecked: false,
-      accountBelongsToUser: false,
-      userTelNoCorrect: false,
-      //first click/telefon no
-      //let's give +90 as default for country code
-      countryCode: +90,
-      telNo: "",
-      smsCode: "",
-    };
-  },
-  methods: {
-    showError: function (e) {
-      e.preventDefault();
-      this.isActive = true;
-    },
-    handleCheck: function () {
-      // e.preventDefault();
-      this.isChecked = !this.isChecked;
-      // console.log(this.isChecked);
-    },
-    firstButtonControl: function (e) {
-      e.preventDefault();
-      //if the telNo part does not contain 10 digits
-      if (this.telNo.toString().length != 10) {
-        this.isActive = true;
-      } else if (this.telNo.toString().length == 10) {
-        //if the number seems correct, remove the error message
-        this.isActive = false;
-        //show sms code input section
-        this.userTelNoCorrect = true;
-      }
-    },
-    secondButtonControl: function (e) {
-      e.preventDefault();
+import store from "../../store";
+import { computed, onMounted, reactive, ref } from "vue";
+import useVuelidate from "@vuelidate/core";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  helpers
+} from "@vuelidate/validators";
+import { useRouter, useRoute } from "vue-router";
+import { Modal } from 'bootstrap';
 
-      //check if the sms code is correct
-      //at this stage, I'm just using a length
-      //when the API i connected, it'll use a different logic
-      //so if the user does not have an account, direct him/her to the sign-up page
-      if (this.smsCode.toString().length != 4) {
-        // this.$router.push("Kayit");
-        console.log("routing?");
-        this.$router.push({ name: "Kayit" });
-      }
-      //if s/he has an account, open pop-up
-      else if (this.smsCode.toString().length == 4) {
-        document.querySelector(".triggerModal").click();
-      }
-    },
-    confirmaccountBelongsToUser: function (e) {
-      e.preventDefault();
-      this.accountBelongsToUser = true;
-    },
-    accountDoesNotBelongToUser: function (e) {
-      e.preventDefault();
-      this.$router.push({ name: "Kayit" });
-    },
-  },
+
+const router = useRouter();
+const route = useRoute();
+
+const state = reactive({
+  isActive: false,
+  isChecked: false,
+  accountBelongsToUser: false,
+  userTelNoCorrect: false,
+  loginAction: false,
+});
+
+const telNo = ref("");
+
+const smsCode = ref("");
+
+const password = ref("");
+
+const countryCode = ref("+90");
+
+const handleCheck = () => {
+  state.isChecked = !state.isChecked;
 };
+
+const showError = () => {
+  state.isActive = true;
+};
+
+const telNoRules = computed(() => ({
+  telNo: {
+    required: helpers.withMessage(
+      "Telefon Numaranız zorunlu bir alandır.",
+      required
+    ),
+    minlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      minLength(10)
+    ),
+    maxlength: helpers.withMessage(
+      "Telefon Numaranız 10 haneli olmalıdır.",
+      maxLength(10)
+    ),
+  },
+}));
+
+const smsCodeRules = computed(() => ({
+  smsCode: {
+    required: helpers.withMessage("SMS Kodu zorunlu bir alandır.", required),
+    minlength: helpers.withMessage(
+      "SMS Kodu 6 haneli olmalıdır.",
+      minLength(6)
+    ),
+    maxlength: helpers.withMessage(
+      "SMS Kodu 6 haneli olmalıdır.",
+      maxLength(6)
+    ),
+  },
+}));
+
+const passwordRules = computed(() => ({
+  password: {
+    required: helpers.withMessage("Şifreniz zorunlu bir alandır.", required),
+    minlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        minLength(6)
+    ),
+    maxlength: helpers.withMessage(
+        "Şifre 6 haneli olmalıdır.",
+        maxLength(6)
+    ),
+  },
+}));
+
+const telNoValidate = useVuelidate(telNoRules,{ telNo });
+const smsCodeValidate = useVuelidate(smsCodeRules,{ smsCode });
+const passwordValidate = useVuelidate(passwordRules,{ password });
+
+const firstButtonControl = async () => {
+  const isValid = await telNoValidate.value.$validate();
+
+  if (!isValid) return;
+
+  await store.dispatch("auth/phoneNotify", countryCode.value + telNo.value);
+  state.userTelNoCorrect = true;
+};
+
+let myModal = null,
+    myModal2 = null;
+
+const secondButtonControl = async () => {
+
+  if (state.accountBelongsToUser) {
+
+    const isValidPhone = await telNoValidate.value.$validate();
+    const isValidSmsCode = await smsCodeValidate.value.$validate();
+    const isValidPassword = await passwordValidate.value.$validate();
+
+    if (!isValidPhone || !isValidSmsCode || !isValidPassword) return;
+
+    await store
+      .dispatch("auth/loginAction", password.value)
+      .then((res) => {
+        store.commit("auth/SET_TOKEN", {
+          token: res.data.access_token,
+          expire: res.data.expires_in,
+        });
+
+        store.commit("auth/SET_REFRESH_TOKEN", res.data.refresh_token);
+
+        if (state.isChecked)
+          localStorage.setItem("refreshToken", res.data.refresh_token);
+
+        router.push("anasayfa");
+      })
+      .catch((error) => {
+        if (error.response) {
+          new Swal({
+            icon: "error",
+            title: error.response.data.error_description,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+        console.log(error.response);
+      });
+  } else {
+    const isValidPhone = await telNoValidate.value.$validate();
+    const isValidSmsCode = await smsCodeValidate.value.$validate();
+
+    if (!isValidPhone || !isValidSmsCode) return;
+
+    store.commit('auth/SET_NOTIFICATION_CODE', smsCode.value)
+
+    await store
+      .dispatch("auth/phoneVerify", smsCode.value)
+      .then((res) => {
+        if (res.data.profileId == null) {
+          router.push("kayit");
+        } else {
+          store.commit("auth/SET_NOTIFICATION_USER_DATA", res.data);
+          myModal.show()
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
+
+const confirmaccountBelongsToUser = () => {
+  store.commit(
+    "auth/SET_PROFILE_ID",
+    store.getters["auth/_notification_user_data"]?.profileId
+  );
+  localStorage.setItem(
+    "profileId",
+    store.getters["auth/_notification_user_data"]?.profileId
+  );
+  state.accountBelongsToUser = true;
+};
+
+const accountDoesNotBelongToUser = () => {
+  myModal.hide()
+  myModal2.show()
+};
+
+const accountContinueAction = () => {
+  myModal.hide()
+  state.accountBelongsToUser = true
+}
+const accountCancelAction = async () => {
+
+  await store.dispatch('auth/deactivate', smsCode.value).then(res => {
+    if (res.data.data === true)
+      router.push({ name: "Kayit" });
+  }).catch(err => console.log(err.response))
+
+}
+
+const getUserData = computed(
+  () => store.getters["auth/_notification_user_data"]
+);
+
+onMounted(() => {
+  telNo.value = localStorage.getItem("telNo");
+  password.value = localStorage.getItem("password");
+  myModal = new Modal(document.getElementById('staticBackdrop'), {
+    keyboard: true
+  })
+
+  myModal2 = new Modal(document.getElementById('staticBackdrop2'), {
+    keyboard: true
+  })
+});
 </script>
 
 <style scoped lang="scss">
@@ -270,7 +463,7 @@ export default {
 .telContainer {
   @include flexCenter(row);
   width: auto;
-  height: 93px !important;
+  // height: 93px !important;
 }
 .telefonNoContainer {
   margin-bottom: 9px;
@@ -514,7 +707,7 @@ export default {
   width: 585px;
   height: 211px;
   // border: 1px solid gold;
-  background: url("../../assets/giris/orta-bulut.svg");
+  background: url("../../assets/img/giris/orta-bulut.svg");
   // background: black;
   @include flexCenter(column);
 }

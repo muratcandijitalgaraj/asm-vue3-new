@@ -30,9 +30,7 @@ import randevuTuruVue from "../UI/randevuAkis/randevuTuru.vue";
   font-size: 22px;
   line-height: 130%;
   /* identical to box height, or 29px */
-
   /* Primary */
-
   color: #3c4e69;
 }
 .greyLine {
@@ -45,28 +43,22 @@ import randevuTuruVue from "../UI/randevuAkis/randevuTuru.vue";
   justify-content: center;
   align-items: center;
   padding: 12px 20px 11px;
-
   width: 341px;
   height: 50px;
-
   /* Turuncu */
-
   background: #ff8038;
   border: none;
   border-radius: 6px;
 }
 .buttonText {
   /* buton-text-orta */
-
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 800;
   font-size: 16px;
   line-height: 110%;
   /* identical to box height, or 18px */
-
   /* Beyaz */
-
   color: #ffffff;
 }
 </style>

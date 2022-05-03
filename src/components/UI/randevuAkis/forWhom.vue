@@ -7,7 +7,7 @@
       class="profileWrapper d-flex flex-row justify-content-start align-items-center"
     >
       <div class="circle d-flex justify-content-center align-items-center">
-        <div class="checkMark">&#10004;</div>
+        <img :src="checkMark" alt="" class="checkMark" />
       </div>
       <div class="profileName">Mehmet Yılmaz</div>
     </div>
@@ -22,6 +22,7 @@
 
 <script setup>
 import { ref } from "vue";
+import checkMark from "../../../assets/img/randevuAkis/checkMark.svg";
 import icon from "../../../assets/img/randevuAkis/addUser.svg";
 //toggle functionality
 let isActive = ref(false);
@@ -82,9 +83,8 @@ const toggle = function () {
   border-radius: 50%;
   margin: 0 12px;
 }
-.checkmark {
-  opacity: 0;
-  border: 2px solid red;
+.checkMark {
+  display: none;
 }
 .icon {
   margin: 0 12px;
@@ -111,6 +111,9 @@ const toggle = function () {
   }
   .circle {
     background: white;
+  }
+  .checkMark {
+    display: inline-block;
   }
 }
 </style>

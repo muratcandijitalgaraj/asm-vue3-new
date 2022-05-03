@@ -19,7 +19,7 @@ const getImage = computed(() => {
       return hospitalLogo;
     case 2:
       return clockLogo;
-    case 3:
+    case 4:
       return likeLogo;
   }
 });
@@ -30,7 +30,7 @@ const getColor = computed(() => {
       return "red";
     case 2:
       return "orange";
-    case 3:
+    case 4:
       return "green";
   }
 });

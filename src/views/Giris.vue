@@ -10,13 +10,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Header from "../components/shared/Header.vue";
 import Bulutlar from "../components/giris/Bulutlar.vue";
 import MiddlePart from "../components/giris/MiddlePart.vue";
 import Bottom from "../components/shared/Bottom.vue";
 import Footer from "../components/shared/Footer.vue";
-export default { components: { Header, Bulutlar, MiddlePart, Bottom, Footer } };
+import vuex from "../store"
+
+vuex.dispatch('auth/getAccessToken')
 </script>
 
 <style scoped lang="scss">

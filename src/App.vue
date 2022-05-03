@@ -4,6 +4,18 @@
 
 <script setup>
 import Dashboard from "./views/Dashboard.vue";
+import store from "./store";
+import {onBeforeMount, onMounted} from "vue";
+import {useRouter} from "vue-router"
+
+const router = useRouter()
+
+onBeforeMount(async () => {
+  await store.dispatch('auth/checkStoreData')
+  if (!store.getters['auth/_auth']) {
+    router.push('/')
+  }
+})
 </script>
 
 <style lang="scss">
